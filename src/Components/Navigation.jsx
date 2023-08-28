@@ -1,4 +1,4 @@
-import { Box, Input, Button } from '@chakra-ui/react'
+import { Box, Input, Button, Text } from '@chakra-ui/react'
 
 export default function Navigation() {
   return (
