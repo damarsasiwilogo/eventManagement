@@ -9,7 +9,7 @@ export default function Navigation() {
       </Text>
       <Input size={"md"} placeholder="Search an event..." w={"md"} shadow={"sm"} bg={"white"} />
       <ButtonGroup>
-        <Button bg={"#331F69"} color={"white"} className="btn-nav-discover">
+        <Button bgColor="#331F69" color={"white"} _hover={{ bg:  "#24105c"}} className="btn-nav-discover">
           DISCOVER
         </Button>
         <Button bg={"#3E60C1"} color={"white"} className="btn-nav">
