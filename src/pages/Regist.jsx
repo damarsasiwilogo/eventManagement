@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import {
+	Avatar,
 	Box,
 	Button,
 	Flex,
 	FormControl,
 	FormLabel,
+	Heading,
 	HStack,
 	Input,
 	InputGroup,
@@ -83,11 +85,15 @@ function Regist() {
 							align={"center"}
 							justify={"center"}
 							bg={useColorModeValue("whiteAlpha.50", "whiteAlpha.800")}>
-							<Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-								<Stack align={"center"}>
-									<Text fontSize={"lg"} color={"gray.600"}>
-										Sign Up
-									</Text>
+							<Stack spacing={3} mx={"auto"} maxW={"lg"} py={12} px={6}>
+								<Stack
+									align={"center"}
+									flexDir="column"
+									mb="2"
+									justifyContent="center"
+									alignItems="center">
+									<Avatar bg="blue.700" />
+									<Heading color="blue.600">Sign Up</Heading>
 								</Stack>
 								<Box
 									rounded={"lg"}
