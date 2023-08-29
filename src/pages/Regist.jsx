@@ -78,7 +78,7 @@ function Regist() {
             </Stack>
         </Flex>
     </>
-)
+    )
 }
 
 export default Regist;
