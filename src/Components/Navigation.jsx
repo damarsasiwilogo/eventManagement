@@ -3,12 +3,15 @@ import "../index.css";
 
 export default function Navigation() {
   return (
-    <Box display={"flex"} justifyContent={"space-evenly"} shadow={"md"} p={"10px"}>
-      <Text fontSize={"2xl"} fontWeight={"bold"} bg={'#383280'} px={'15px'} color={'white'} borderRadius={'md'}>
+    <Box display={"flex"} justifyContent={"space-evenly"} bg={"#331F69"} alignItems={"center"} h={"10vh"}>
+      <Text fontSize={"2xl"} fontWeight={"bold"} px={"15px"} color={"white"} borderRadius={"md"}>
         myTix
       </Text>
-      <Input size={"md"} placeholder="Search an event..." w={"md"} shadow={"sm"} />
+      <Input size={"md"} placeholder="Search an event..." w={"md"} shadow={"sm"} bg={"white"} />
       <ButtonGroup>
+        <Button bg={"#331F69"} color={"white"} className="btn-nav-discover">
+          DISCOVER
+        </Button>
         <Button bg={"#3E60C1"} color={"white"} className="btn-nav">
           LOGIN
         </Button>

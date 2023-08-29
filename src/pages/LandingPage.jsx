@@ -1,7 +1,13 @@
-import React from 'react'
+import { Box, Center, Container } from "@chakra-ui/react";
+import React from "react";
+import Navigation from "../Components/Navigation";
 
 export default function Landingpage() {
   return (
-    <div>Landingpage</div>
-  )
+    <>
+      <Navigation />
+      <Container>
+      </Container>
+    </>
+  );
 }

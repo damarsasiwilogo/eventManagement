@@ -1,3 +1,13 @@
 .btn-nav:hover {
     color: #2e4583;
 }
+
+.btn-nav-discover{
+    padding: 0 50px;
+    background-color: #331F69;
+}
+
+.btn-nav-discover:hover {
+    color: #f7f7f7;
+    background: #331F69;
+}
