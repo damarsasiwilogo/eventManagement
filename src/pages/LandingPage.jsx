@@ -37,9 +37,9 @@ export default function Landingpage() {
 
       <Box display={"flex"}>
         <Center w={"100%"} h={"45vh"}>
-          <Box bg={"navy"} w={"400px"} h={"60%"} margin={"10px"} borderRadius={"10px"} bgImage={music} bgSize={'cover'} display={'flex'} justifyContent={'center'} alignItems={'center'} className="box-shadow"><Heading color={"white"} fontWeight={'extrabold'} fontSize={'70px'} bg={'blackAlpha.700'} w={"400px"} display={"flex"} justifyContent={'center'}>MUSIC</Heading></Box>
-          <Box bg={"navy"} w={"400px"} h={"60%"} margin={"10px"} borderRadius={"10px"} bgImage={webinar} bgSize={'cover'} display={'flex'} justifyContent={'center'} alignItems={'center'} className="box-shadow"><Heading color={"white"} fontWeight={'extrabold'} fontSize={'70px'} bg={'blackAlpha.700'} w={"400px"} display={"flex"} justifyContent={'center'}>SEMINAR</Heading></Box>
-          <Box bg={"navy"} w={"400px"} h={"60%"} margin={"10px"} borderRadius={"10px"} bgImage={sports} bgSize={'cover'} display={'flex'} justifyContent={'center'} alignItems={'center'} className="box-shadow"><Heading color={"white"} fontWeight={'extrabold'} fontSize={'70px'} bg={'blackAlpha.700'} w={"400px"} display={"flex"} justifyContent={'center'}>SPORTS</Heading></Box>
+          <Box bg={"navy"} w={"400px"} h={"60%"} margin={"10px"} borderRadius={"10px"} bgImage={music} bgSize={'cover'} display={'flex'} justifyContent={'center'} alignItems={'center'} className="box-shadow"><Heading color={"white"} fontWeight={'extrabold'} fontSize={'50px'} bg={'blackAlpha.700'} w={"400px"} display={"flex"} justifyContent={'center'}>MUSIC</Heading></Box>
+          <Box bg={"navy"} w={"400px"} h={"60%"} margin={"10px"} borderRadius={"10px"} bgImage={webinar} bgSize={'cover'} display={'flex'} justifyContent={'center'} alignItems={'center'} className="box-shadow"><Heading color={"white"} fontWeight={'extrabold'} fontSize={'50px'} bg={'blackAlpha.700'} w={"400px"} display={"flex"} justifyContent={'center'}>SEMINAR</Heading></Box>
+          <Box bg={"navy"} w={"400px"} h={"60%"} margin={"10px"} borderRadius={"10px"} bgImage={sports} bgSize={'cover'} display={'flex'} justifyContent={'center'} alignItems={'center'} className="box-shadow"><Heading color={"white"} fontWeight={'extrabold'} fontSize={'50px'} bg={'blackAlpha.700'} w={"400px"} display={"flex"} justifyContent={'center'}>SPORTS</Heading></Box>
         </Center>
       </Box>
 
