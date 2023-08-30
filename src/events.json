@@ -54,14 +54,14 @@
     {
       "id": 5,
       "type": "webinar",
-      "name": "ESG Securities Crowdfunding",
-      "date": "29 Aug 2023",
-      "time": "19:00 - 20:15 WIB",
+      "name": "Webinar Boost AI",
+      "date": "30 Aug 2023",
+      "time": "20:00 - 21:30 WIB",
       "location": "Online",
-      "description": "Ingin mengoptimalkan pertumbuhan Keuangan sambil berkontribusi pada lingkungan dan kesejahteraan sosial? Bergabunglah dalam webinar kami yang akan membahas bagaimana Investasi Berbasis ESG dapat menjadi kunci untuk mewujudkan tujuan. Dengan narasumber yang sudah berpengalaman lebih dari 10 tahun didunia keuangan yaitu Patrick Gunadi (Founder & CEO Danamart) dan Eka Puspita Sari (CGO Danamart) akan berbagi wawasan mendalam tentang Investasi Securities Crowdfunding berbasis ESG yang dapat memberikan imbal hasil s.d 18% p.a",
-      "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230823110754.jpg",
+      "description": "Banyak sekali bisnis - bisnis yang mulai tumbang dan PHK yang semakin menakutkan. Semoga hal ini tidak terjadi dengan Anda.\nNamun tetap saja Anda harus punya persiapan Apa yang sudah Anda persiapkan untuk menghadapi semua ini?",
+      "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230828130528_64ec39281abea.jpg",
       "ticket_types": {
-        "Gold": 150.000
+        "Gold": 50.000
       }
     },
     {
@@ -80,16 +80,14 @@
     {
       "id": 7,
       "type": "sports",
-      "name": "Caiden • Tuesday Session",
-      "date": "29 Aug 2023",
-      "time": "19:00 - 22:00 WIB",
+      "name": "Ice Skating @BX Rink Bintaro Jaya",
+      "date": "31 Dec 2023",
+      "time": "10:00 - 22:00 WIB",
       "location": "Jakarta",
-      "description": "Viu Scream Dates is an annual Viu festival event in Indonesia, bringing the Viu experience to live to our millions of Viu’ers in Indonesia. The initial Viu Scream Dates was done in Bangkok, Thailand, in 2019 and was attended by thousands of Viu’ers. The Viu Scream Dates 2023 will be the first Viu Scream Dates in Indonesia, where we will create the excitement by bringing the most favorite Korean, Thailand, Mandarin, & Indonesia celebrties to life through music concerts, meet & greets, photo signings, talk-shows, screenings, and fun games.",
-      "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230823110754.jpg",
+      "description": "Ice Skating @BX Rink Bintaro Jaya",
+      "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20211029070059.jpg",
       "ticket_types": {
-        "Diamond": 2.350000,
-        "Platinum": 1.500000,
-        "Gold": 850.000
+        "Gold": 100.000
       }
     },
     {
