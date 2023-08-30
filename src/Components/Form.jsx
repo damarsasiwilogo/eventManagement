@@ -21,14 +21,10 @@ export default function Form() {
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Date</FormLabel>
-              <Input placeholder="Date" />
+              <FormLabel>Date & Time</FormLabel>
+              <Input placeholder="Select date and time" type="datetime-local" />
             </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Time</FormLabel>
-              <Input placeholder="Time" />
-            </FormControl>
             
             <FormControl mt={4}>
               <FormLabel>Location</FormLabel>
