@@ -67,17 +67,28 @@ function Regist() {
 						className="btn-nav-discover">
 						DISCOVER
 					</Button>
-					<Button bg={"#3E60C1"} color={"white"} className="btn-nav">
+					<Button
+						bg={"#3E60C1"}
+						color={"white"}
+						className="btn-nav">
 						LOGIN
 					</Button>
-					<Button bg={"#F7F7F7"} color={"#2e4583"} onClick={openModal}>
+					<Button
+						bg={"#F7F7F7"}
+						color={"#2e4583"}
+						onClick={openModal}>
 						REGISTER
 					</Button>
 				</ButtonGroup>
 			</Box>
-			<Modal isOpen={isModalOpen} onClose={closeModal} isCentered>
+			<Modal
+				isOpen={isModalOpen}
+				onClose={closeModal}
+				isCentered>
 				<ModalOverlay />
-				<ModalContent bg="white" size="xl">
+				<ModalContent
+					bg="white"
+					size="xl">
 					<ModalCloseButton />
 					<ModalBody>
 						<Flex
@@ -85,7 +96,12 @@ function Regist() {
 							align={"center"}
 							justify={"center"}
 							bg={useColorModeValue("whiteAlpha.50", "whiteAlpha.800")}>
-							<Stack spacing={3} mx={"auto"} maxW={"lg"} py={12} px={6}>
+							<Stack
+								spacing={3}
+								mx={"auto"}
+								maxW={"lg"}
+								py={12}
+								px={6}>
 								<Stack
 									align={"center"}
 									flexDir="column"
@@ -103,7 +119,9 @@ function Regist() {
 									<Stack spacing={4}>
 										<HStack>
 											<Box>
-												<FormControl id="firstName" isRequired>
+												<FormControl
+													id="firstName"
+													isRequired>
 													<FormLabel>First Name</FormLabel>
 													<Input type="text" />
 												</FormControl>
@@ -115,11 +133,15 @@ function Regist() {
 												</FormControl>
 											</Box>
 										</HStack>
-										<FormControl id="email" isRequired>
+										<FormControl
+											id="email"
+											isRequired>
 											<FormLabel>Email address</FormLabel>
 											<Input type="email" />
 										</FormControl>
-										<FormControl id="password" isRequired>
+										<FormControl
+											id="password"
+											isRequired>
 											<FormLabel>Password</FormLabel>
 											<InputGroup>
 												<Input type={showPassword ? "text" : "password"} />
@@ -134,7 +156,9 @@ function Regist() {
 												</InputRightElement>
 											</InputGroup>
 										</FormControl>
-										<Stack spacing={10} pt={2}>
+										<Stack
+											spacing={10}
+											pt={2}>
 											<Button
 												loadingText="Submitting"
 												size="lg"
