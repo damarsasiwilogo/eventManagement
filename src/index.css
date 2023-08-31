@@ -1,13 +1,12 @@
 .btn-nav:hover {
-    color: #2e4583;
+	color: #2e4583;
 }
 
-.btn-nav-discover{
-    padding: 0 50px;
-    background-color: #331F69;
+.btn-nav-discover {
+	padding: 0 50px;
+	background-color: #331f69;
 }
 
-
-.box-shadow:hover{
-    box-shadow: 5px 5px 5px rgb(61, 61, 61);
+.box-shadow:hover {
+	box-shadow: 5px 5px 5px rgb(61, 61, 61);
 }
