@@ -1,7 +1,8 @@
-[
+{
+  "events": [
     {
       "id": 1,
-      "type":"music",
+      "type": "music",
       "name": "2023 ASIA FAN MEETING IN JAKARTA: KIMBUM ",
       "date": "03 Sep 2023",
       "time": "19:00 - 22:00 WIB",
@@ -187,8 +188,8 @@
       "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/08/28/5387fd8d-d083-4a94-a442-d641fea96872-1693192249012-1923036c004540b369d5ec1941aad553.png",
       "ticket_types": {
         "Diamond": 587000,
-        "Platinum": 653.00,
-        "Gold":  300000
+        "Platinum": 653.0,
+        "Gold": 300000
       }
     },
     {
@@ -268,7 +269,7 @@
     },
     {
       "id": 20,
-      "type":"sports",
+      "type": "sports",
       "name": "THAILAND GRAND PRIX 2023",
       "date": "27 Oct 2023",
       "time": "20:00 - 22:00 WIB",
@@ -281,7 +282,7 @@
     },
     {
       "id": 21,
-      "type":"sports",
+      "type": "sports",
       "name": "2023 BOL4 ASIA TOUR",
       "date": "21 Oct 2023",
       "time": "20:00 - 22:00 WIB",
@@ -294,4 +295,5 @@
         "Gold": 1500000
       }
     }
-]
+  ]
+}
