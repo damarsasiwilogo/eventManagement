@@ -6,6 +6,7 @@ import Regist from "./pages/Regist";
 
 
 function App() {
+
   return (
     <>
       <Routes>
