@@ -2,17 +2,23 @@ import { Box, Button, Center, Heading, Img, Text, filter } from "@chakra-ui/reac
 import React, { useEffect } from "react";
 import Navigation from "../Components/Navigation";
 import Form from "../Components/Form";
-import eventsJson from "../events.json";
 import { useState } from "react";
 import "../index.css";
+import api from "../api.js";
 import music from "../images/music.png";
 import sports from "../images/sports.jpeg";
 import webinar from "../images/webinar.jpg";
 
 export default function Landingpage() {
-  const [events, setEvents] = useState(eventsJson);
+  const [events, setEvents] = useState([]);
   const [selectedEvent, setselectedEvent] = useState(null);
   const [filterLocation, setFilterLocation] = useState(null);
+
+  useEffect(() => {
+    api.get("/events").then((res) => {
+      setEvents(res.data);
+    });
+  }, []);
 
   // saat halaman pertama kali diload langsung muncul data paling pertama
   useEffect(() => {
@@ -95,7 +101,7 @@ export default function Landingpage() {
         </Box>
 
         {/* List event yang ada */}
-        <Box display={"flex"} justifyContent={"center"} mt={'10px'}>
+        <Box display={"flex"} justifyContent={"center"} mt={"10px"}>
           <Box h={"90vh"} overflowY={"scroll"} w={"30vw"} id="left-box">
             <Center display={"flex"} flexDirection={"column"}>
               {filteredEvents.map((event) => (
@@ -128,7 +134,9 @@ export default function Landingpage() {
                 <Heading margin={"10px 0"}>{selectedEvent.name}</Heading>
                 <Text>Date: {selectedEvent.date}</Text>
                 <Text>Time: {selectedEvent.time}</Text>
-                <Text margin={"10px 0"} fontSize={'sm'}>{selectedEvent.description}</Text>
+                <Text margin={"10px 0"} fontSize={"sm"}>
+                  {selectedEvent.description}
+                </Text>
                 <Text>{selectedEvent.ticketPrice}</Text>
                 <Button bgColor={"#3E60C1"} color={"white"} className="btn-nav">
                   BUY TIKET
