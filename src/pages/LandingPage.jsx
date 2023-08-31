@@ -8,6 +8,7 @@ import "../index.css";
 import music from "../images/music.png";
 import sports from "../images/sports.jpeg";
 import webinar from "../images/webinar.jpg";
+import { useNavigate} from 'react-router-dom';
 
 export default function Landingpage() {
   const [events, setEvents] = useState(eventsJson);
@@ -35,6 +36,15 @@ export default function Landingpage() {
     setFilterLocation(location);
     setselectedEvent(null); // Clear selected event when applying filter
   }
+
+
+  const navigate = useNavigate();
+  const handleClickBuyTicket = () => {
+    // Change the route to "/other" when the button is clicked
+    navigate('/Transaction');
+
+    window.scrollTo(0, 0);
+  };
 
   const filteredEvents = filterLocation ? events.filter((event) => event.location === filterLocation) : events;
   const locations = ["All", "Online", "Jakarta", "Bekasi", "Surabaya", "Lombok", "Bali", "Lampung", "Malaysia"];
@@ -130,7 +140,7 @@ export default function Landingpage() {
                 <Text>Time: {selectedEvent.time}</Text>
                 <Text margin={"10px 0"} fontSize={'sm'}>{selectedEvent.description}</Text>
                 <Text>{selectedEvent.ticketPrice}</Text>
-                <Button bgColor={"#3E60C1"} color={"white"} className="btn-nav">
+                <Button bgColor={"#3E60C1"} color={"white"} className="btn-nav" onClick={handleClickBuyTicket} >
                   BUY TIKET
                 </Button>
               </Box>

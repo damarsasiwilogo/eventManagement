@@ -1,6 +1,7 @@
 import { Box, Button, Divider, Flex, Image, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import React, { useState } from "react";
 
+
 function TransactionStep1() {
     const [quantityFestivalA, setQuantityFestivalA] = useState(0);
     const [quantityFestivalB, setQuantityFestivalB] = useState(0);
@@ -13,7 +14,7 @@ function TransactionStep1() {
 
     return (
         <>
-            
+
             <Box display={"flex"} flexDirection="column" bgColor="#EDEDED" ml={40} mr={40} mt={2} borderTopRadius={10}>
                 <Text display="flex" justifyContent="flex-start" ml={4} mt={4}>
                     PILIH KATEGORI
@@ -103,12 +104,6 @@ function TransactionStep1() {
                     </Table>
                 </Flex>
             </Box>
-            <Box display={"flex"} bgColor="#EDEDED" justifyContent="flex-end" h={"10vh"} ml={40} mr={40} mb={5} borderBottomRadius={10}>
-                <Button colorScheme="whatsapp" size="sm" mr={20} mt={5}>
-                   Checkout
-                </Button>
-            </Box>
-
         </>
     )
 }
