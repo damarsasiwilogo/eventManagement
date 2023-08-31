@@ -6,8 +6,27 @@ export default function Landingpage() {
   return (
     <>
       <Navigation />
-      <Container>
-      </Container>
+      <Box>
+        <Center w={"100%"} h={"45vh"}>
+          <Box bg={'navy'} w={'50%'} h={'100%'} marginTop={'60px'} borderRadius={'10px'}></Box>
+        </Center>
+      </Box>
+      
+      <Box display={"flex"}>
+        <Center w={"100%"} h={"45vh"} >
+          <Box bg={'navy'} w={'30%'} h={'60%'} margin={'10px'} borderRadius={'10px'}></Box>
+          <Box bg={'navy'} w={'30%'} h={'60%'} margin={'10px'} borderRadius={'10px'}></Box>
+          <Box bg={'navy'} w={'30%'} h={'60%'} margin={'10px'} borderRadius={'10px'}></Box>
+        </Center>
+      </Box>
+      
+      <Box display={"flex"}>
+        <Center w={"30%"} h={"100vh"} flexDirection={'column'} >
+          <Box bg={'navy'} w={'50%'} h={'20%'} margin={'10px'} borderRadius={'10px'}></Box>
+          <Box bg={'navy'} w={'50%'} h={'20%'} margin={'10px'} borderRadius={'10px'}></Box>
+          <Box bg={'navy'} w={'50%'} h={'20%'} margin={'10px'} borderRadius={'10px'}></Box>
+        </Center>
+      </Box>
     </>
   );
 }
