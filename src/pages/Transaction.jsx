@@ -62,8 +62,6 @@ function Transaction() {
         }
     };
 
-    const progressBarWidth = `${calculateProgress()}%`;
-
     const stepTexts = [
         "Pilih Kategori",
         "Informasi Personal",
@@ -71,6 +69,20 @@ function Transaction() {
         "Bayar"
     ];
 
+    const buttonProgress = () => {
+        switch (currentStep) {
+            case 1:
+                return "Checkout";
+            case 2:
+                return "Konfirmasi";
+            case 3:
+                return "Konfirmasi";
+            case 4:
+                return "Bayar";
+            default:
+                return 0;
+        }
+    };
 
 
     return (
@@ -106,9 +118,12 @@ function Transaction() {
                 <Progress mx="4px" value={calculateProgress()} size="md" colorScheme="facebook" borderRadius={10} />
             </Box>
 
-
-
             {renderStep()}
+            <Box display={"flex"} bgColor="#EDEDED" justifyContent="flex-end" h={"10vh"} ml={40} mr={40} mb={5} borderBottomRadius={10}>
+                <Button colorScheme="whatsapp" size="sm" mr={20} mt={5} onClick={handleNext}>
+                {buttonProgress()}
+                </Button>
+            </Box>
         </>
     )
 }
