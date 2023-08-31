@@ -131,7 +131,7 @@ export default function Landingpage() {
                 <Text margin={"10px 0"} fontSize={'sm'}>{selectedEvent.description}</Text>
                 <Text>{selectedEvent.ticketPrice}</Text>
                 <Button bgColor={"#3E60C1"} color={"white"} className="btn-nav">
-                  BUY TIKET
+                    BUY TIKET
                 </Button>
               </Box>
             )}
