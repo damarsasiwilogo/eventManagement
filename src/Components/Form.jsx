@@ -34,15 +34,16 @@ export default function Form() {
 							<Input placeholder="Event Name" />
 						</FormControl>
 
-						<FormControl mt={4}>
-							<FormLabel>Date</FormLabel>
-							<Input placeholder="Date" />
-						</FormControl>
+            <FormControl mt={4}>
+              <FormLabel>Date & Time</FormLabel>
+              <Input placeholder="Select date and time" type="datetime-local" />
+            </FormControl>
 
-						<FormControl mt={4}>
-							<FormLabel>Time</FormLabel>
-							<Input placeholder="Time" />
-						</FormControl>
+            
+            <FormControl mt={4}>
+              <FormLabel>Location</FormLabel>
+              <Input placeholder="Location" />
+            </FormControl>
 
 						<FormControl mt={4}>
 							<FormLabel>Location</FormLabel>
