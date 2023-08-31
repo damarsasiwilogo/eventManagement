@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Flex, Image, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Image, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, Tbody, Td, Text, Th, Thead, Tr, Center } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import api from "../api"
@@ -16,9 +16,12 @@ function TransactionStep1() {
         });
     }, []);
 
+    const MAX_QUANTITY = 5; // Maximum allowed quantity
     const [quantityGold, setQuantityGold] = useState(0);
     const [quantityPlatinum, setQuantityPlatinum] = useState(0);
     const [quantityDiamond, setQuantityDiamond] = useState(0);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const totalQuantity = quantityGold + quantityPlatinum + quantityDiamond;
 
     const handleDecrement = (ticketType) => {
         switch (ticketType) {
@@ -39,17 +42,32 @@ function TransactionStep1() {
     const handleIncrement = (ticketType) => {
         switch (ticketType) {
             case 'Gold':
-                setQuantityGold(quantityGold + 1);
+                if (quantityGold <= MAX_QUANTITY) {
+                    setQuantityGold(quantityGold + 1);
+                }
                 break;
             case 'Platinum':
-                setQuantityPlatinum(quantityPlatinum + 1);
+                if (quantityPlatinum <= MAX_QUANTITY) {
+                    setQuantityPlatinum(quantityPlatinum + 1);
+                }
                 break;
             case 'Diamond':
-                setQuantityDiamond(quantityDiamond + 1);
-                break;
-            default:
+                if (quantityDiamond <= MAX_QUANTITY) {
+                    setQuantityDiamond(quantityDiamond + 1);
+                }
                 break;
         }
+        // Add an effect to reset quantities and show a popup when exceeding the maximum
+        if (quantityGold >= MAX_QUANTITY || quantityPlatinum >= MAX_QUANTITY || quantityDiamond >= MAX_QUANTITY || totalQuantity >= MAX_QUANTITY) {
+            setIsModalOpen(true);
+        }
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setQuantityGold(0);
+        setQuantityPlatinum(0);
+        setQuantityDiamond(0);
     };
 
     const getQuantity = (ticketType) => {
@@ -78,46 +96,45 @@ function TransactionStep1() {
         }
     };
 
-
-    const calculatedEvents = events.map((event) => {
-        const ticketPriceGold = event.ticket_types.Gold || 0;
-        const ticketPricePlatinum = event.ticket_types.Platinum || 0;
-        const ticketPriceDiamond = event.ticket_types.Diamond || 0;
-
-        const totalPriceGold = quantityGold * ticketPriceGold;
-        const totalPricePlatinum = quantityPlatinum * ticketPricePlatinum;
-        const totalPriceDiamond = quantityDiamond * ticketPriceDiamond;
-        const grandTotal = totalPriceGold + totalPricePlatinum + totalPriceDiamond;
-
-        return {
-            ...event,
-            totalPriceGold,
-            totalPricePlatinum,
-            totalPriceDiamond,
-            grandTotal,
-        };
-    });
+    const calculateGrandTotal = (ticketTypes) => {
+        let grandTotal = 0;
+        for (const [ticketType, price] of Object.entries(ticketTypes)) {
+            grandTotal += calculateTotalPrice(ticketType, price);
+        }
+        return grandTotal;
+    };
 
     return (
         <>
             <Box display={"flex"} flexDirection="column" bgColor="#EDEDED" ml={40} mr={40} mt={2} borderTopRadius={10}>
-                <Text display="flex" justifyContent="flex-start" ml={4} mt={4}>
-                    PILIH KATEGORI
-                </Text>
-                <Box mx={4} mt={3}>
-                    <Divider borderColor="blackAlpha.300" />
-                </Box>
+
                 {events.map(event => (
                     <>
                         <Image src={event.images} mx={20} mt={4} borderRadius={15} />
-                        <Flex mx={4}>
+                        <Flex mx={100}>
                             <Table variant="simple" colorScheme="blackAlpha">
                                 <Thead>
                                     <Tr>
-                                        <Th>Jenis Kategori</Th>
-                                        <Th textAlign="center">Harga per tiket</Th>
-                                        <Th textAlign="center">Kuantitas</Th>
-                                        <Th textAlign="center" width="200px">Jumlah</Th>
+                                        <Th width="300px">
+                                            <Text fontSize={"sm"}>
+                                                Jenis Kategori
+                                            </Text>
+                                        </Th>
+                                        <Th textAlign="center">
+                                            <Text fontSize={"sm"}>
+                                                Harga per tiket
+                                            </Text>
+                                        </Th>
+                                        <Th textAlign="center">
+                                            <Text fontSize={"sm"}>
+                                                Kuantitas
+                                            </Text>
+                                        </Th>
+                                        <Th textAlign="center" width="200px">
+                                            <Text fontSize={"sm"}>
+                                                Jumlah
+                                            </Text>
+                                        </Th>
                                     </Tr>
                                 </Thead>
                                 <Tbody>
@@ -143,11 +160,15 @@ function TransactionStep1() {
                                             </Td>
                                             <Td textAlign="center">
                                                 <Flex gap={1} alignItems="center" justifyContent="center">
-                                                    <Button bg={"#331F69"} color="white" size="xs" onClick={() => handleDecrement(ticketType)}>
+                                                    <Button colorScheme="facebook"
+                                                        color={"white"}
+                                                        _hover={{ bg: "#24105c" }} size="xs" onClick={() => handleDecrement(ticketType)}>
                                                         -
                                                     </Button>
                                                     <Text fontSize="xs">{getQuantity(ticketType)}</Text>
-                                                    <Button bg={"#331F69"} color="white" size="xs" onClick={() => handleIncrement(ticketType)}>
+                                                    <Button colorScheme="facebook"
+                                                        color={"white"}
+                                                        _hover={{ bg: "#24105c" }} size="xs" onClick={() => handleIncrement(ticketType)}>
                                                         +
                                                     </Button>
                                                 </Flex>
@@ -165,7 +186,11 @@ function TransactionStep1() {
                                         </Td>
                                         <Td textAlign="center">
                                             <Text fontWeight="bold">
-                                                {calculatedEvents[0].grandTotal.toLocaleString("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 })}
+                                                {calculateGrandTotal(event.ticket_types).toLocaleString("id-ID", {
+                                                    style: "currency",
+                                                    currency: "IDR",
+                                                    maximumFractionDigits: 0
+                                                })}
                                             </Text>
                                         </Td>
                                     </Tr>
@@ -174,6 +199,24 @@ function TransactionStep1() {
                         </Flex>
                     </>
                 ))}
+                <Modal isOpen={isModalOpen} onClose={closeModal} isCentered>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalHeader>Warning</ModalHeader>
+                        <ModalBody>
+                            Kamu telah mencapai batas jumlah pembelian tiket!
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button
+                                colorScheme="facebook"
+                                color={"white"}
+                                _hover={{ bg: "#24105c" }}
+                                onClick={closeModal}>
+                                OK
+                            </Button>
+                        </ModalFooter>
+                    </ModalContent>
+                </Modal>
             </Box>
         </>
     )

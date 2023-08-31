@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Flex, Image, Table, Tbody, Td, Text, Th, Thead, Tr, Progress } from "@chakra-ui/react";
+import { Box, Button, Text, Progress, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Flex} from "@chakra-ui/react";
 import { useParams } from "react-router";
 import React, { useState } from "react";
 import { useEffect } from "react";
@@ -7,6 +7,8 @@ import TransactionStep1 from "../Components/TransactionStep1";
 import TransactionStep2 from "../Components/TransactionStep2";
 import TransactionStep3 from "../Components/TransactionStep3";
 import TransactionStep4 from "../Components/TransactionStep4";
+import Navigation from "../Components/Navigation";
+import { useNavigate} from "react-router-dom";
 
 
 function Transaction() {
@@ -14,6 +16,8 @@ function Transaction() {
     const [events, setEvents] = useState([]);
     const [currentStep, setCurrentStep] = useState(1);
     const [remainingTime, setRemainingTime] = useState(15 * 60); // Waktu dalam detik (15 menit)
+    const [isTimeUpModalOpen, setIsTimeUpModalOpen] = useState(false);
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -22,12 +26,13 @@ function Transaction() {
                 setRemainingTime(remainingTime - 1);
             } else {
                 clearInterval(interval);
-                // Waktu habis, lakukan pengaturan ulang atau merender ulang komponen
-                // Misalnya: setCurrentStep(1);
+                openTimeUpModal(); // Buka modal saat waktu habis
             }
         }, 1000);
 
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+        };
     }, [remainingTime]);
 
     useEffect(() => {
@@ -39,6 +44,12 @@ function Transaction() {
     const handleNext = () => {
         if (currentStep < 4) {
             setCurrentStep(currentStep + 1);
+        }
+    };
+
+    const handlePrevious = () => {
+        if (currentStep > 1) {
+            setCurrentStep(currentStep - 1);
         }
     };
 
@@ -95,6 +106,13 @@ function Transaction() {
         }
     };
 
+    const openTimeUpModal = () => {
+        setIsTimeUpModalOpen(true);
+    };
+
+    const closeTimeUpModal = () => {
+        setIsTimeUpModalOpen(false);
+    };
 
     return (
         <>
@@ -105,26 +123,28 @@ function Transaction() {
             </Box>
             {events.map(event => (
                 <>
-                    <Box 
-                    display={"flex"} 
-                    justifyContent="center" 
-                    alignItems={"center"} 
-                    h={"32vh"} 
-                    ml={40} 
-                    mr={40} 
-                    mt={5} 
-                    bgImage={`url(${event.images})`} 
-                    bgRepeat="no-repeat" bgSize="cover" bgPos="center" borderRadius={10}>
+                    <Box
+                        display={"flex"}
+                        justifyContent="center"
+                        alignItems={"center"}
+                        h={"32vh"}
+                        ml={40}
+                        mr={40}
+                        mt={5}
+                        bgImage={`url(${event.images})`}
+                        bgRepeat="no-repeat" bgSize="cover" bgPos="center" borderRadius={10}>
                     </Box>
                 </>
             ))}
             <Box display={"flex"} flexDirection="column" justifyContent="center" bgColor="#EDEDED" alignItems={"center"} h={"10vh"} ml={40} mr={40} mt={2} borderRadius={10}>
-                <Text fontSize={"md"} fontWeight={"bold"} mt={2}>
+                <Flex direction={"column"} justifyContent={"center"} alignItems={"center"} mt={5}>
+                <Text fontSize={"md"} fontWeight={"bold"} mt={10} my={-2}>
                     WAKTU TERSISA
                 </Text>
                 <Text fontSize={"4xl"} fontWeight={"bold"} mb={2} color={"red"}>
-                    {Math.floor(remainingTime / 60)} : {(remainingTime % 60).toString().padStart(2, "0")}
+                    {(Math.floor(remainingTime / 60)).toString().padStart(2, "0")} : {(remainingTime % 60).toString().padStart(2, "0")}
                 </Text>
+                </Flex>
             </Box>
             <Box display="flex" justifyContent="space-between" alignItems="center" h="5vh" ml={60} mr={60}>
                 {stepTexts.map((text, index) => (
@@ -139,15 +159,54 @@ function Transaction() {
             </Box>
             {/* Progress Bar */}
             <Box display="flex" flexDir="column" justifyContent="center" ml={40} mr={40} borderRadius={10}>
-                <Progress mx="4px" value={calculateProgress()} size="sm" colorScheme="facebook" borderRadius={10} />
+                <Progress mx="4px" value={calculateProgress()} size="sm" colorScheme="facebook" borderRadius={10} hasStripe />
             </Box>
 
             {renderStep()}
-            <Box display={"flex"} bgColor="#EDEDED" justifyContent="flex-end" h={"10vh"} ml={40} mr={40} mb={5} borderBottomRadius={10}>
-                <Button colorScheme="whatsapp" size="sm" mr={20} mt={5} onClick={handleNext}>
+            <Box display={"flex"} bgColor="#EDEDED" justifyContent={"flex-end"} h={"10vh"} ml={40} mr={40} mb={5} borderBottomRadius={10}>
+                {currentStep > 1 && (
+                    <Button
+                        bg={"#F7F7F7"}
+                        color={"#2e4583"}
+                        size="sm"
+                        mr={4}
+                        mt={5}
+                        w={"90px"}
+                        onClick={handlePrevious}
+                    >
+                        Kembali
+                    </Button>
+                )}
+                <Button
+                    colorScheme="facebook"
+                    color={"white"}
+                    _hover={{ bg: "#24105c" }}
+                    size="sm"
+                    mr={20}
+                    mt={5}
+                    w={"90px"}
+                    onClick={handleNext}>
                     {buttonProgress()}
                 </Button>
+
             </Box>
+            <Modal isOpen={isTimeUpModalOpen} onClose={closeTimeUpModal} isCentered>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Warning</ModalHeader>
+                    <ModalBody>
+                        Waktu telah habis. Silakan kembali ke halaman utama.
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button colorScheme="blue" onClick={() => {
+                            closeTimeUpModal();
+                            navigate('/'); 
+                        }}>
+                            OK
+                        </Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
         </>
     )
 }
