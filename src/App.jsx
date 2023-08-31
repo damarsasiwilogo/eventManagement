@@ -15,7 +15,7 @@ function App() {
 					path="/Dashboard"
 					element={<Dashboard />}></Route>
 				<Route
-					path="/Transaction"
+					path="/Transaction/:id"
 					element={<Transaction />}></Route>
 			</Routes>
 		</>

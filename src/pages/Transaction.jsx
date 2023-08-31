@@ -1,6 +1,8 @@
 import { Box, Button, Divider, Flex, Image, Table, Tbody, Td, Text, Th, Thead, Tr, Progress } from "@chakra-ui/react";
+import { useParams } from "react-router";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import api from "../api"
 import TransactionStep1 from "../Components/TransactionStep1";
 import TransactionStep2 from "../Components/TransactionStep2";
 import TransactionStep3 from "../Components/TransactionStep3";
@@ -8,8 +10,11 @@ import TransactionStep4 from "../Components/TransactionStep4";
 
 
 function Transaction() {
+    const { id } = useParams();
+    const [events, setEvents] = useState([]);
     const [currentStep, setCurrentStep] = useState(1);
     const [remainingTime, setRemainingTime] = useState(15 * 60); // Waktu dalam detik (15 menit)
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -24,6 +29,12 @@ function Transaction() {
 
         return () => clearInterval(interval);
     }, [remainingTime]);
+
+    useEffect(() => {
+        api.get(`/events/${id}`).then((res) => {
+            setEvents([res.data])
+        });
+    }, []);
 
     const handleNext = () => {
         if (currentStep < 4) {
@@ -92,8 +103,21 @@ function Transaction() {
                     myTix
                 </Text>
             </Box>
-            <Box display={"flex"} justifyContent="center" alignItems={"center"} h={"30vh"} ml={40} mr={40} mt={5} bgImage="url('https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/tgroupbanner/20230716041255.png')" bgRepeat="no-repeat" bgSize="cover" bgPos="center" borderRadius={10}>
-            </Box>
+            {events.map(event => (
+                <>
+                    <Box 
+                    display={"flex"} 
+                    justifyContent="center" 
+                    alignItems={"center"} 
+                    h={"32vh"} 
+                    ml={40} 
+                    mr={40} 
+                    mt={5} 
+                    bgImage={`url(${event.images})`} 
+                    bgRepeat="no-repeat" bgSize="cover" bgPos="center" borderRadius={10}>
+                    </Box>
+                </>
+            ))}
             <Box display={"flex"} flexDirection="column" justifyContent="center" bgColor="#EDEDED" alignItems={"center"} h={"10vh"} ml={40} mr={40} mt={2} borderRadius={10}>
                 <Text fontSize={"md"} fontWeight={"bold"} mt={2}>
                     WAKTU TERSISA
@@ -115,13 +139,13 @@ function Transaction() {
             </Box>
             {/* Progress Bar */}
             <Box display="flex" flexDir="column" justifyContent="center" ml={40} mr={40} borderRadius={10}>
-                <Progress mx="4px" value={calculateProgress()} size="md" colorScheme="facebook" borderRadius={10} />
+                <Progress mx="4px" value={calculateProgress()} size="sm" colorScheme="facebook" borderRadius={10} />
             </Box>
 
             {renderStep()}
             <Box display={"flex"} bgColor="#EDEDED" justifyContent="flex-end" h={"10vh"} ml={40} mr={40} mb={5} borderBottomRadius={10}>
                 <Button colorScheme="whatsapp" size="sm" mr={20} mt={5} onClick={handleNext}>
-                {buttonProgress()}
+                    {buttonProgress()}
                 </Button>
             </Box>
         </>
