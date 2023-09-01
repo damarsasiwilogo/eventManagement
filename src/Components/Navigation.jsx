@@ -35,23 +35,14 @@ const CFaLock = chakra(FaLock);
 
 export default function Navigation() {
 	const [showPassword, setShowPassword] = useState(false);
-	const [isModalOpenLogin, setIsModalOpenLogin] = useState(false);
-	const [isModalOpenRegister, setIsModalOpenRegister] = useState(false);
+	const [activeModal, setActiveModal] = useState(null);
 
-	const openModalLogin = () => {
-		setIsModalOpenLogin(true);
+	const openModal = (modal) => {
+		setActiveModal(modal);
 	};
 
-	const closeModalLogin = () => {
-		setIsModalOpenLogin(false);
-	};
-
-	const openModalRegister = () => {
-		setIsModalOpenRegister(true);
-	};
-
-	const closeModalRegister = () => {
-		setIsModalOpenRegister(false);
+	const closeModal = () => {
+		setActiveModal(null);
 	};
 
 	const handleShowClick = () => setShowPassword(!showPassword);
@@ -91,20 +82,20 @@ export default function Navigation() {
 						bg={"#3E60C1"}
 						color={"white"}
 						className="btn-nav"
-						onClick={openModalLogin}>
+						onClick={() => openModal("login")}>
 						LOGIN
 					</Button>
 					<Button
 						bg={"#F7F7F7"}
 						color={"#2e4583"}
-						onClick={openModalRegister}>
+						onClick={() => openModal("register")}>
 						REGISTER
 					</Button>
 				</ButtonGroup>
 			</Box>
 			<Modal
-				isOpen={isModalOpenLogin}
-				onClose={closeModalLogin}
+				isOpen={activeModal === "login"}
+				onClose={closeModal}
 				isCentered>
 				<ModalOverlay />
 				<ModalContent
@@ -202,8 +193,8 @@ export default function Navigation() {
 				</ModalContent>
 			</Modal>
 			<Modal
-				isOpen={isModalOpenRegister}
-				onClose={closeModalRegister}
+				isOpen={activeModal === "register"}
+				onClose={closeModal}
 				isCentered>
 				<ModalOverlay />
 				<ModalContent
