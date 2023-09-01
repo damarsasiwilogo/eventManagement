@@ -6,16 +6,23 @@ import Regist from "./pages/Regist";
 import DetailEvents from "./pages/DetailEvents";
 
 function App() {
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<LandingPage />}></Route>
+	return (
+		<>
+			<Routes>
+				<Route
+					path="/"
+					element={<LandingPage />}></Route>
         <Route path={'/events/:type'} element={<DetailEvents />}></Route>
-        <Route path="/Dashboard" element={<Dashboard />}></Route>
-        <Route path="/Transaction" element={<Transaction />}></Route>
-      </Routes>
-    </>
-  );
+				<Route
+					path="/Dashboard"
+					element={<Dashboard />}></Route>
+				<Route
+					path="/Transaction/:id"
+					element={<Transaction />}></Route>
+			</Routes>
+		</>
+	);
+
 }
 
 export default App;

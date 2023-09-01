@@ -8,7 +8,8 @@ import api from "../api.js";
 import music from "../images/music.png";
 import sports from "../images/sports.jpeg";
 import webinar from "../images/webinar.jpg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Landingpage() {
   const [events, setEvents] = useState([]);
@@ -47,8 +48,8 @@ export default function Landingpage() {
 
   const navigate = useNavigate();
   const handleClickBuyTicket = () => {
-    // Change the route to "/Transaction" when the button is clicked
-    navigate("/Transaction");
+    navigate(`/Transaction/${selectedEvent.id}`);
+
 
     window.scrollTo(0, 0);
   };

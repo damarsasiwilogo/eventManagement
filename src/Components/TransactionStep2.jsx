@@ -1,11 +1,12 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Box } from "@chakra-ui/react";
 
 function TransactionStep2() {
     return (
         <>
-        <Flex>
-        INI STEP 2
-        </Flex>
+         <Box display={"flex"} flexDirection="column" bgColor="#EDEDED" ml={40} mr={40} mt={2} borderTopRadius={10}>
+
+            test
+         </Box>
         </>
     );
 }
