@@ -97,7 +97,7 @@ export default function Navigation() {
 				isCentered>
 				<ModalOverlay />
 				<ModalContent
-					bg="white"
+					bg="ghostwhite"
 					size="xl">
 					<ModalCloseButton />
 					<ModalBody>
@@ -177,7 +177,7 @@ export default function Navigation() {
 								<Box>
 									New to us?{" "}
 									<Link
-										color="teal.500"
+										color="blue.500"
 										href="#">
 										Sign Up
 									</Link>
