@@ -122,12 +122,12 @@
     {
       "id": 10,
       "type": "webinar",
-      "name": "A Guide to Prepare Your Career Break",
-      "date": "29 Aug 2023",
-      "time": "20:00 - 22:00 WIB",
+      "name": "SESI PERKENALAN PUBLIC SPEAKING",
+      "date": "01 Sep 2023",
+      "time": "09:45 - 09:45 WIB",
       "location": "Online",
-      "description": "Been thinking about quitting your job and doing something else in your life? Are you afraid of how to survive without a full-time job? But don't know where to start and what to prepare to have a smooth sabbatical? Join our webinar with 2 former seasoned startup employees on their career break:\nDeassy Rizky Syahputri (ex-Growth turned Solo Traveler) - been 1 year career break \nR Radika Prabu (ex-AVP Product turned F&B Entrepreneur) - been 6 months career break",
-      "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230823185603_64e5f3d322374.jpg",
+      "description": "Semakin TINGGI jabatan seseorang, Maka akan semakin SERING Anda akan diminta untuk berbicara di depan orang banyak\nKelas sangat terbatas, karena dalam training akan BANYAK PRAKTEK Public Speaking, sehingga peserta banyak diberi kesempatan untuk latihan. ",
+      "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230831094453_64effea50ff4e.jpg",
       "ticket_types": {
         "Gold": 99000
       }
@@ -278,6 +278,22 @@
       "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/07/20/841ba5ee-b875-4b9f-83ff-bcdc0bcf5457-1689844790925-f15290bd17d49694a0e3219c34fc83be.jpeg",
       "ticket_types": {
         "Gold": 99000
+      }
+    },
+    
+    {
+      "id": 21,
+      "type": "music",
+      "name": "2023 LE SSERAFIM TOUR ‘FLAME RISES’ IN JAKARTA",
+      "date": "27 Oct 2023",
+      "time": "20:00 - 22:00 WIB",
+      "location": "Jakarta",
+      "description": "Saksikan langsung penampilan memukau girlband asal Korea Selatan, LE SSERAFIM lewat tur perdana mereka, “2023 LE SSERAFIM TOUR 'FLAME RISES' IN JAKARTA”",
+      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/08/02/2367ee3d-5bd4-4667-a3a7-b21ba21d0c6f-1690966599553-f25ad11735cb32b08d0f47c8e56508c4.jpg",
+      "ticket_types": {
+        "Diamond": 3480000,
+        "Platinum":  3077500,
+        "Gold": 1927500
       }
     }
   ]
