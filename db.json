@@ -279,21 +279,6 @@
       "ticket_types": {
         "Gold": 99000
       }
-    },
-    {
-      "id": 21,
-      "type": "sports",
-      "name": "2023 BOL4 ASIA TOUR",
-      "date": "21 Oct 2023",
-      "time": "20:00 - 22:00 WIB",
-      "location": "Jakarta",
-      "description": "Concert Tickets consist of  3 (three) categories where Cat 1 is standing, Cat 2 and Cat 3 are number seating. Prices start from IDR1.500.000 to IDR 2.500,000 (exclude Government 15% tax and 5% admin fee)",
-      "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230711060216.jpg",
-      "ticket_types": {
-        "Diamond": 2500000,
-        "Platinum": 2100000,
-        "Gold": 1500000
-      }
     }
   ]
 }
