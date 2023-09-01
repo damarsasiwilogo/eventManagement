@@ -36,11 +36,10 @@ const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 export default function Navigation() {
+	// declare Regist
 	const [showPassword, setShowPassword] = useState(false);
 	const [activeModal, setActiveModal] = useState(null);
-	const [showPassword, setShowPassword] = useState(false);
-	const [isModalOpenLogin, setIsModalOpenLogin] = useState(false);
-	const [isModalOpenRegister, setIsModalOpenRegister] = useState(false);
+
 	const [events, setEvents] = useState([]);
 	const [searchQuery, setSearchQuery] = useState("");
 	const [filteredEvents, setFilteredEvents] = useState([]);
@@ -108,9 +107,9 @@ export default function Navigation() {
 			</Box>
 		);
 	};
-
 	// end of handle Input section
 
+	// declaring open and close modal to be called
 	const openModal = (modal) => {
 		setActiveModal(modal);
 	};
@@ -119,6 +118,7 @@ export default function Navigation() {
 		setActiveModal(null);
 	};
 
+	// declare to show or hide the text in password input
 	const handleShowClick = () => setShowPassword(!showPassword);
 
 	return (
@@ -163,20 +163,20 @@ export default function Navigation() {
 						bg={"#3E60C1"}
 						color={"white"}
 						className="btn-nav"
-						onClick={openModalLogin}>
+						onClick={() => openModal("login")}>
 						LOGIN
 					</Button>
 					<Button
 						bg={"#F7F7F7"}
 						color={"#2e4583"}
-						onClick={openModalRegister}>
+						onClick={() => openModal("register")}>
 						REGISTER
 					</Button>
 				</ButtonGroup>
 			</Box>
 			<Modal
-				isOpen={isModalOpenLogin}
-				onClose={closeModalLogin}
+				isOpen={activeModal === "login"}
+				onClose={closeModal}
 				isCentered>
 				<ModalOverlay />
 				<ModalContent
@@ -264,7 +264,7 @@ export default function Navigation() {
 									New to us?{" "}
 									<Link
 										color="blue.500"
-										onClick={openModalRegister}>
+										onClick={() => openModal("register")}>
 										Sign Up
 									</Link>
 								</Box>
@@ -274,8 +274,8 @@ export default function Navigation() {
 				</ModalContent>
 			</Modal>
 			<Modal
-				isOpen={isModalOpenRegister}
-				onClose={closeModalRegister}
+				isOpen={activeModal === "register"}
+				onClose={closeModal}
 				isCentered>
 				<ModalOverlay />
 				<ModalContent
@@ -364,7 +364,7 @@ export default function Navigation() {
 												Already a user?{" "}
 												<Link
 													color={"blue.400"}
-													onClick={openModalLogin}>
+													onClick={() => openModal("login")}>
 													Login
 												</Link>
 											</Text>
