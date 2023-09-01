@@ -27,8 +27,10 @@ import {
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import "../index.css";
 import { FaUserAlt, FaLock } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Regist from "../pages/Regist";
+import api from "../api";
+import { List, ListItem } from "@chakra-ui/react";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -36,6 +38,78 @@ const CFaLock = chakra(FaLock);
 export default function Navigation() {
 	const [showPassword, setShowPassword] = useState(false);
 	const [activeModal, setActiveModal] = useState(null);
+	const [showPassword, setShowPassword] = useState(false);
+	const [isModalOpenLogin, setIsModalOpenLogin] = useState(false);
+	const [isModalOpenRegister, setIsModalOpenRegister] = useState(false);
+	const [events, setEvents] = useState([]);
+	const [searchQuery, setSearchQuery] = useState("");
+	const [filteredEvents, setFilteredEvents] = useState([]);
+	const [suggestions, setSuggestions] = useState([]);
+	const [isFocused, setIsFocused] = useState(false);
+
+	// handle Input section
+	useEffect(() => {
+		api.get("/events").then((res) => {
+			setEvents(res.data);
+		});
+	}, []);
+
+	useEffect(() => {
+		const filtered = events.filter((event) =>
+			event.name.toLowerCase().includes(searchQuery.toLowerCase())
+		);
+		setFilteredEvents(filtered);
+	}, [searchQuery, events]);
+
+	const handleSearchInputChange = (event) => {
+		const input = event.target.value;
+		setSearchQuery(input);
+
+		// Filter suggestions berdasarkan input
+		const filtered = events.filter((event) =>
+			event.name.toLowerCase().includes(input.toLowerCase())
+		);
+
+		setSuggestions(filtered);
+	};
+
+	const handleSearchInputFocus = () => {
+		setIsFocused(true);
+	};
+
+	const handleSearchInputBlur = () => {
+		setIsFocused(false);
+	};
+
+	// Suggestion component
+	const Suggestions = ({ suggestions }) => {
+		if (suggestions.length === 0) {
+			return null;
+		}
+
+		return (
+			<Box
+				mt={2}
+				bg="white"
+				borderRadius="md"
+				boxShadow="md"
+				position="absolute"
+				width="100%"
+				p={"10px"}>
+				<List>
+					{suggestions.map((event) => (
+						<ListItem
+							key={event.id}
+							className="name">
+							{event.name}
+						</ListItem>
+					))}
+				</List>
+			</Box>
+		);
+	};
+
+	// end of handle Input section
 
 	const openModal = (modal) => {
 		setActiveModal(modal);
@@ -63,13 +137,20 @@ export default function Navigation() {
 					borderRadius={"md"}>
 					<a href={"/"}>myTix</a>
 				</Text>
-				<Input
-					size={"md"}
-					placeholder="Search an event..."
-					w={"md"}
-					shadow={"sm"}
-					bg={"white"}
-				/>
+				<div style={{ position: "relative" }}>
+					<Input
+						size={"md"}
+						placeholder="Search an event..."
+						w={"md"}
+						shadow={"sm"}
+						bg={"white"}
+						value={searchQuery}
+						onChange={handleSearchInputChange}
+						onFocus={handleSearchInputFocus}
+						onBlur={handleSearchInputBlur}
+					/>
+					<Suggestions suggestions={isFocused ? suggestions : []} />
+				</div>
 				<ButtonGroup>
 					<Button
 						bgColor="#331F69"
@@ -82,20 +163,20 @@ export default function Navigation() {
 						bg={"#3E60C1"}
 						color={"white"}
 						className="btn-nav"
-						onClick={() => openModal("login")}>
+						onClick={openModalLogin}>
 						LOGIN
 					</Button>
 					<Button
 						bg={"#F7F7F7"}
 						color={"#2e4583"}
-						onClick={() => openModal("register")}>
+						onClick={openModalRegister}>
 						REGISTER
 					</Button>
 				</ButtonGroup>
 			</Box>
 			<Modal
-				isOpen={activeModal === "login"}
-				onClose={closeModal}
+				isOpen={isModalOpenLogin}
+				onClose={closeModalLogin}
 				isCentered>
 				<ModalOverlay />
 				<ModalContent
@@ -193,8 +274,8 @@ export default function Navigation() {
 				</ModalContent>
 			</Modal>
 			<Modal
-				isOpen={activeModal === "register"}
-				onClose={closeModal}
+				isOpen={isModalOpenRegister}
+				onClose={closeModalRegister}
 				isCentered>
 				<ModalOverlay />
 				<ModalContent

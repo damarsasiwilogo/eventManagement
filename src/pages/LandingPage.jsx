@@ -8,14 +8,14 @@ import api from "../api.js";
 import music from "../images/music.png";
 import sports from "../images/sports.jpeg";
 import webinar from "../images/webinar.jpg";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 export default function Landingpage() {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setselectedEvent] = useState(null);
   const [filterLocation, setFilterLocation] = useState(null);
   const filteredEvents = filterLocation ? events.filter((event) => event.location === filterLocation) : events;
+  const filteredEventsImg = filterLocation ? events.filter((event) => event.images === selectedEvent) : events;
   const locations = ["All", "Online", "Jakarta", "Bekasi", "Surabaya", "Lombok", "Bali", "Lampung", "Malaysia"];
 
   useEffect(() => {
@@ -50,12 +50,11 @@ export default function Landingpage() {
   const handleClickBuyTicket = () => {
     navigate(`/Transaction/${selectedEvent.id}`);
 
-
     window.scrollTo(0, 0);
   };
 
   function handleclickBox(event) {
-    const type = event.target.querySelector(".heading").textContent.toLowerCase();
+    const type = event.currentTarget.querySelector(".heading").textContent.toLowerCase();
 
     // Redirect to the page for the specified type of event.
     const path = `/events/${type}`;
@@ -66,26 +65,28 @@ export default function Landingpage() {
     <Box h={"200vh"}>
       {/* <Form/> */}
       <Navigation />
-      <Box >
-        <Center w={"100%"} h={"45vh"}>
-          <Box bgImage={sports} bgSize={"cover"} w={"50%"} h={"100%"} marginTop={"60px"} borderRadius={"10px"}></Box>
-        </Center>
-      </Box>
+      {/* <Box id="slider"> */}
+        {/* <Center w={"100%"} h={"45vh"}>
+          {filteredEventsImg.map((event) => (
+            <Box bgImage={event.images} bgSize={"cover"} w={"50%"} h={"100%"} marginTop={"60px"} borderRadius={"10px"}></Box>
+          ))}
+        </Center> */}
+      {/* </Box> */}
 
       <Box display={"flex"}>
         <Center w={"100%"} h={"45vh"}>
-          <Box bg={"navy"} w={"400px"} h={"60%"} margin={"10px"} borderRadius={"10px"} bgImage={music} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow " onClick={handleclickBox}>
-            <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading" onClick={handleclickBox}>
+          <Box bg={"navy"} w={"400px"} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={music} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow " onClick={handleclickBox}>
+            <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading">
               MUSIC
             </Heading>
           </Box>
-          <Box bg={"navy"} w={"400px"} h={"60%"} margin={"10px"} borderRadius={"10px"} bgImage={webinar} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow" onClick={handleclickBox}>
-            <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading" onClick={handleclickBox}>
+          <Box bg={"navy"} w={"400px"} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={webinar} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow" onClick={handleclickBox}>
+            <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading">
               WEBINAR
             </Heading>
           </Box>
-          <Box bg={"navy"} w={"400px"} h={"60%"} margin={"10px"} borderRadius={"10px"} bgImage={sports} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow" onClick={handleclickBox}>
-            <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading" onClick={handleclickBox}>
+          <Box bg={"navy"} w={"400px"} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={sports} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow" onClick={handleclickBox}>
+            <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading">
               SPORTS
             </Heading>
           </Box>
@@ -151,7 +152,7 @@ export default function Landingpage() {
                 <Heading margin={"10px 0"}>{selectedEvent.name}</Heading>
                 <Text>Date: {selectedEvent.date}</Text>
                 <Text>Time: {selectedEvent.time}</Text>
-                <Text margin={"10px 0"} fontSize={"sm"} w={'585px'}>
+                <Text margin={"10px 0"} fontSize={"sm"} w={"585px"}>
                   {selectedEvent.description}
                 </Text>
                 <Text>{selectedEvent.ticketPrice}</Text>
