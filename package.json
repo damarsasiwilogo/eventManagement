@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.0",
     "formik": "^2.4.3",
+    "bootstrap": "^5.3.1",
     "framer-motion": "^10.16.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -20,12 +21,14 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
     "yup": "^1.2.0"
+    "react-slick": "^0.29.0",
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "jsonstart": "json-server --watch db.json --port 3001"
   },
   "eslintConfig": {
     "extends": [
