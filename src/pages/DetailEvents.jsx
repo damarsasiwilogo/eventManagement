@@ -17,18 +17,22 @@ export default function DetailEvents() {
   const filterdEvents = events.filter((event) => event.type === type);
 
   return (
-    <>
+    <Box>
       <Navigation />
-      <Box display={"flex"}>
-        <Center w={"100%"} h={"90vh"}>
-            <Heading>{events.type}</Heading>
-          <SimpleGrid columns={2} spacing={5}>
+      <Box>
+      {/* {filterdEvents.map((event) => (
+        <Heading key={event.type}>{event.type.toUpperCase()}</Heading>
+      ))} */}
+        {/* Title */}
+        <Center w={"100%"} h={"90vh"} flexDirection={"column"}>
+          {/* List Event */}
+          <SimpleGrid columns={3} spacing={5}>
             {filterdEvents.map((event) => (
               <Box key={event.id} w={"250px"} h={"150px"} borderRadius={"10px"} bgImage={event.images} bgSize={"cover"} className="box-shadow" />
             ))}
           </SimpleGrid>
         </Center>
       </Box>
-    </>
+    </Box>
   );
 }
