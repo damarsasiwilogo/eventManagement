@@ -28,20 +28,30 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import "../index.css";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { useState } from "react";
+import Regist from "../pages/Regist";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 export default function Navigation() {
 	const [showPassword, setShowPassword] = useState(false);
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isModalOpenLogin, setIsModalOpenLogin] = useState(false);
+	const [isModalOpenRegister, setIsModalOpenRegister] = useState(false);
 
-	const openModal = () => {
-		setIsModalOpen(true);
+	const openModalLogin = () => {
+		setIsModalOpenLogin(true);
 	};
 
-	const closeModal = () => {
-		setIsModalOpen(false);
+	const closeModalLogin = () => {
+		setIsModalOpenLogin(false);
+	};
+
+	const openModalRegister = () => {
+		setIsModalOpenRegister(true);
+	};
+
+	const closeModalRegister = () => {
+		setIsModalOpenRegister(false);
 	};
 
 	const handleShowClick = () => setShowPassword(!showPassword);
@@ -81,19 +91,20 @@ export default function Navigation() {
 						bg={"#3E60C1"}
 						color={"white"}
 						className="btn-nav"
-						onClick={openModal}>
+						onClick={openModalLogin}>
 						LOGIN
 					</Button>
 					<Button
 						bg={"#F7F7F7"}
-						color={"#2e4583"}>
+						color={"#2e4583"}
+						onClick={openModalRegister}>
 						REGISTER
 					</Button>
 				</ButtonGroup>
 			</Box>
 			<Modal
-				isOpen={isModalOpen}
-				onClose={closeModal}
+				isOpen={isModalOpenLogin}
+				onClose={closeModalLogin}
 				isCentered>
 				<ModalOverlay />
 				<ModalContent
@@ -149,12 +160,15 @@ export default function Navigation() {
 															type={showPassword ? "text" : "password"}
 															placeholder="Password"
 														/>
-														<InputRightElement width="4.5rem">
+														<InputRightElement h={"full"}>
 															<Button
-																h="1.75rem"
-																size="sm"
-																onClick={handleShowClick}>
-																{showPassword ? "Hide" : "Show"}
+																variant={"ghost"}
+																onClick={() =>
+																	setShowPassword(
+																		(showPassword) => !showPassword
+																	)
+																}>
+																{showPassword ? <ViewIcon /> : <ViewOffIcon />}
 															</Button>
 														</InputRightElement>
 													</InputGroup>
@@ -178,11 +192,114 @@ export default function Navigation() {
 									New to us?{" "}
 									<Link
 										color="blue.500"
-										href="#">
+										onClick={openModalRegister}>
 										Sign Up
 									</Link>
 								</Box>
 							</Flex>
+						</Flex>
+					</ModalBody>
+				</ModalContent>
+			</Modal>
+			<Modal
+				isOpen={isModalOpenRegister}
+				onClose={closeModalRegister}
+				isCentered>
+				<ModalOverlay />
+				<ModalContent
+					bg="ghostwhite"
+					size="xl">
+					<ModalCloseButton />
+					<ModalBody>
+						<Flex
+							minH={"10vh"}
+							align={"center"}
+							justify={"center"}
+							bg={useColorModeValue("whiteAlpha.50", "whiteAlpha.800")}>
+							<Stack
+								spacing={3}
+								mx={"auto"}
+								maxW={"lg"}
+								py={12}
+								px={6}>
+								<Stack
+									align={"center"}
+									flexDir="column"
+									mb="2"
+									justifyContent="center"
+									alignItems="center">
+									<Avatar bg="blue.700" />
+									<Heading color="blue.600">Sign Up</Heading>
+								</Stack>
+								<Box
+									rounded={"lg"}
+									bg="ghostwhite"
+									p={8}>
+									<Stack spacing={4}>
+										<HStack>
+											<Box>
+												<FormControl
+													id="firstName"
+													isRequired>
+													<FormLabel>First Name</FormLabel>
+													<Input type="text" />
+												</FormControl>
+											</Box>
+											<Box>
+												<FormControl id="lastName">
+													<FormLabel>Last Name</FormLabel>
+													<Input type="text" />
+												</FormControl>
+											</Box>
+										</HStack>
+										<FormControl
+											id="email"
+											isRequired>
+											<FormLabel>Email address</FormLabel>
+											<Input type="email" />
+										</FormControl>
+										<FormControl
+											id="password"
+											isRequired>
+											<FormLabel>Password</FormLabel>
+											<InputGroup>
+												<Input type={showPassword ? "text" : "password"} />
+												<InputRightElement h={"full"}>
+													<Button
+														variant={"ghost"}
+														onClick={() =>
+															setShowPassword((showPassword) => !showPassword)
+														}>
+														{showPassword ? <ViewIcon /> : <ViewOffIcon />}
+													</Button>
+												</InputRightElement>
+											</InputGroup>
+										</FormControl>
+										<Stack
+											spacing={10}
+											pt={2}>
+											<Button
+												loadingText="Submitting"
+												size="lg"
+												bg={"blue.400"}
+												color={"white"}
+												_hover={{ bg: "blue.500" }}>
+												Sign up
+											</Button>
+										</Stack>
+										<Stack pt={6}>
+											<Text align={"center"}>
+												Already a user?{" "}
+												<Link
+													color={"blue.400"}
+													onClick={openModalLogin}>
+													Login
+												</Link>
+											</Text>
+										</Stack>
+									</Stack>
+								</Box>
+							</Stack>
 						</Flex>
 					</ModalBody>
 				</ModalContent>
