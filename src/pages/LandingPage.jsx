@@ -8,14 +8,15 @@ import api from "../api.js";
 import music from "../images/music.png";
 import sports from "../images/sports.jpeg";
 import webinar from "../images/webinar.jpg";
+import webinar2 from "../images/webinar-2.jpeg";
 import { useNavigate } from "react-router-dom";
+import HeroSlider, { Overlay, Slide, MenuNav } from "hero-slider";
 
 export default function Landingpage() {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setselectedEvent] = useState(null);
   const [filterLocation, setFilterLocation] = useState(null);
   const filteredEvents = filterLocation ? events.filter((event) => event.location === filterLocation) : events;
-  const filteredEventsImg = filterLocation ? events.filter((event) => event.images === selectedEvent) : events;
   const locations = ["All", "Online", "Jakarta", "Bekasi", "Surabaya", "Lombok", "Bali", "Lampung", "Malaysia"];
 
   useEffect(() => {
@@ -63,33 +64,60 @@ export default function Landingpage() {
 
   return (
     <Box h={"200vh"}>
-      {/* <Form/> */}
       <Navigation />
-      {/* <Box id="slider"> */}
-        {/* <Center w={"100%"} h={"45vh"}>
-          {filteredEventsImg.map((event) => (
-            <Box bgImage={event.images} bgSize={"cover"} w={"50%"} h={"100%"} marginTop={"60px"} borderRadius={"10px"}></Box>
-          ))}
-        </Center> */}
-      {/* </Box> */}
+      {/* <Form/> */}
+      <Box marginTop={'10px'} display={"flex"} justifyContent={'center'}>
+        <HeroSlider
+          height={"45vh"}
+          width={"70vw"}
+          autoplay
+          controller={{
+            initialSlide: 1,
+            slidingDuration: 200,
+            slidingDelay: 100
+          }}
+        >
+          <Slide
+            shouldRenderMask
+            label="music"
+            background={{
+              backgroundImageSrc: music,
+            }}
+          />
+
+          <Slide
+            shouldRenderMask
+            label="webinar"
+            background={{
+              backgroundImageSrc: webinar2,
+            }}
+          />
+
+          <Slide
+            shouldRenderMask
+            label="sports"
+            background={{
+              backgroundImageSrc: sports,
+            }}
+          />
+          <MenuNav />
+        </HeroSlider>
+      </Box>
 
       <Box display={"flex"}>
         <Center w={"100%"} h={"45vh"}>
-
           <Box bg={"navy"} w={"400px"} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={music} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow " onClick={handleclickBox}>
             <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading">
               MUSIC
             </Heading>
           </Box>
           <Box bg={"navy"} w={"400px"} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={webinar} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow" onClick={handleclickBox}>
-
             <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading">
               WEBINAR
             </Heading>
           </Box>
 
           <Box bg={"navy"} w={"400px"} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={sports} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow" onClick={handleclickBox}>
-
             <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading">
               SPORTS
             </Heading>
@@ -123,7 +151,7 @@ export default function Landingpage() {
         </Box>
 
         {/* List event yang ada */}
-        <Box display={"flex"} justifyContent={"center"} mt={"10px"}>
+        <Box display={"flex"} justifyContent={"center"} mt={"5px"}>
           <Box id="left-box" h={"90vh"} overflowY={"scroll"} w={"30vw"}>
             <Center display={"flex"} flexDirection={"column"}>
               {filteredEvents.map((event) => (
@@ -149,14 +177,14 @@ export default function Landingpage() {
           </Box>
 
           {/* Tampilan detail event */}
-          <Box id="right-box" w={"45wv"} ms={"30px"}>
+          <Box id="right-box" ms={"30px"}>
             {selectedEvent && ( // Tampilkan hanya jika ada event yang dipilih
               <Box w={"50vw"}>
                 <Img src={selectedEvent.images} w={"600px"} h={"300px"} borderRadius={"10px"}></Img>
                 <Heading margin={"10px 0"}>{selectedEvent.name}</Heading>
                 <Text>Date: {selectedEvent.date}</Text>
                 <Text>Time: {selectedEvent.time}</Text>
-                <Text margin={"10px 0"} fontSize={"sm"} w={"585px"}>
+                <Text fontSize={"sm"} w={"600px"}>
                   {selectedEvent.description}
                 </Text>
                 <Text>{selectedEvent.ticketPrice}</Text>
