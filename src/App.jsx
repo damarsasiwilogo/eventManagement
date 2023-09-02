@@ -12,7 +12,9 @@ function App() {
 				<Route
 					path="/"
 					element={<LandingPage />}></Route>
-        <Route path={'/events/:type'} element={<DetailEvents />}></Route>
+				<Route
+					path={"/events/:type"}
+					element={<DetailEvents />}></Route>
 				<Route
 					path="/Dashboard"
 					element={<Dashboard />}></Route>
@@ -22,7 +24,6 @@ function App() {
 			</Routes>
 		</>
 	);
-
 }
 
 export default App;
