@@ -5,6 +5,7 @@ import Transaction from "./pages/Transaction";
 import Regist from "./pages/Regist";
 import DetailEvents from "./pages/DetailEvents";
 
+
 function App() {
 	return (
 		<>
