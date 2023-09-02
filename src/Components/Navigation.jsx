@@ -119,7 +119,7 @@ export default function Navigation() {
 	};
 
 	// declare to show or hide the text in password input
-	const handleShowClick = () => setShowPassword(!showPassword);
+	// const handleShowClick = () => setShowPassword(!showPassword);
 
 	return (
 		<>
