@@ -150,6 +150,12 @@ function TransactionStep1() {
                                                         <Text fontSize={"xs"}>
                                                             Harga belum termasuk pajak PPn 10%
                                                         </Text>
+                                                        <Text fontSize={"xs"}>
+                                                            {event.date}
+                                                        </Text>
+                                                        <Text fontSize={"xs"}>
+                                                            {event.time}
+                                                        </Text>
                                                     </Flex>
                                                 </Flex>
                                             </Td>

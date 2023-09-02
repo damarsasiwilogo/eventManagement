@@ -1,4 +1,4 @@
-import { Box, Button, Text, Progress, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Flex} from "@chakra-ui/react";
+import { Box, Button, Text, Progress, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Flex, Image } from "@chakra-ui/react";
 import { useParams } from "react-router";
 import React, { useState } from "react";
 import { useEffect } from "react";
@@ -7,11 +7,10 @@ import TransactionStep1 from "../Components/TransactionStep1";
 import TransactionStep2 from "../Components/TransactionStep2";
 import TransactionStep3 from "../Components/TransactionStep3";
 import TransactionStep4 from "../Components/TransactionStep4";
-import Navigation from "../Components/Navigation";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
-function Transaction() {
+function Transaction({ event }) {
     const { id } = useParams();
     const [events, setEvents] = useState([]);
     const [currentStep, setCurrentStep] = useState(1);
@@ -68,7 +67,6 @@ function Transaction() {
         }
     };
 
-
     const calculateProgress = () => {
         switch (currentStep) {
             case 1:
@@ -114,6 +112,7 @@ function Transaction() {
         setIsTimeUpModalOpen(false);
     };
 
+
     return (
         <>
             <Box display={"flex"} justifyContent="flex-start" bg={"#331F69"} alignItems={"center"} h={"10vh"}>
@@ -121,29 +120,14 @@ function Transaction() {
                     myTix
                 </Text>
             </Box>
-            {events.map(event => (
-                <>
-                    <Box
-                        display={"flex"}
-                        justifyContent="center"
-                        alignItems={"center"}
-                        h={"32vh"}
-                        ml={40}
-                        mr={40}
-                        mt={5}
-                        bgImage={`url(${event.images})`}
-                        bgRepeat="no-repeat" bgSize="cover" bgPos="center" borderRadius={10}>
-                    </Box>
-                </>
-            ))}
             <Box display={"flex"} flexDirection="column" justifyContent="center" bgColor="#EDEDED" alignItems={"center"} h={"10vh"} ml={40} mr={40} mt={2} borderRadius={10}>
                 <Flex direction={"column"} justifyContent={"center"} alignItems={"center"} mt={5}>
-                <Text fontSize={"md"} fontWeight={"bold"} mt={10} my={-2}>
-                    WAKTU TERSISA
-                </Text>
-                <Text fontSize={"4xl"} fontWeight={"bold"} mb={2} color={"red"}>
-                    {(Math.floor(remainingTime / 60)).toString().padStart(2, "0")} : {(remainingTime % 60).toString().padStart(2, "0")}
-                </Text>
+                    <Text fontSize={"md"} fontWeight={"bold"} mt={10} my={-2}>
+                        WAKTU TERSISA
+                    </Text>
+                    <Text fontSize={"4xl"} fontWeight={"bold"} mb={2} color={"red"}>
+                        {(Math.floor(remainingTime / 60)).toString().padStart(2, "0")} : {(remainingTime % 60).toString().padStart(2, "0")}
+                    </Text>
                 </Flex>
             </Box>
             <Box display="flex" justifyContent="space-between" alignItems="center" h="5vh" ml={60} mr={60}>
@@ -163,6 +147,7 @@ function Transaction() {
             </Box>
 
             {renderStep()}
+
             <Box display={"flex"} bgColor="#EDEDED" justifyContent={"flex-end"} h={"10vh"} ml={40} mr={40} mb={5} borderBottomRadius={10}>
                 {currentStep > 1 && (
                     <Button
@@ -200,7 +185,7 @@ function Transaction() {
                     <ModalFooter>
                         <Button colorScheme="blue" onClick={() => {
                             closeTimeUpModal();
-                            navigate('/'); 
+                            navigate('/');
                         }}>
                             OK
                         </Button>
