@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import api from "../api"
 import { IoTicketSharp } from "react-icons/io5";
+import { useDispatch, useSelector } from 'react-redux';
+import { setTicketQuantities, setTotalPrices } from '../slices/transactionSlices';
+
 
 
 function TransactionStep1() {
@@ -10,33 +13,59 @@ function TransactionStep1() {
 
     const { id } = useParams();
 
-    useEffect(() => {
-        api.get(`/events/${id}`).then((res) => {
-            setEvents([res.data])
-        });
-    }, []);
-
     const MAX_QUANTITY = 5; // Maximum allowed quantity
     const [quantityGold, setQuantityGold] = useState(0);
     const [quantityPlatinum, setQuantityPlatinum] = useState(0);
     const [quantityDiamond, setQuantityDiamond] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const totalQuantity = quantityGold + quantityPlatinum + quantityDiamond;
+    const dispatch = useDispatch();
+    const totalPrices = useSelector((state) => state.transaction.totalPrices);
+    const ticketQuantities = useSelector((state) => state.transaction.ticketQuantities);
+
+    useEffect(() => {
+        api.get(`/events/${id}`).then((res) => {
+            setEvents([res.data])
+        });
+    },[]);
+
+
 
     const handleDecrement = (ticketType) => {
         switch (ticketType) {
             case 'Gold':
                 setQuantityGold(Math.max(0, quantityGold - 1));
+                dispatch(
+                    setTicketQuantities({
+                        ...ticketQuantities,
+                        Gold: Math.max(0, ticketQuantities.Gold - 1),
+                    })
+                );
                 break;
             case 'Platinum':
                 setQuantityPlatinum(Math.max(0, quantityPlatinum - 1));
+                dispatch(
+                    setTicketQuantities({
+                        ...ticketQuantities,
+                        Platinum: Math.max(0, ticketQuantities.Platinum - 1),
+                    })
+                );
                 break;
             case 'Diamond':
                 setQuantityDiamond(Math.max(0, quantityDiamond - 1));
+                dispatch(
+                    setTicketQuantities({
+                        ...ticketQuantities,
+                        Diamond: Math.max(0, ticketQuantities.Diamond - 1),
+                    })
+                );
                 break;
             default:
                 break;
         }
+
+       
+        
     };
 
     const handleIncrement = (ticketType) => {
@@ -44,21 +73,46 @@ function TransactionStep1() {
             case 'Gold':
                 if (quantityGold <= MAX_QUANTITY) {
                     setQuantityGold(quantityGold + 1);
+                    dispatch(
+                        setTicketQuantities({
+                            ...ticketQuantities,
+                            Gold: quantityGold + 1,
+                        })
+                    );
                 }
                 break;
             case 'Platinum':
                 if (quantityPlatinum <= MAX_QUANTITY) {
                     setQuantityPlatinum(quantityPlatinum + 1);
+                    dispatch(
+                        setTicketQuantities({
+                            ...ticketQuantities,
+                            Platinum: quantityPlatinum + 1,
+                        })
+                    );
                 }
                 break;
             case 'Diamond':
                 if (quantityDiamond <= MAX_QUANTITY) {
                     setQuantityDiamond(quantityDiamond + 1);
+                    dispatch(
+                        setTicketQuantities({
+                            ...ticketQuantities,
+                            Diamond: quantityDiamond + 1,
+                        })
+                    );
                 }
                 break;
         }
+
+
         // Add an effect to reset quantities and show a popup when exceeding the maximum
-        if (quantityGold >= MAX_QUANTITY || quantityPlatinum >= MAX_QUANTITY || quantityDiamond >= MAX_QUANTITY || totalQuantity >= MAX_QUANTITY) {
+        if (
+            quantityGold >= MAX_QUANTITY ||
+            quantityPlatinum >= MAX_QUANTITY ||
+            quantityDiamond >= MAX_QUANTITY ||
+            totalQuantity >= MAX_QUANTITY
+        ) {
             setIsModalOpen(true);
         }
     };
@@ -101,8 +155,11 @@ function TransactionStep1() {
         for (const [ticketType, price] of Object.entries(ticketTypes)) {
             grandTotal += calculateTotalPrice(ticketType, price);
         }
+        
+        dispatch(setTotalPrices(grandTotal));
         return grandTotal;
     };
+
 
     return (
         <>

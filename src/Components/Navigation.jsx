@@ -94,7 +94,8 @@ export default function Navigation() {
 				boxShadow="md"
 				position="absolute"
 				width="100%"
-				p={"10px"}>
+				p={"10px"}
+				zIndex={5}>
 				<List>
 					{suggestions.map((event) => (
 						<ListItem
