@@ -10,7 +10,7 @@ import TransactionStep4 from "../Components/TransactionStep4";
 import { useNavigate } from "react-router-dom";
 
 
-function Transaction({ event }) {
+function Transaction() {
     const { id } = useParams();
     const [events, setEvents] = useState([]);
     const [currentStep, setCurrentStep] = useState(1);
@@ -44,6 +44,7 @@ function Transaction({ event }) {
         if (currentStep < 4) {
             setCurrentStep(currentStep + 1);
         }
+
     };
 
     const handlePrevious = () => {
@@ -57,7 +58,7 @@ function Transaction({ event }) {
             case 1:
                 return <TransactionStep1 onNext={handleNext} />;
             case 2:
-                return <TransactionStep2 onNext={handleNext} />;
+                return <TransactionStep2 onNext={handleNext} />
             case 3:
                 return <TransactionStep3 onNext={handleNext} />;
             case 4:
@@ -148,7 +149,16 @@ function Transaction({ event }) {
 
             {renderStep()}
 
-            <Box display={"flex"} bgColor="#EDEDED" justifyContent={"flex-end"} h={"10vh"} ml={40} mr={40} mb={5} borderBottomRadius={10}>
+            <Box
+                display={"flex"}
+                bgColor="#EDEDED"
+                justifyContent={"flex-end"}
+                h={"10vh"}
+                ml={40}
+                mr={40}
+                mb={5}
+                borderBottomRadius={10}
+            >
                 {currentStep > 1 && (
                     <Button
                         bg={"#F7F7F7"}
@@ -162,19 +172,22 @@ function Transaction({ event }) {
                         Kembali
                     </Button>
                 )}
-                <Button
-                    colorScheme="facebook"
-                    color={"white"}
-                    _hover={{ bg: "#24105c" }}
-                    size="sm"
-                    mr={20}
-                    mt={5}
-                    w={"90px"}
-                    onClick={handleNext}>
-                    {buttonProgress()}
-                </Button>
-
+                
+                    <Button
+                        colorScheme="facebook"
+                        color={"white"}
+                        _hover={{ bg: "#24105c" }}
+                        size="sm"
+                        mr={20}
+                        mt={5}
+                        w={"90px"}
+                        onClick={handleNext}
+                    >
+                        {buttonProgress()}
+                    </Button>
+                
             </Box>
+
             <Modal isOpen={isTimeUpModalOpen} onClose={closeTimeUpModal} isCentered>
                 <ModalOverlay />
                 <ModalContent>
@@ -192,6 +205,8 @@ function Transaction({ event }) {
                     </ModalFooter>
                 </ModalContent>
             </Modal>
+
+
         </>
     )
 }
