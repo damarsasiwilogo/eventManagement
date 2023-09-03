@@ -31,8 +31,27 @@ const transactionSlices = createSlice({
     setFormData: (state, action) => {
       state.formData = action.payload;
     },
+    
+    resetTransaction: (state) => {
+      state.ticketQuantities = {
+        Gold: 0,
+        Platinum: 0,
+        Diamond: 0,
+      };
+      state.totalPrices = 0;
+      state.formData = {
+        name: "",
+        email: "",
+        telepon: "",
+        identitas: "",
+        date: "",
+        month: "",
+        year: "",
+      };
+    },
   },
 });
 
-export const { setTicketQuantities, setTotalPrices, setFormData } = transactionSlices.actions;
+
+export const { setTicketQuantities, setTotalPrices, setFormData, resetTransaction } = transactionSlices.actions;
 export default transactionSlices.reducer;

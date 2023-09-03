@@ -15,7 +15,7 @@ const TransactionStep3 = () => {
 
     return (
         <>
-            <Box display={"flex"} flexDirection="column" bgColor="#EDEDED" ml={40} mr={40} mt={2} borderTopRadius={10}>
+            <Box display={"flex"} flexDirection="column" bgColor="#EDEDED" ml={40} mr={40} mt={2} borderRadius={10}>
 
                 <div>
                     <p>Name: {name}</p>
