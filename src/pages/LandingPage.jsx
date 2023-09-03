@@ -18,7 +18,6 @@ export default function Landingpage() {
   const [filterLocation, setFilterLocation] = useState(null);
   const filteredEvents = filterLocation ? events.filter((event) => event.location === filterLocation) : events;
   const locations = ["All", "Online", "Jakarta", "Bekasi", "Surabaya", "Lombok", "Bali", "Lampung", "Malaysia"];
-  const [isBoxActive, setIsboxActive] = useState(false)
 
   useEffect(() => {
     api.get("/events").then((res) => {
@@ -63,7 +62,7 @@ export default function Landingpage() {
   return (
     <Box h={"200vh"}>
       <Navigation />
-      {/* <Form/> */}
+      <Form/>
       {/* Image Slider */}
       <Box marginTop={"10px"} display={"flex"} justifyContent={"center"}>
         <HeroSlider
