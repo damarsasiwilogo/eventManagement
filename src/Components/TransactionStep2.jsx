@@ -1,18 +1,26 @@
 import React, { useEffect } from 'react';
-import { Box, Flex, Text, Select } from '@chakra-ui/react';
+import { Box, Flex, Text, Select, Center, ButtonGroup } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 import { Input, Button, FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/react';
 import * as Yup from 'yup';
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from 'react-redux';
 import { setFormData } from '../slices/transactionSlices'; // Import the Redux action
+import { useState } from 'react';
+import api from "../api"
 
-function TransactionStep2() {
+function TransactionStep2({ onNext, onPrevious }) {
     const dispatch = useDispatch();
     const { id } = useParams();
     const formData = useSelector((state) => state.transaction.formData); // Access form data from Redux store
+    const [events, setEvents] = useState([]);
 
-  
+    useEffect(() => {
+        api.get(`/events/${id}`).then((res) => {
+            setEvents([res.data])
+        });
+    }, []);
+
     const months = [
         'January', 'February', 'March', 'April', 'May', 'June', 'July',
         'August', 'September', 'October', 'November', 'December',
@@ -35,21 +43,24 @@ function TransactionStep2() {
         dispatch(setFormData(updatedFormData)); // Dispatch the Redux action to update form data
     };
 
-   
+
     return (
         <>
-            <Box display={"flex"} flexDirection="column" bgColor="#EDEDED" ml={40} mr={40} mt={2} borderTopRadius={10}>
+            <Box display={"flex"} flexDirection="column" bgColor="#EDEDED" ml={40} mr={40} mt={2} borderRadius={10}>
                 {/* Event details display here */}
-                <Flex justifyContent={"flex-start"} mx={4}>
-                    <Text fontWeight={"bold"}>
-                        Event Name
-                    </Text>
-                </Flex>
-                <Flex justifyContent={"flex-start"} mt={4} ml={4}>
+                {events.map(event => (
+                    <Flex justifyContent={"flex-end"} mx={10} mt={4}>
+                        <Text fontWeight={"bold"}>
+                            {event.name}
+                        </Text>
+                    </Flex>
+                ))}
+                <Flex mt={4} ml={10} flexDirection={"column"} mb={30}>
                     <Formik
                         initialValues={formData} // Initialize form values with data from Redux store
                         validationSchema={validationSchema}
                         enableReinitialize={true}
+                        onSubmit={onNext}
 
                     >
                         <Form>
@@ -62,7 +73,7 @@ function TransactionStep2() {
                                             id="name"
                                             placeholder="Enter your name"
                                             w={400}
-                                            value={formData.name} 
+                                            value={formData.name}
                                             onChange={(e) => handleFormDataChange('name', e.target.value)} // Update form data in Redux store
                                         />
                                         <FormErrorMessage>{form.errors.name}</FormErrorMessage>
@@ -77,7 +88,7 @@ function TransactionStep2() {
                                             {...field}
                                             id="email"
                                             placeholder="Enter your email"
-                                            value={formData.email} 
+                                            value={formData.email}
                                             w={400}
                                             onChange={(e) => handleFormDataChange('email', e.target.value)} // Update form data in Redux store
                                         />
@@ -94,7 +105,7 @@ function TransactionStep2() {
                                             id="telepon"
                                             placeholder="Enter your number"
                                             w={200}
-                                            value={formData.telepon} 
+                                            value={formData.telepon}
                                             onChange={(e) => handleFormDataChange('telepon', e.target.value)} // Update form data in Redux store
                                         />
                                         <FormErrorMessage>{form.errors.telepon}</FormErrorMessage>
@@ -110,24 +121,26 @@ function TransactionStep2() {
                                             id="identitas"
                                             placeholder="Enter your identity number"
                                             w={300}
-                                            value={formData.identitas} 
+                                            value={formData.identitas}
                                             onChange={(e) => handleFormDataChange('identitas', e.target.value)} // Update form data in Redux store
                                         />
                                         <FormErrorMessage>{form.errors.identitas}</FormErrorMessage>
                                     </FormControl>
                                 )}
                             </Field>
-                            <FormControl mt={2}>
-                                <FormLabel>Tanggal Lahir</FormLabel>
-                                <Flex gap={2}>
-                                    <Box flex="1">
+                            <Flex w={400}>
+                                <FormControl mt={2}>
+                                    <FormLabel>Tanggal Lahir</FormLabel>
+                                    <Flex gap={2}>
+
                                         <Field name="date">
                                             {({ field, form }) => (
                                                 <FormControl isInvalid={form.errors.date && form.touched.date}>
                                                     <Select
                                                         {...field}
+                                                       
                                                         placeholder="Date"
-                                                        value={formData.date} 
+                                                        value={formData.date}
                                                         onChange={(e) => handleFormDataChange('date', e.target.value)}
                                                     >
                                                         {Array.from({ length: 31 }, (_, i) => (
@@ -140,16 +153,14 @@ function TransactionStep2() {
                                                 </FormControl>
                                             )}
                                         </Field>
-                                    </Box>
-
-                                    <Box flex="1">
                                         <Field name="month">
                                             {({ field, form }) => (
                                                 <FormControl isInvalid={form.errors.month && form.touched.month}>
                                                     <Select
                                                         {...field}
+                                                      
                                                         placeholder="Month"
-                                                        value={formData.month} 
+                                                        value={formData.month}
                                                         onChange={(e) => handleFormDataChange('month', e.target.value)}
                                                     >
                                                         {months.map((month, index) => (
@@ -162,16 +173,14 @@ function TransactionStep2() {
                                                 </FormControl>
                                             )}
                                         </Field>
-                                    </Box>
-
-                                    <Box flex="1">
                                         <Field name="year">
                                             {({ field, form }) => (
                                                 <FormControl isInvalid={form.errors.year && form.touched.year}>
                                                     <Select
                                                         {...field}
+                                                       
                                                         placeholder="Year"
-                                                        value={formData.year} 
+                                                        value={formData.year}
                                                         onChange={(e) => handleFormDataChange('year', e.target.value)}
                                                     >
                                                         {years.map((year) => (
@@ -184,13 +193,48 @@ function TransactionStep2() {
                                                 </FormControl>
                                             )}
                                         </Field>
-                                    </Box>
-                                </Flex>
-                            </FormControl>
+                                    </Flex>
+
+                                </FormControl>
+                            </Flex>
+
+                            <Box
+                                display={"flex"}
+                                bgColor="#EDEDED"
+                                justifyContent="flex-end"                        
+                                h={"10vh"}
+                                mt={20}
+                                mb={5}
+                            >
+                                <Button
+                                    bg={"#F7F7F7"}
+                                    color={"#2e4583"}
+                                    size="sm"
+                                    mr={4}
+                                    mt={5}
+                                    w={"90px"}
+                                    onClick={onPrevious}
+                                >
+                                    Kembali
+                                </Button>
+
+                                <Button
+                                    colorScheme="facebook"
+                                    color={"white"}
+                                    _hover={{ bg: "#24105c" }}
+                                    size="sm"
+                                    mr={20}
+                                    mt={5}
+                                    w={"90px"}
+                                    type='submit'
+                                >
+                                    Submit
+                                </Button>
+                            </Box>
                         </Form>
                     </Formik>
                 </Flex>
-            </Box>
+            </Box >
         </>
     );
 }

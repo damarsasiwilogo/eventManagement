@@ -5,10 +5,11 @@ import api from "../api"
 import { IoTicketSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
 import { setTicketQuantities, setTotalPrices } from '../slices/transactionSlices';
+import { resetTransaction } from '../slices/transactionSlices';
 
 
 
-function TransactionStep1() {
+function TransactionStep1({ onConfirmationClick }) {
     const [events, setEvents] = useState([]);
 
     const { id } = useParams();
@@ -18,16 +19,16 @@ function TransactionStep1() {
     const [quantityPlatinum, setQuantityPlatinum] = useState(0);
     const [quantityDiamond, setQuantityDiamond] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
     const totalQuantity = quantityGold + quantityPlatinum + quantityDiamond;
     const dispatch = useDispatch();
-    const totalPrices = useSelector((state) => state.transaction.totalPrices);
     const ticketQuantities = useSelector((state) => state.transaction.ticketQuantities);
 
     useEffect(() => {
         api.get(`/events/${id}`).then((res) => {
             setEvents([res.data])
         });
-    },[]);
+    }, []);
 
 
 
@@ -64,8 +65,8 @@ function TransactionStep1() {
                 break;
         }
 
-       
-        
+
+
     };
 
     const handleIncrement = (ticketType) => {
@@ -122,6 +123,7 @@ function TransactionStep1() {
         setQuantityGold(0);
         setQuantityPlatinum(0);
         setQuantityDiamond(0);
+        dispatch(resetTransaction());
     };
 
     const getQuantity = (ticketType) => {
@@ -155,7 +157,7 @@ function TransactionStep1() {
         for (const [ticketType, price] of Object.entries(ticketTypes)) {
             grandTotal += calculateTotalPrice(ticketType, price);
         }
-        
+
         dispatch(setTotalPrices(grandTotal));
         return grandTotal;
     };
@@ -262,7 +264,8 @@ function TransactionStep1() {
                         </Flex>
                     </>
                 ))}
-                <Modal isOpen={isModalOpen} onClose={closeModal} isCentered>
+                <Modal isOpen={isModalOpen} onClose={closeModal} isCentered blockScrollOnMount={true}
+                    closeOnOverlayClick={false}>
                     <ModalOverlay />
                     <ModalContent>
                         <ModalHeader>Warning</ModalHeader>
