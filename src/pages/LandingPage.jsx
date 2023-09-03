@@ -60,10 +60,6 @@ export default function Landingpage() {
     setFilterType(type);
   }
 
-  function handleClickBoxStyle(){
-    setIsboxActive(!isBoxActive)
-  }
-
   return (
     <Box h={"200vh"}>
       <Navigation />
