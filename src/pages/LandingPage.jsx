@@ -62,7 +62,7 @@ export default function Landingpage() {
   return (
     <Box h={"200vh"}>
       <Navigation />
-      <Form/>
+      {/* <Form/> */}
       {/* Image Slider */}
       <Box marginTop={"10px"} display={"flex"} justifyContent={"center"}>
         <HeroSlider
