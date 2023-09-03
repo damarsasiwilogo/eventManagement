@@ -18,6 +18,25 @@ const transactionSlices = createSlice({
       month: "",
       year: "",
     },
+    
+    paymentMethodByNumber: {
+      paymentBy : "",
+      nohp : "",
+    },
+
+    paymentMethodByVirtualAcc: {
+      BCA : "60022200321",
+      Mandiri: "70021239922",
+      BNI : "23003044502",
+    },
+
+    creditCardData: {
+      cardHolder: "",
+      cardNumber: "",
+      cardMonth: "",
+      cardYear: "",
+      cvvNumber : "",
+    },
   },
   reducers: {
     setTicketQuantities: (state, action) => {
@@ -31,7 +50,16 @@ const transactionSlices = createSlice({
     setFormData: (state, action) => {
       state.formData = action.payload;
     },
-    
+
+    setPaymentMethodByNumber: (state, action) => {
+      state.paymentMethodByNumber = action.payload;
+    },
+    setPaymentMethodByVirtualAcc: (state, action) => {
+      state.paymentMethodByVirtualAcc = action.payload;
+    },
+    setCreditCardData: (state, action) => {
+      state.creditCardData = action.payload;
+    },
     resetTransaction: (state) => {
       state.ticketQuantities = {
         Gold: 0,
@@ -53,5 +81,12 @@ const transactionSlices = createSlice({
 });
 
 
-export const { setTicketQuantities, setTotalPrices, setFormData, resetTransaction } = transactionSlices.actions;
+export const { 
+setTicketQuantities, 
+setTotalPrices, 
+setFormData, 
+resetTransaction, 
+setPaymentMethodByNumber,
+setPaymentMethodByVirtualAcc,
+setCreditCardData } = transactionSlices.actions;
 export default transactionSlices.reducer;

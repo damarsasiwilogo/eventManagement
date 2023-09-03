@@ -17,7 +17,7 @@ function Transaction() {
     const { id } = useParams();
     const [events, setEvents] = useState([]);
     const [currentStep, setCurrentStep] = useState(1);
-    const [remainingTime, setRemainingTime] = useState(15 * 60); // Waktu dalam detik (15 menit)
+    const [remainingTime, setRemainingTime] = useState(30 * 60); // Waktu dalam detik (15 menit)
     const [isTimeUpModalOpen, setIsTimeUpModalOpen] = useState(false);
     const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -215,6 +215,7 @@ function Transaction() {
                         </Button>
                     )}
 
+                    {currentStep !== 4 && (
                     <Button
                         colorScheme="facebook"
                         color={"white"}
@@ -229,6 +230,7 @@ function Transaction() {
                     >
                         {buttonProgress()}
                     </Button>
+                    )}
 
                 </Box>
             )}
