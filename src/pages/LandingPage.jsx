@@ -8,16 +8,17 @@ import api from "../api.js";
 import music from "../images/music.png";
 import sports from "../images/sports.jpeg";
 import webinar from "../images/webinar.jpg";
-import webinar2 from "../images/webinar-2.jpeg";
 import { useNavigate } from "react-router-dom";
-import HeroSlider, { Overlay, Slide, MenuNav } from "hero-slider";
+import HeroSlider, { Slide, MenuNav } from "hero-slider";
 
 export default function Landingpage() {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setselectedEvent] = useState(null);
+  const [filterType, setFilterType] = useState(null);
   const [filterLocation, setFilterLocation] = useState(null);
   const filteredEvents = filterLocation ? events.filter((event) => event.location === filterLocation) : events;
   const locations = ["All", "Online", "Jakarta", "Bekasi", "Surabaya", "Lombok", "Bali", "Lampung", "Malaysia"];
+  const [isBoxActive, setIsboxActive] = useState(false)
 
   useEffect(() => {
     api.get("/events").then((res) => {
@@ -56,17 +57,19 @@ export default function Landingpage() {
 
   function handleclickBox(event) {
     const type = event.currentTarget.querySelector(".heading").textContent.toLowerCase();
+    setFilterType(type);
+  }
 
-    // Redirect to the page for the specified type of event.
-    const path = `/events/${type}`;
-    window.location.href = path;
+  function handleClickBoxStyle(){
+    setIsboxActive(!isBoxActive)
   }
 
   return (
     <Box h={"200vh"}>
       <Navigation />
       {/* <Form/> */}
-      <Box marginTop={'10px'} display={"flex"} justifyContent={'center'}>
+      {/* Image Slider */}
+      <Box marginTop={"10px"} display={"flex"} justifyContent={"center"}>
         <HeroSlider
           height={"45vh"}
           width={"70vw"}
@@ -74,37 +77,30 @@ export default function Landingpage() {
           controller={{
             initialSlide: 1,
             slidingDuration: 200,
-            slidingDelay: 100
+            slidingDelay: 100,
           }}
         >
-          <Slide
-            shouldRenderMask
-            label="music"
-            background={{
-              backgroundImageSrc: music,
-            }}
-          />
-
-          <Slide
-            shouldRenderMask
-            label="webinar"
-            background={{
-              backgroundImageSrc: webinar2,
-            }}
-          />
-
-          <Slide
-            shouldRenderMask
-            label="sports"
-            background={{
-              backgroundImageSrc: sports,
-            }}
-          />
-          <MenuNav />
+          {events.map((event) => {
+            if (filterType === null || event.type.toLowerCase() === filterType) {
+              return (
+                <>
+                  <Slide
+                    shouldRenderMask
+                    label="music"
+                    background={{
+                      backgroundImageSrc: event.images,
+                    }}
+                  />
+                  <MenuNav />
+                </>
+              );
+            }
+          })}
         </HeroSlider>
+        {/* End Of Image Slider */}
       </Box>
 
-      <Box display={"flex"}>
+      <Box display={"flex"} className="box-type">
         <Center w={"100%"} h={"45vh"}>
           <Box bg={"navy"} w={"400px"} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={music} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow " onClick={handleclickBox}>
             <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading">
