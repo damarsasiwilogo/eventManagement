@@ -10,6 +10,8 @@ import TransactionStep4 from "../Components/TransactionStep4";
 import { useNavigate } from "react-router-dom";
 import { resetTransaction } from '../slices/transactionSlices';
 import { useDispatch, useSelector } from 'react-redux'; // Import useDispatch
+import myTixLogo from "../images/logo_mytix.png"
+import { Spinner, Center} from "@chakra-ui/react";
 
 function Transaction() {
     const { id } = useParams();
@@ -18,6 +20,7 @@ function Transaction() {
     const [remainingTime, setRemainingTime] = useState(15 * 60); // Waktu dalam detik (15 menit)
     const [isTimeUpModalOpen, setIsTimeUpModalOpen] = useState(false);
     const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const ticketQuantities = useSelector((state) => state.transaction.ticketQuantities);
@@ -48,29 +51,37 @@ function Transaction() {
         dispatch(resetTransaction());
     }, [dispatch]);
 
-    const handleNext = () => {
-        if (!isConfirmationModalOpen && currentStep < 4) {
-            setCurrentStep(currentStep + 1);
-        }
 
+    const handleNext = async () => {
+        if (!isConfirmationModalOpen && currentStep < 4) {
+            setIsLoading(true); // Set loading to true before transitioning
+            // Simulate a delay for loading effect (you can replace this with actual data fetching)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            setCurrentStep(currentStep + 1);
+            setIsLoading(false); // Set loading to false after transitioning
+        }
     };
 
-
-    const handlePrevious = () => {
+    const handlePrevious = async () => {
         if (currentStep > 1) {
+            setIsLoading(true); // Set loading to true before transitioning
+            // Simulate a delay for loading effect (you can replace this with actual data fetching)
+            await new Promise(resolve => setTimeout(resolve, 2000));
             setCurrentStep(currentStep - 1);
+            setIsLoading(false);
             dispatch(resetTransaction());
+
         }
     };
 
     const renderStep = () => {
         switch (currentStep) {
             case 1:
-                return <TransactionStep1 onNext={handleNext} />
+                return <TransactionStep1 onNext={handleNext} isLoading={isLoading} />
             case 2:
-                return <TransactionStep2 onNext={handleNext} onPrevious={handlePrevious} />
+                return <TransactionStep2 onNext={handleNext} onPrevious={handlePrevious} isLoading={isLoading} />
             case 3:
-                return <TransactionStep3 onNext={handleNext} />;
+                return <TransactionStep3 onNext={handleNext} isLoading={isLoading} />;
             case 4:
                 return <TransactionStep4 />;
             default:
@@ -143,9 +154,7 @@ function Transaction() {
     return (
         <>
             <Box display={"flex"} justifyContent="flex-start" bg={"#331F69"} alignItems={"center"} h={"10vh"}>
-                <Text fontSize={"2xl"} fontWeight={"bold"} px={"15px"} color={"white"} ml={10}>
-                    myTix
-                </Text>
+                <a href="/"><Image src={myTixLogo} w={"150px"} h={"45px"} /></a>
             </Box>
             <Box display={"flex"} flexDirection="column" justifyContent="center" bgColor="#EDEDED" alignItems={"center"} h={"10vh"} ml={40} mr={40} mt={2} borderRadius={10}>
                 <Flex direction={"column"} justifyContent={"center"} alignItems={"center"} mt={5}>
@@ -173,7 +182,13 @@ function Transaction() {
                 <Progress mx="4px" value={calculateProgress()} size="sm" colorScheme="facebook" borderRadius={10} hasStripe />
             </Box>
 
-            {renderStep()}
+            {isLoading ? (
+                <Center h="80vh" bgColor={"#EDEDED"} mx={40}>
+                    <Spinner size="xl" thickness="6px" color="#331F69" />
+                </Center>
+            ) : (
+                renderStep()
+            )}
 
             {currentStep !== 2 && (
                 <Box
@@ -254,8 +269,6 @@ function Transaction() {
                     </ModalFooter>
                 </ModalContent>
             </Modal>
-
-
         </>
     )
 }

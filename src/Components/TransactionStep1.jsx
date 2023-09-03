@@ -19,7 +19,6 @@ function TransactionStep1() {
     const [quantityPlatinum, setQuantityPlatinum] = useState(0);
     const [quantityDiamond, setQuantityDiamond] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
     const totalQuantity = quantityGold + quantityPlatinum + quantityDiamond;
     const dispatch = useDispatch();
     const ticketQuantities = useSelector((state) => state.transaction.ticketQuantities);
@@ -207,7 +206,7 @@ function TransactionStep1() {
                                                             {ticketType}
                                                         </Text>
                                                         <Text fontSize={"xs"}>
-                                                            Harga belum termasuk pajak PPn 10%
+                                                            Harga sudah termasuk pajak PPn 10%
                                                         </Text>
                                                         <Text fontSize={"xs"}>
                                                             {event.date}
