@@ -183,7 +183,7 @@ function Transaction() {
             </Box>
 
             {isLoading ? (
-                <Center h="100vh" bgColor={"#EDEDED"} mx={40}>
+                <Center h="80vh" bgColor={"#EDEDED"} mx={40}>
                     <Spinner size="xl" thickness="6px" color="#331F69" />
                 </Center>
             ) : (
