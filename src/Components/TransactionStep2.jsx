@@ -31,8 +31,8 @@ function TransactionStep2({ onNext, onPrevious }) {
     const validationSchema = Yup.object().shape({
         name: Yup.string().required('Name is required'),
         email: Yup.string().email('Invalid email format').required('Email is required'),
-        telepon: Yup.string().required('Phone number is required').min(8, 'Phone number must be at least 8 characters'),
-        identitas: Yup.string().required('Identity number is required'),
+        telepon: Yup.string().required('Phone number is required').min(8, 'Phone number must be at least 8 characters').matches(/^[0-9]+$/, 'Phone number must contain only numbers'),
+        identitas: Yup.string().required('Identity number is required').matches(/^[0-9]+$/, 'Identity number must contain only numbers'),
         date: Yup.string().required('Date is required'),
         month: Yup.string().required('Month is required'),
         year: Yup.string().required('Year is required'),
