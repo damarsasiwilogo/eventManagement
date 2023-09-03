@@ -67,7 +67,9 @@ function TransactionStep2({ onNext, onPrevious }) {
                             <Field name="name">
                                 {({ field, form }) => (
                                     <FormControl isInvalid={form.errors.name && form.touched.name}>
-                                        <FormLabel htmlFor="name">Name</FormLabel>
+                                        <FormLabel htmlFor="name">
+                                            Name {formData.name ? null : <Text as="span" color="red">*</Text>}
+                                        </FormLabel>
                                         <Input
                                             {...field}
                                             id="name"
@@ -83,7 +85,9 @@ function TransactionStep2({ onNext, onPrevious }) {
                             <Field name="email">
                                 {({ field, form }) => (
                                     <FormControl mt={2} isInvalid={form.errors.email && form.touched.email}>
-                                        <FormLabel htmlFor="email">Email</FormLabel>
+                                        <FormLabel htmlFor="email">
+                                            Email {formData.email ? null : <Text as="span" color="red">*</Text>}
+                                        </FormLabel>
                                         <Input
                                             {...field}
                                             id="email"
@@ -92,6 +96,7 @@ function TransactionStep2({ onNext, onPrevious }) {
                                             w={400}
                                             onChange={(e) => handleFormDataChange('email', e.target.value)} // Update form data in Redux store
                                         />
+                                        <Text fontSize={"xs"}> E-ticket akan dikirimkan melalui email</Text>
                                         <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                                     </FormControl>
                                 )}
@@ -99,7 +104,9 @@ function TransactionStep2({ onNext, onPrevious }) {
                             <Field name="telepon">
                                 {({ field, form }) => (
                                     <FormControl mt={2} isInvalid={form.errors.telepon && form.touched.telepon}>
-                                        <FormLabel htmlFor="telepon">Telepon</FormLabel>
+                                        <FormLabel htmlFor="telepon">
+                                            Telepon {formData.telepon ? null : <Text as="span" color="red">*</Text>}
+                                        </FormLabel>
                                         <Input
                                             {...field}
                                             id="telepon"
@@ -115,7 +122,9 @@ function TransactionStep2({ onNext, onPrevious }) {
                             <Field name="identitas">
                                 {({ field, form }) => (
                                     <FormControl mt={2} isInvalid={form.errors.identitas && form.touched.identitas}>
-                                        <FormLabel htmlFor="tel">Identitas (KTP/SIM/Paspor)</FormLabel>
+                                        <FormLabel htmlFor="identitas">
+                                            Identitas (KTP/SIM/Paspor) {formData.identitas ? null : <Text as="span" color="red">*</Text>}
+                                        </FormLabel>
                                         <Input
                                             {...field}
                                             id="identitas"
@@ -130,15 +139,16 @@ function TransactionStep2({ onNext, onPrevious }) {
                             </Field>
                             <Flex w={400}>
                                 <FormControl mt={2}>
-                                    <FormLabel>Tanggal Lahir</FormLabel>
+                                    <FormLabel>
+                                        Tanggal Lahir {formData.date && formData.month && formData.year  ? null : <Text as="span" color="red">*</Text>}
+                                    </FormLabel>
                                     <Flex gap={2}>
-
                                         <Field name="date">
                                             {({ field, form }) => (
                                                 <FormControl isInvalid={form.errors.date && form.touched.date}>
                                                     <Select
                                                         {...field}
-                                                       
+
                                                         placeholder="Date"
                                                         value={formData.date}
                                                         onChange={(e) => handleFormDataChange('date', e.target.value)}
@@ -158,7 +168,7 @@ function TransactionStep2({ onNext, onPrevious }) {
                                                 <FormControl isInvalid={form.errors.month && form.touched.month}>
                                                     <Select
                                                         {...field}
-                                                      
+
                                                         placeholder="Month"
                                                         value={formData.month}
                                                         onChange={(e) => handleFormDataChange('month', e.target.value)}
@@ -178,7 +188,7 @@ function TransactionStep2({ onNext, onPrevious }) {
                                                 <FormControl isInvalid={form.errors.year && form.touched.year}>
                                                     <Select
                                                         {...field}
-                                                       
+
                                                         placeholder="Year"
                                                         value={formData.year}
                                                         onChange={(e) => handleFormDataChange('year', e.target.value)}
@@ -201,7 +211,7 @@ function TransactionStep2({ onNext, onPrevious }) {
                             <Box
                                 display={"flex"}
                                 bgColor="#EDEDED"
-                                justifyContent="flex-end"                        
+                                justifyContent="flex-end"
                                 h={"10vh"}
                                 mt={20}
                                 mb={5}
