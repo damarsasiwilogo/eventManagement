@@ -23,6 +23,7 @@ import {
   useColorModeValue,
   ButtonGroup,
   FormHelperText,
+  Image,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import "../index.css";
@@ -31,6 +32,7 @@ import { useState, useEffect } from "react";
 import Regist from "../pages/Regist";
 import api from "../api";
 import { List, ListItem } from "@chakra-ui/react";
+import myTixLogo from "../images/logo_mytix.png"
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -111,9 +113,7 @@ export default function Navigation() {
   return (
     <>
       <Box display={"flex"} justifyContent={"space-evenly"} bg={"#331F69"} alignItems={"center"} h={"10vh"}>
-        <Text fontSize={"2xl"} fontWeight={"bold"} px={"15px"} color={"white"} borderRadius={"md"}>
-          <a href={"/"}>myTix</a>
-        </Text>
+      <a href="/"><Image src={myTixLogo} w={"150px"} h={"45px"} /></a>
         <div style={{ position: "relative" }}>
           <Input size={"md"} placeholder="Search an event..." w={"md"} shadow={"sm"} bg={"white"} value={searchQuery} onChange={handleSearchInputChange} onFocus={handleSearchInputFocus} onBlur={handleSearchInputBlur} />
           <Suggestions suggestions={isFocused ? suggestions : []} />
