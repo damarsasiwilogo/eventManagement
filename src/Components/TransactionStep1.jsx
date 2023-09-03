@@ -9,7 +9,7 @@ import { resetTransaction } from '../slices/transactionSlices';
 
 
 
-function TransactionStep1({ onConfirmationClick }) {
+function TransactionStep1() {
     const [events, setEvents] = useState([]);
 
     const { id } = useParams();
