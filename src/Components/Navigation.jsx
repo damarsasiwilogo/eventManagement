@@ -79,7 +79,7 @@ export default function Navigation() {
 				});
 			})
 			.finally(() => {
-				forms.resetform();
+				forms.resetForm();
 			});
 	};
 
@@ -461,6 +461,7 @@ export default function Navigation() {
 															size="lg"
 															bg={"blue.400"}
 															color={"white"}
+															type="submit"
 															_hover={{ bg: "blue.500" }}>
 															Sign up
 														</Button>
