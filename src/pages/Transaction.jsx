@@ -12,6 +12,7 @@ import { resetTransaction } from '../slices/transactionSlices';
 import { useDispatch, useSelector } from 'react-redux'; // Import useDispatch
 import myTixLogo from "../images/logo_mytix.png"
 import { Spinner, Center} from "@chakra-ui/react";
+import Footer from "../Components/Footer";
 
 function Transaction() {
     const { id } = useParams();
@@ -164,7 +165,7 @@ function Transaction() {
             <Box display={"flex"} justifyContent="flex-start" bg={"#331F69"} alignItems={"center"} h={"10vh"}>
                 <a href="/"><Image src={myTixLogo} w={"150px"} h={"45px"} /></a>
             </Box>
-            <Box display={"flex"} flexDirection="column" justifyContent="center" bgColor="#EDEDED" alignItems={"center"} h={"10vh"} ml={40} mr={40} mt={2} borderRadius={10}>
+            <Box display={"flex"} flexDirection="column" justifyContent="center" bgColor="white" alignItems={"center"} h={"10vh"} ml={40} mr={40} mt={2} borderRadius={10}>
                 <Flex direction={"column"} justifyContent={"center"} alignItems={"center"} mt={5}>
                     <Text fontSize={"md"} fontWeight={"bold"} mt={10} my={-2}>
                         WAKTU TERSISA
@@ -242,6 +243,7 @@ function Transaction() {
 
                 </Box>
             )}
+            <Footer/>
 
             <Modal isOpen={isTimeUpModalOpen} onClose={closeTimeUpModal} isCentered blockScrollOnMount={true}
                 closeOnOverlayClick={false}>
