@@ -63,13 +63,21 @@ function Transaction() {
     };
 
     const handlePrevious = async () => {
-        if (currentStep > 1) {
+        if (currentStep == 2 ) {
             setIsLoading(true); // Set loading to true before transitioning
             // Simulate a delay for loading effect (you can replace this with actual data fetching)
             await new Promise(resolve => setTimeout(resolve, 2000));
             setCurrentStep(currentStep - 1);
             setIsLoading(false);
             dispatch(resetTransaction());
+
+        }
+        if (currentStep > 2) {
+            setIsLoading(true); // Set loading to true before transitioning
+            // Simulate a delay for loading effect (you can replace this with actual data fetching)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            setCurrentStep(currentStep - 1);
+            setIsLoading(false);
 
         }
     };
