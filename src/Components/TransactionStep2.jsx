@@ -207,7 +207,38 @@ function TransactionStep2({ onNext, onPrevious }) {
 
                                 </FormControl>
                             </Flex>
-
+                            <Field name="reffCode">
+                                {({ field, form }) => (
+                                    <FormControl mt={2}>
+                                        <FormLabel htmlFor="reffcode">
+                                            Refferal Code 
+                                        </FormLabel>
+                                        <Input
+                                            {...field}
+                                            id="reffCode"
+                                            placeholder="Enter refferal code "
+                                            w={300}
+                                            
+                                        />
+                                        <FormErrorMessage>{form.errors.identitas}</FormErrorMessage>
+                                    </FormControl>
+                                )}
+                            </Field>
+                            <Field name="couponCode">
+                                {({ field, form }) => (
+                                    <FormControl mt={2}>
+                                        <FormLabel htmlFor="couponCode">
+                                            Coupon Code 
+                                        </FormLabel>
+                                        <Input
+                                            {...field}
+                                            id="couponCode"
+                                            placeholder="Enter coupon code "
+                                            w={300}
+                                        />
+                                    </FormControl>
+                                )}
+                            </Field>                               
                             <Box
                                 display={"flex"}
                                 bgColor="#EDEDED"
