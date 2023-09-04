@@ -49,7 +49,7 @@ export default function Navigation() {
   //declare pop out success or error register
   const toast = useToast();
   const dispatch = useDispatch();
-
+  
   const [events, setEvents] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredEvents, setFilteredEvents] = useState([]);
