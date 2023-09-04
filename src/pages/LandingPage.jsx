@@ -81,7 +81,7 @@ export default function Landingpage() {
                 <>
                   <Slide
                     shouldRenderMask
-                    label="music"
+                    label={event.type}
                     background={{
                       backgroundImageSrc: event.images,
                     }}
