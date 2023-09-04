@@ -10,3 +10,7 @@
 .box-shadow:hover {
 	box-shadow: 5px 5px 5px rgb(61, 61, 61);
 }
+
+#text-link:hover {
+	color: white;
+}

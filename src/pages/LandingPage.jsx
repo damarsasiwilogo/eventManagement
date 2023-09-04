@@ -1,4 +1,4 @@
-import { Box, Button, Center, Heading, Img, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Heading, Img, Stack, Text } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Navigation from "../Components/Navigation";
 import Form from "../Components/Form";
@@ -9,7 +9,8 @@ import music from "../images/music.png";
 import sports from "../images/sports.jpeg";
 import webinar from "../images/webinar.jpg";
 import { useNavigate } from "react-router-dom";
-import HeroSlider, { Slide, MenuNav } from "hero-slider";
+import HeroSlider, { Slide } from "hero-slider";
+import myTixLogo from "../images/logo_mytix.png";
 
 export default function Landingpage() {
   const [events, setEvents] = useState([]);
@@ -80,13 +81,10 @@ export default function Landingpage() {
               return (
                 <>
                   <Slide
-                    shouldRenderMask
-                    label={event.type}
                     background={{
                       backgroundImageSrc: event.images,
                     }}
                   />
-                  <MenuNav />
                 </>
               );
             }
@@ -184,6 +182,18 @@ export default function Landingpage() {
                 </Button>
               </Box>
             )}
+          </Box>
+        </Box>
+
+        <Box id="footer" h={"80px"} bgColor={"#331F69"} color={"whiteAlpha.500"} display={"flex"} w={"100%"} justifyContent={"space-evenly"} alignItems={"center"} overflow={"hidden"} mt={"10px"}>
+          <Img src={myTixLogo} w={"140px"} h={"45px"}></Img>
+          <Heading fontSize={"2xl"}>Depok Dev Team</Heading>
+          <Box w={"200px"}>
+            <Stack spacing={'5'} display={"flex"} flexDir={"row"}>
+              <Text id="text-link"><a href="https://www.linkedin.com/in/anggaratriputra/">Anggara</a></Text>
+              <Text id="text-link"><a href="https://www.linkedin.com/in/damarsasiwilogo/">Damar</a></Text>
+              <Text id="text-link"><a href="https://www.linkedin.com/in/fauzarizky/">Rizky</a></Text>
+            </Stack>
           </Box>
         </Box>
       </Box>
