@@ -344,8 +344,8 @@ export default function Navigation() {
 									<Stack spacing={4}>
 										<Formik
 											initialValues={{
-												firstName: "",
-												lastName: "",
+												fullName: "",
+												userName: "",
 												email: "",
 												password: "",
 											}}
@@ -354,45 +354,45 @@ export default function Navigation() {
 												<Form>
 													<HStack>
 														<Box>
-															<Field name="firstName">
+															<Field name="fullName">
 																{({ field, form }) => (
 																	<FormControl
-																		id="firstName"
+																		id="fullName"
 																		isRequired
 																		isInvalid={
-																			form.errors.firstName &&
-																			form.touched.firstName
+																			form.errors.fullName &&
+																			form.touched.fullName
 																		}
 																		isDisabled={isSubmitting}>
-																		<FormLabel>First Name</FormLabel>
+																		<FormLabel>Full Name</FormLabel>
 																		<Input
 																			type="text"
 																			{...field}
 																		/>
 																		<FormErrorMessage>
-																			{form.errors.firstName}
+																			{form.errors.fullName}
 																		</FormErrorMessage>
 																	</FormControl>
 																)}
 															</Field>
 														</Box>
 														<Box>
-															<Field name="lastName">
+															<Field name="userName">
 																{({ field, form }) => (
 																	<FormControl
-																		id="lastName"
+																		id="userName"
 																		isInvalid={
-																			form.errors.lastName &&
-																			form.touched.lastName
+																			form.errors.userName &&
+																			form.touched.userName
 																		}
 																		isDisabled={isSubmitting}>
-																		<FormLabel>Last Name</FormLabel>
+																		<FormLabel>username</FormLabel>
 																		<Input
 																			type="text"
 																			{...field}
 																		/>
 																		<FormErrorMessage>
-																			{form.errors.lastName}
+																			{form.errors.userName}
 																		</FormErrorMessage>
 																	</FormControl>
 																)}
