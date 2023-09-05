@@ -1,14 +1,17 @@
-import { Radio, RadioGroup, Stack, useDisclosure } from "@chakra-ui/react";
+import { Menu, MenuItem, Radio, RadioGroup, Stack, useDisclosure } from "@chakra-ui/react";
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, FormControl, Input, FormLabel } from "@chakra-ui/react";
 import { useState } from "react";
+import { useEffect } from "react";
 
-export default function Form() {
+export default function CreateForm() {
   const [value, setValue] = useState(null);
   const [location, setLocation] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+
   return (
     <>
-      <Button onClick={onOpen}>Create Event</Button>
+      <MenuItem onClick={onOpen}>Create Event</MenuItem>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

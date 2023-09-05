@@ -1,7 +1,8 @@
-import { Box, Button, Center, Flex, Heading, Image, Img, Stack, Text, useToast } from "@chakra-ui/react";
+
+import { Box, Button, Center, Flex, Heading, Image, Img, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useToast } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Navigation from "../Components/Navigation";
-import Form from "../Components/Form";
+import Form from "../Components/CreateForm";
 import { useState } from "react";
 import "../index.css";
 import api from "../api.js";
@@ -11,6 +12,8 @@ import webinar from "../images/webinar.jpg";
 import { useNavigate } from "react-router-dom";
 import HeroSlider, { Slide } from "hero-slider";
 import Footer from "../Components/Footer";
+import { login } from "../slices/userSlices";
+import { useSelector } from "react-redux";
 
 export default function Landingpage() {
   const [events, setEvents] = useState([]);
@@ -18,8 +21,13 @@ export default function Landingpage() {
   const [filterType, setFilterType] = useState(null);
   const [filterLocation, setFilterLocation] = useState(null);
   const filteredEvents = filterLocation ? events.filter((event) => event.location === filterLocation) : events;
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const locations = ["All", "Online", "Jakarta", "Bekasi", "Surabaya", "Lombok", "Bali", "Lampung", "Malaysia"];
-  const toast = useToast()
+
+  const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
+  
+  const toast = useToast();
+
 
   useEffect(() => {
     api.get("/events").then((res) => {
@@ -58,10 +66,18 @@ export default function Landingpage() {
 
   const navigate = useNavigate();
   const handleClickBuyTicket = () => {
-    navigate(`/Transaction/${selectedEvent.id}`);
+
+    if(isLoggedIn) {
+      navigate(`/Transaction/${selectedEvent.id}`);
+    } else {
+      setIsModalOpen(true);
+    }
 
     window.scrollTo(0, 0);
   };
+  const closeModal = () => {
+    setIsModalOpen(false);
+};
 
   function handleclickBox(event) {
     const type = event.currentTarget.querySelector(".heading").textContent.toLowerCase();
@@ -227,6 +243,25 @@ export default function Landingpage() {
             )}
           </Box>
         </Box>
+        <Modal isOpen={isModalOpen} onClose={closeModal} isCentered blockScrollOnMount={true}
+                    closeOnOverlayClick={false}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalHeader>Warning</ModalHeader>
+                        <ModalBody>
+                            Kamu belum login!
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button
+                                colorScheme="facebook"
+                                color={"white"}
+                                _hover={{ bg: "#24105c" }}
+                                onClick={closeModal}>
+                                OK
+                            </Button>
+                        </ModalFooter>
+                    </ModalContent>
+                </Modal>
 
         <Footer/>
       </Box>

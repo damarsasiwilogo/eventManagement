@@ -1,10 +1,10 @@
 {
   "users": [
     {
-      "fullName": "BreadPit",
-      "username": "breadpitreal",
-      "email": "breadpituwaw@mail.com",
-      "password": "bradpitangelinajolie",
+      "username": "anggaratriputra",
+      "email": "anggaratriputra@gmail.com",
+      "password": "Anggara123",
+      "reffcode": "mytixanggaratriputra",
       "id": 1
     }
   ],
@@ -159,7 +159,7 @@
     {
       "id": 12,
       "type": "music",
-      "name": "2023 AHN HYO SEOP ASIA TOUR <THE PRESENT SHOW in JAKARTA> “here and now",
+      "name": "2023 AHN HYO SEOP ASIA TOUR THE PRESENT SHOW IN JAKARTA HERE AND NOW",
       "date": "09 Sep 2023",
       "time": "19:00 - 22:00 WIB",
       "location": "Jakarta",
