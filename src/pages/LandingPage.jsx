@@ -1,3 +1,4 @@
+
 import { Box, Button, Center, Flex, Heading, Image, Img, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Navigation from "../Components/Navigation";
@@ -10,7 +11,6 @@ import sports from "../images/sports.jpeg";
 import webinar from "../images/webinar.jpg";
 import { useNavigate } from "react-router-dom";
 import HeroSlider, { Slide } from "hero-slider";
-import myTixLogo from "../images/logo_mytix.png";
 import Footer from "../Components/Footer";
 import { login } from "../slices/userSlices";
 import { useSelector } from "react-redux";
@@ -23,12 +23,21 @@ export default function Landingpage() {
   const filteredEvents = filterLocation ? events.filter((event) => event.location === filterLocation) : events;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const locations = ["All", "Online", "Jakarta", "Bekasi", "Surabaya", "Lombok", "Bali", "Lampung", "Malaysia"];
+
   const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
+  
 
 
   useEffect(() => {
     api.get("/events").then((res) => {
       setEvents(res.data);
+    }).catch((err) => {
+      toast({
+        title:"Something wrong",
+        description: err.message,
+        status: "error",
+        isClosable: true
+      })
     });
   }, []);
 
@@ -190,7 +199,7 @@ export default function Landingpage() {
 
         {/* List event yang ada */}
         <Box display={"flex"} justifyContent={"center"} mt={"5px"}>
-          <Box id="left-box" h={"83vh"} overflowY={"scroll"} w={"30vw"} >
+          <Box id="left-box" h={"83vh"} overflowY={"scroll"} w={"30vw"} overflowX={"hidden"} >
             <Center display={"flex"} flexDirection={"column"}>
               {filteredEvents.map((event) => (
                 <Box key={event.id} onClick={() => handleclick(event)}>

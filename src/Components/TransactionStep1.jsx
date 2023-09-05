@@ -6,6 +6,7 @@ import { IoTicketSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
 import { setTicketQuantities, setTotalPrices } from '../slices/transactionSlices';
 import { resetTransaction } from '../slices/transactionSlices';
+import { useToast } from "@chakra-ui/react";
 
 
 
@@ -22,11 +23,19 @@ function TransactionStep1() {
     const totalQuantity = quantityGold + quantityPlatinum + quantityDiamond;
     const dispatch = useDispatch();
     const ticketQuantities = useSelector((state) => state.transaction.ticketQuantities);
+    const toast = useToast()
 
     useEffect(() => {
         api.get(`/events/${id}`).then((res) => {
             setEvents([res.data])
-        });
+        }).catch((err) => {
+            toast({
+              title:"Something wrong",
+              description: err.message,
+              status: "error",
+              isClosable: true
+            })
+          });
     }, []);
 
 
