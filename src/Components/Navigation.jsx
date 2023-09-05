@@ -38,6 +38,8 @@ import myTixLogo from "../images/logo_mytix.png";
 import { useDispatch } from "react-redux";
 import { add } from "../slices/userSlices";
 import { Formik, Form, Field } from "formik";
+import { Navigate, useNavigate } from "react-router-dom";
+import { login } from "../slices/userSlices";
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -48,6 +50,7 @@ export default function Navigation() {
 	const [activeModal, setActiveModal] = useState(null);
 	//declare pop out success or error register
 	const toast = useToast();
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	const [events, setEvents] = useState([]);
@@ -84,18 +87,71 @@ export default function Navigation() {
 			});
 	};
 
+	//connect db.json when registered user submit on login modal
+	const handleSubmitLogin = (values, form) => {
+		return api
+			.get(`/users?q=${values.username}`)
+			.then((res) => {
+				const { data } = res;
+				const filteredUser = data
+					.filter((user) => {
+						return (
+							user.username === values.username ||
+							user.email === values.username
+						);
+					})
+					.filter((user) => user.password === values.password);
+				if (filteredUser.length === 0) {
+					toast({
+						status: "error",
+						title: "Login failed",
+						description: "Incorrect Username or Password.",
+						isClosable: true,
+						duration: 5000,
+					});
+					return;
+				}
+				const [userProfile] = filteredUser;
+				dispatch(login(userProfile));
+				toast({
+					status: "success",
+					title: "Login is succeeded",
+					description: "Redirecting to home",
+					isClosable: true,
+					duration: 3000,
+					onCloseComplete: () => {
+						form.resetForm();
+						navigate("/");
+					},
+				});
+			})
+			.catch((error) => {
+				toast({
+					status: "error",
+					title: "Something is wrong",
+					description: error.message,
+					isClosable: true,
+					duration: 5000,
+				});
+				form.resetForm();
+			});
+	};
+
 	// handle Input section
 	useEffect(() => {
-		api.get("/events").then((res) => {
-			setEvents(res.data);
-		}).catch((err) => {
-            toast({
-              title:"Something wrong",
-              description: err.message,
-              status: "error",
-              isClosable: true
-            })
-          });
+		api
+			.get("/events")
+			.then((res) => {
+				setEvents(res.data);
+			})
+			.catch((err) => {
+				toast({
+					title: "Something wrong",
+					description: err.message,
+					status: "error",
+					isClosable: true,
+				});
+			});
 	}, []);
 
 	useEffect(() => {
@@ -353,8 +409,8 @@ export default function Navigation() {
 									<Stack spacing={4}>
 										<Formik
 											initialValues={{
-												firstName: "",
-												lastName: "",
+												fullName: "",
+												username: "",
 												email: "",
 												password: "",
 											}}
@@ -363,45 +419,45 @@ export default function Navigation() {
 												<Form>
 													<HStack>
 														<Box>
-															<Field name="firstName">
+															<Field name="fullName">
 																{({ field, form }) => (
 																	<FormControl
-																		id="firstName"
-																		isRequired
+																		id="fullName"
 																		isInvalid={
-																			form.errors.firstName &&
-																			form.touched.firstName
+																			form.errors.fullName &&
+																			form.touched.fullName
 																		}
 																		isDisabled={isSubmitting}>
-																		<FormLabel>First Name</FormLabel>
+																		<FormLabel>Full Name</FormLabel>
 																		<Input
 																			type="text"
 																			{...field}
 																		/>
 																		<FormErrorMessage>
-																			{form.errors.firstName}
+																			{form.errors.fullName}
 																		</FormErrorMessage>
 																	</FormControl>
 																)}
 															</Field>
 														</Box>
 														<Box>
-															<Field name="lastName">
+															<Field name="username">
 																{({ field, form }) => (
 																	<FormControl
-																		id="lastName"
+																		id="username"
+																		isRequired
 																		isInvalid={
-																			form.errors.lastName &&
-																			form.touched.lastName
+																			form.errors.username &&
+																			form.touched.username
 																		}
 																		isDisabled={isSubmitting}>
-																		<FormLabel>Last Name</FormLabel>
+																		<FormLabel>Username</FormLabel>
 																		<Input
 																			type="text"
 																			{...field}
 																		/>
 																		<FormErrorMessage>
-																			{form.errors.lastName}
+																			{form.errors.username}
 																		</FormErrorMessage>
 																	</FormControl>
 																)}
