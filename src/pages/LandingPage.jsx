@@ -66,14 +66,11 @@ export default function Landingpage({openModal}) {
 
   const navigate = useNavigate();
   const handleClickBuyTicket = () => {
-
     if(isLoggedIn) {
       navigate(`/Transaction/${selectedEvent.id}`);
     } else {
       setIsModalOpen(true);
-      
     }
-
   };
   const closeModal = () => {
     setIsModalOpen(false);

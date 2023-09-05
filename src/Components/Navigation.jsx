@@ -94,7 +94,8 @@ export default function Navigation(props) {
       const existingUsername = data.some(
         (user) => user.username === values.username
       );
-      const existingEmail = data.some((user) => user.email === values.email);
+      const existingEmail = data.some(
+        (user) => user.email === values.email);
 
       if (existingUsername) {
         forms.setFieldError("username", "username already used");
@@ -175,9 +176,8 @@ export default function Navigation(props) {
         toast({
           status: "success",
           title: "Login is success",
-          description: "Redirecting you to timeline",
           isClosable: true,
-          duration: 3000,
+          duration: 1000,
           onCloseComplete: () => {
             forms.resetForm();
             closeModal();
@@ -229,6 +229,7 @@ export default function Navigation(props) {
     setIsFocused(false);
   };
 
+  
   const loginSchema = yup.object().shape({
     username: yup
       .string()
@@ -274,15 +275,20 @@ export default function Navigation(props) {
         width="100%"
         p={"10px"}
         zIndex={5}>
-        <List>
+        <Menu>
           {suggestions.map((event) => (
-            <ListItem
-              key={event.id}
-              className="name">
-              {event.name}
-            </ListItem>
+            
+                <MenuItem
+                  key={event.id}
+                  className="name"
+                  onClick = {() => {
+                    navigate(`/events/${event.id}`);
+                  }}>
+                    {event.name}
+                </MenuItem>
+            
           ))}
-        </List>
+        </Menu>
       </Box>
     );
   };
@@ -361,6 +367,10 @@ export default function Navigation(props) {
                   {profile.username}
                 </MenuButton>
                 <MenuList>
+                  <Flex justifyContent={"center"} p={2} mx={4} flexDir={"column"} alignItems={"center"} borderRadius={10} bg={"#331F69"} color={"white"} boxShadow={"md"}>
+                    <Text fontWeight={"bold"}> Refferal Code</Text>
+                    <Text > {profile.reffcode}</Text>
+                  </Flex>
                   <CreateForm />
                   <MenuItem
                     onClick={() => {
