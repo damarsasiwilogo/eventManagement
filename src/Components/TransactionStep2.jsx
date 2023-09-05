@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, Flex, Text, Select, Center, ButtonGroup } from '@chakra-ui/react';
+import { Box, Flex, Text, Select, Center, ButtonGroup, useToast } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 import { Input, Button, FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/react';
 import * as Yup from 'yup';
@@ -14,11 +14,19 @@ function TransactionStep2({ onNext, onPrevious }) {
     const { id } = useParams();
     const formData = useSelector((state) => state.transaction.formData); // Access form data from Redux store
     const [events, setEvents] = useState([]);
+    const toast = useToast()
 
     useEffect(() => {
         api.get(`/events/${id}`).then((res) => {
             setEvents([res.data])
-        });
+        }).catch((err) => {
+            toast({
+              title:"Something wrong",
+              description: err.message,
+              status: "error",
+              isClosable: true
+            })
+          });
     }, []);
 
     const months = [
