@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  //Registration
 	users: [],
 	totalData: 0,
 	isLoaded: false,
+  //Login
 	isLoggedIn: window.localStorage.getItem("isLoggedIn") === "true",
     profile: window.localStorage.getItem("profile")
       ? JSON.parse(window.localStorage.getItem("profile"))
@@ -14,6 +16,7 @@ const usersSlice = createSlice({
 	name: "users",
 	initialState,
 	reducers: {
+    //Registration
 		setInitialData(state, action) {
 			state.users = action.payload;
 			state.totalData = action.payload.length.length;
@@ -23,6 +26,7 @@ const usersSlice = createSlice({
 			state.users.push(action.payload);
 			state.totalData++;
 		},
+    //Login
 		login(state, action) {
             state.isLoggedIn = true;
             state.profile = action.payload;

@@ -1,4 +1,4 @@
-// BACKUP DI KOPI NAKO
+// BACKUP SEBELUM DI KOPU NAKO
 //
 // import {
 // 	Avatar,
@@ -40,8 +40,6 @@
 // import { useDispatch } from "react-redux";
 // import { add } from "../slices/userSlices";
 // import { Formik, Form, Field } from "formik";
-// import { Navigate, useNavigate } from "react-router-dom";
-// import { login } from "../slices/userSlices";
 
 // const CFaUserAlt = chakra(FaUserAlt);
 // const CFaLock = chakra(FaLock);
@@ -52,7 +50,6 @@
 // 	const [activeModal, setActiveModal] = useState(null);
 // 	//declare pop out success or error register
 // 	const toast = useToast();
-// 	const navigate = useNavigate();
 // 	const dispatch = useDispatch();
 
 // 	const [events, setEvents] = useState([]);
@@ -89,71 +86,18 @@
 // 			});
 // 	};
 
-// 	//connect db.json when registered user submit on login modal
-// 	const handleSubmitLogin = (values, form) => {
-// 		return api
-// 			.get(`/users?q=${values.username}`)
-// 			.then((res) => {
-// 				const { data } = res;
-// 				const filteredUser = data
-// 					.filter((user) => {
-// 						return (
-// 							user.username === values.username ||
-// 							user.email === values.username
-// 						);
-// 					})
-// 					.filter((user) => user.password === values.password);
-// 				if (filteredUser.length === 0) {
-// 					toast({
-// 						status: "error",
-// 						title: "Login failed",
-// 						description: "Incorrect Username or Password.",
-// 						isClosable: true,
-// 						duration: 5000,
-// 					});
-// 					return;
-// 				}
-// 				const [userProfile] = filteredUser;
-// 				dispatch(login(userProfile));
-// 				toast({
-// 					status: "success",
-// 					title: "Login is succeeded",
-// 					description: "Redirecting to home",
-// 					isClosable: true,
-// 					duration: 3000,
-// 					onCloseComplete: () => {
-// 						form.resetForm();
-// 						navigate("/");
-// 					},
-// 				});
-// 			})
-// 			.catch((error) => {
-// 				toast({
-// 					status: "error",
-// 					title: "Something is wrong",
-// 					description: error.message,
-// 					isClosable: true,
-// 					duration: 5000,
-// 				});
-// 				form.resetForm();
-// 			});
-// 	};
-
 // 	// handle Input section
 // 	useEffect(() => {
-// 		api
-// 			.get("/events")
-// 			.then((res) => {
-// 				setEvents(res.data);
-// 			})
-// 			.catch((err) => {
-// 				toast({
-// 					title: "Something wrong",
-// 					description: err.message,
-// 					status: "error",
-// 					isClosable: true,
-// 				});
-// 			});
+// 		api.get("/events").then((res) => {
+// 			setEvents(res.data);
+// 		}).catch((err) => {
+//             toast({
+//               title:"Something wrong",
+//               description: err.message,
+//               status: "error",
+//               isClosable: true
+//             })
+//           });
 // 	}, []);
 
 // 	useEffect(() => {
@@ -411,8 +355,8 @@
 // 									<Stack spacing={4}>
 // 										<Formik
 // 											initialValues={{
-// 												fullName: "",
-// 												username: "",
+// 												firstName: "",
+// 												lastName: "",
 // 												email: "",
 // 												password: "",
 // 											}}
@@ -421,45 +365,45 @@
 // 												<Form>
 // 													<HStack>
 // 														<Box>
-// 															<Field name="fullName">
+// 															<Field name="firstName">
 // 																{({ field, form }) => (
 // 																	<FormControl
-// 																		id="fullName"
+// 																		id="firstName"
+// 																		isRequired
 // 																		isInvalid={
-// 																			form.errors.fullName &&
-// 																			form.touched.fullName
+// 																			form.errors.firstName &&
+// 																			form.touched.firstName
 // 																		}
 // 																		isDisabled={isSubmitting}>
-// 																		<FormLabel>Full Name</FormLabel>
+// 																		<FormLabel>First Name</FormLabel>
 // 																		<Input
 // 																			type="text"
 // 																			{...field}
 // 																		/>
 // 																		<FormErrorMessage>
-// 																			{form.errors.fullName}
+// 																			{form.errors.firstName}
 // 																		</FormErrorMessage>
 // 																	</FormControl>
 // 																)}
 // 															</Field>
 // 														</Box>
 // 														<Box>
-// 															<Field name="username">
+// 															<Field name="lastName">
 // 																{({ field, form }) => (
 // 																	<FormControl
-// 																		id="username"
-// 																		isRequired
+// 																		id="lastName"
 // 																		isInvalid={
-// 																			form.errors.username &&
-// 																			form.touched.username
+// 																			form.errors.lastName &&
+// 																			form.touched.lastName
 // 																		}
 // 																		isDisabled={isSubmitting}>
-// 																		<FormLabel>Username</FormLabel>
+// 																		<FormLabel>Last Name</FormLabel>
 // 																		<Input
 // 																			type="text"
 // 																			{...field}
 // 																		/>
 // 																		<FormErrorMessage>
-// 																			{form.errors.username}
+// 																			{form.errors.lastName}
 // 																		</FormErrorMessage>
 // 																	</FormControl>
 // 																)}
@@ -555,51 +499,3 @@
 // 		</>
 // 	);
 // }
-
-// BACKUP USERSLICES
-
-// import { createSlice } from "@reduxjs/toolkit";
-
-// const initialState = {
-// 	//Registration
-// 	users: [],
-// 	totalData: 0,
-// 	isLoaded: false,
-// 	//Login
-// 	isLoggedIn: window.localStorage.getItem("isLoggedIn") === "true",
-// 	profile: window.localStorage.getItem("profile")
-// 		? JSON.parse(window.localStorage.getItem("profile"))
-// 		: {},
-// };
-
-// const usersSlice = createSlice({
-// 	name: "users",
-// 	initialState,
-// 	reducers: {
-// 		//Registration
-// 		setInitialData(state, action) {
-// 			state.users = action.payload;
-// 			state.totalData = action.payload.length.length;
-// 			state.isLoaded = true;
-// 		},
-// 		add(state, action) {
-// 			state.users.push(action.payload);
-// 			state.totalData++;
-// 		},
-// 		login(state, action) {
-// 			state.isLoggedIn = true;
-// 			state.profile = action.payload;
-// 			window.localStorage.setItem("isLoggedIn", "true");
-// 			window.localStorage.setItem("profile", JSON.stringify(action.payload));
-// 		},
-// 		logout(state) {
-// 			state.isLoggedIn = false;
-// 			state.profile = {};
-// 			window.localStorage.setItem("isLoggedIn", false);
-// 			window.localStorage.setItem("profile", JSON.stringify({}));
-// 		},
-// 	},
-// });
-
-// export const { setInitialData, add, login, logout } = usersSlice.actions;
-// export default usersSlice.reducer;

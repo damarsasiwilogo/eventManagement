@@ -69,6 +69,7 @@ export default function Navigation(props) {
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
+
   const { isOpen: showPassword, onToggle: onTogglePassword } = useDisclosure();
   const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
   const profile = useSelector((state) => state.users.profile);
@@ -257,7 +258,6 @@ export default function Navigation(props) {
     if (suggestions.length === 0) {
       return null;
     }
-
 
 
     return (
