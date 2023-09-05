@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Heading, Image, Img, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Heading, Image, Img, Stack, Text, useToast } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Navigation from "../Components/Navigation";
 import Form from "../Components/Form";
@@ -10,7 +10,6 @@ import sports from "../images/sports.jpeg";
 import webinar from "../images/webinar.jpg";
 import { useNavigate } from "react-router-dom";
 import HeroSlider, { Slide } from "hero-slider";
-import myTixLogo from "../images/logo_mytix.png";
 import Footer from "../Components/Footer";
 
 export default function Landingpage() {
@@ -20,10 +19,18 @@ export default function Landingpage() {
   const [filterLocation, setFilterLocation] = useState(null);
   const filteredEvents = filterLocation ? events.filter((event) => event.location === filterLocation) : events;
   const locations = ["All", "Online", "Jakarta", "Bekasi", "Surabaya", "Lombok", "Bali", "Lampung", "Malaysia"];
+  const toast = useToast()
 
   useEffect(() => {
     api.get("/events").then((res) => {
       setEvents(res.data);
+    }).catch((err) => {
+      toast({
+        title:"Something wrong",
+        description: err.message,
+        status: "error",
+        isClosable: true
+      })
     });
   }, []);
 
@@ -177,7 +184,7 @@ export default function Landingpage() {
 
         {/* List event yang ada */}
         <Box display={"flex"} justifyContent={"center"} mt={"5px"}>
-          <Box id="left-box" h={"83vh"} overflowY={"scroll"} w={"30vw"} >
+          <Box id="left-box" h={"83vh"} overflowY={"scroll"} w={"30vw"} overflowX={"hidden"} >
             <Center display={"flex"} flexDirection={"column"}>
               {filteredEvents.map((event) => (
                 <Box key={event.id} onClick={() => handleclick(event)}>

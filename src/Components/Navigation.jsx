@@ -55,6 +55,7 @@ export default function Navigation() {
 	const [filteredEvents, setFilteredEvents] = useState([]);
 	const [suggestions, setSuggestions] = useState([]);
 	const [isFocused, setIsFocused] = useState(false);
+
 	// connect db.json when new user submit on register modal
 	const handleSubmit = (values, forms) => {
 		api
@@ -87,7 +88,14 @@ export default function Navigation() {
 	useEffect(() => {
 		api.get("/events").then((res) => {
 			setEvents(res.data);
-		});
+		}).catch((err) => {
+            toast({
+              title:"Something wrong",
+              description: err.message,
+              status: "error",
+              isClosable: true
+            })
+          });
 	}, []);
 
 	useEffect(() => {

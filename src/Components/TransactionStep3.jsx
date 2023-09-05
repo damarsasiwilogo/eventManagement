@@ -1,4 +1,4 @@
-import { Flex, Box, Text } from "@chakra-ui/react";
+import { Flex, Box, Text, useToast } from "@chakra-ui/react";
 import { useSelector } from 'react-redux';
 import { IoTicketSharp } from "react-icons/io5";
 import { useParams } from "react-router-dom";
@@ -15,11 +15,19 @@ const TransactionStep3 = () => {
     const { name, email, telepon, identitas, date, month, year } = formData;
 
     const selectedTickets = Object.keys(ticketQuantities).filter((ticketType) => ticketQuantities[ticketType] > 0);
+    const toast = useToast()
 
     useEffect(() => {
         api.get(`/events/${id}`).then((res) => {
             setEvents([res.data])
-        });
+        }).catch((err) => {
+            toast({
+              title:"Something wrong",
+              description: err.message,
+              status: "error",
+              isClosable: true
+            })
+          });
     }, []);
 
 
