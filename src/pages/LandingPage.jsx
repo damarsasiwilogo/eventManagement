@@ -12,10 +12,10 @@ import webinar from "../images/webinar.jpg";
 import { useNavigate } from "react-router-dom";
 import HeroSlider, { Slide } from "hero-slider";
 import Footer from "../Components/Footer";
-import { login } from "../slices/userSlices";
 import { useSelector } from "react-redux";
 
-export default function Landingpage() {
+
+export default function Landingpage({openModal}) {
   const [events, setEvents] = useState([]);
   const [selectedEvent, setselectedEvent] = useState(null);
   const [filterType, setFilterType] = useState(null);
@@ -71,9 +71,9 @@ export default function Landingpage() {
       navigate(`/Transaction/${selectedEvent.id}`);
     } else {
       setIsModalOpen(true);
+      
     }
 
-    window.scrollTo(0, 0);
   };
   const closeModal = () => {
     setIsModalOpen(false);
@@ -86,7 +86,7 @@ export default function Landingpage() {
 
   return (
     <Box h={"200vh"}>
-      <Navigation />
+      <Navigation>
       {/* <Form/> */}
       {/* Image Slider */}
       <Box marginTop={"10px"} display={"flex"} justifyContent={"center"}>
@@ -265,6 +265,8 @@ export default function Landingpage() {
 
         <Footer/>
       </Box>
+      </Navigation>
     </Box>
+
   );
 }

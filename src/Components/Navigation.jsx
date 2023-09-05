@@ -118,6 +118,7 @@ export default function Navigation(props) {
         username: values.username,
         email: values.email,
         password: values.password,
+        reffcode: "mytix" + values.username,
       }
 
       const response = await api.post("/users", body);
@@ -579,3 +580,4 @@ export default function Navigation(props) {
     </>
   );
 }
+
