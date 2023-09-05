@@ -317,11 +317,7 @@ export default function Navigation(props) {
                   {profile.username}
                 </MenuButton>
                 <MenuList>
-                  <MenuItem
-                    onClick={CreateForm.onOpen}
-                  >
-                    Create Event
-                  </MenuItem>
+                   <CreateForm/>
                   <MenuItem
                     onClick={() => {
                       dispatch(logout());
@@ -578,6 +574,7 @@ export default function Navigation(props) {
           </ModalBody>
         </ModalContent>
       </Modal>
+      
       <main>{props.children}</main>
     </>
   );
