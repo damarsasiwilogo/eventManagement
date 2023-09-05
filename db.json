@@ -6,6 +6,13 @@
       "password": "Anggara123",
       "reffcode": "mytixanggaratriputra",
       "id": 1
+    },
+    {
+      "username": "damarsasi",
+      "email": "damarsasi@gmail.com",
+      "password": "Damar123",
+      "reffcode": "mytixdamarsasi",
+      "id": 2
     }
   ],
   "events": [

@@ -1,13 +1,13 @@
 
-import { Flex, Box, Text, Select} from "@chakra-ui/react";
+import { Flex, Box, Text, Select } from "@chakra-ui/react";
 import { useSelector } from 'react-redux';
 import { IoTicketSharp } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Formik, Form, Field } from 'formik';
 import { Input, Button, FormControl, FormLabel, FormErrorMessage, useToast } from '@chakra-ui/react';
-import { useDispatch} from 'react-redux';
-import { setCreditCardData } from '../slices/transactionSlices'; 
+import { useDispatch } from 'react-redux';
+import { setCreditCardData } from '../slices/transactionSlices';
 import api from "../api"
 import * as Yup from 'yup';
 
@@ -17,7 +17,7 @@ function TransactionStep4() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const ticketQuantities = useSelector((state) => state.transaction.ticketQuantities);
-    const totalPrices = useSelector((state) => state.transaction.totalPrices);
+    const discountedTotalPrices = useSelector((state) => state.transaction.discountedTotalPrices);
     const selectedTickets = Object.keys(ticketQuantities).filter((ticketType) => ticketQuantities[ticketType] > 0);
     const creditCardData = useSelector((state) => state.transaction.creditCardData);
     const toast = useToast()
@@ -27,22 +27,22 @@ function TransactionStep4() {
             setEvents([res.data])
         }).catch((err) => {
             toast({
-              title:"Something wrong",
-              description: err.message,
-              status: "error",
-              isClosable: true
+                title: "Something wrong",
+                description: err.message,
+                status: "error",
+                isClosable: true
             })
-          });
+        });
     }, []);
 
     const validationSchema = Yup.object().shape({
 
         noHp: Yup.string().required('Phone number is required').min(8, 'Phone number must be at least 8 characters'),
         cardHolder: Yup.string().required("Card holder name is required"),
-        cardNumber: Yup.string().required('Identity number is required').min(16, "Credit card number must be 16 digits") .matches(/^[0-9]+$/, 'Credit card number must contain only numbers'),
+        cardNumber: Yup.string().required('Card number is required').min(16, "Credit card number must be 16 digits").matches(/^[0-9]+$/, 'Credit card number must contain only numbers'),
         cardMonth: Yup.string().required('Month is required'),
         cardYear: Yup.string().required('Year is required'),
-        cvvNumber: Yup.string().required('CVV number is required').min(3, "cvv number must be 3 digits") .matches(/^[0-9]+$/, 'CVV number must contain only numbers'),
+        cvvNumber: Yup.string().required('CVV number is required').min(3, "cvv number must be 3 digits").matches(/^[0-9]+$/, 'CVV number must contain only numbers'),
     });
 
     const months = [
@@ -82,7 +82,7 @@ function TransactionStep4() {
                             ))}
                         </Flex>
                         <Flex flexDirection={"column"}>
-                            <Text color={"black"} fontWeight={"Bold"}>Total harga yang harus dibayar : {totalPrices.toLocaleString("id-ID", {
+                            <Text color={"black"} fontWeight={"Bold"}>Total harga yang harus dibayar : {discountedTotalPrices.toLocaleString("id-ID", {
                                 style: "currency",
                                 currency: "IDR",
                                 maximumFractionDigits: 0
@@ -97,7 +97,7 @@ function TransactionStep4() {
                         initialValues={creditCardData} // Initialize form values with data from Redux store
                         validationSchema={validationSchema}
                         enableReinitialize={true}
-                        
+
 
                     >
                         <Form>
@@ -138,7 +138,7 @@ function TransactionStep4() {
                                     </FormControl>
                                 )}
                             </Field>
-                           
+
                             <Flex w={400}>
                                 <FormControl mt={2}>
                                     <FormLabel>
@@ -186,30 +186,30 @@ function TransactionStep4() {
                                             )}
                                         </Field>
                                     </Flex>
-                                        <Field name="cvvNumber">
-                                {({ field, form }) => (
-                                    <FormControl mt={2} isInvalid={form.errors.cvvNumber && form.touched.cvvNumber}>
-                                        <FormLabel htmlFor="cvvNumber">
-                                            CVV {creditCardData.cvvNumber ? null : <Text as="span" color="red">*</Text>}
-                                        </FormLabel>
-                                        <Input
-                                            {...field}
-                                            id="cvvNumber"
-                                            placeholder="CVV"
-                                            w={20}
-                                            value={creditCardData.cvvNumber}
-                                            inputMode="numeric"
-                                            onChange={(e) => handleCreditCardDataChange('cvvNumber', e.target.value)} // Update form data in Redux store
-                                        />
-                                        <FormErrorMessage>{form.errors.cvvNumber}</FormErrorMessage>
-                                    </FormControl>
-                                )}
-                            </Field>
+                                    <Field name="cvvNumber">
+                                        {({ field, form }) => (
+                                            <FormControl mt={2} isInvalid={form.errors.cvvNumber && form.touched.cvvNumber}>
+                                                <FormLabel htmlFor="cvvNumber">
+                                                    CVV {creditCardData.cvvNumber ? null : <Text as="span" color="red">*</Text>}
+                                                </FormLabel>
+                                                <Input
+                                                    {...field}
+                                                    id="cvvNumber"
+                                                    placeholder="CVV"
+                                                    w={20}
+                                                    value={creditCardData.cvvNumber}
+                                                    inputMode="numeric"
+                                                    onChange={(e) => handleCreditCardDataChange('cvvNumber', e.target.value)} // Update form data in Redux store
+                                                />
+                                                <FormErrorMessage>{form.errors.cvvNumber}</FormErrorMessage>
+                                            </FormControl>
+                                        )}
+                                    </Field>
 
                                 </FormControl>
                             </Flex>
 
-                           
+
                         </Form>
                     </Formik>
                 </Flex>

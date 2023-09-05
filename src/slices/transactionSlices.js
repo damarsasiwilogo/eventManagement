@@ -9,6 +9,7 @@ const transactionSlices = createSlice({
       Diamond: 0,
     },
     totalPrices: 0,
+    discountedTotalPrices: 0,
     formData: {
       name: "",
       email: "",
@@ -47,6 +48,9 @@ const transactionSlices = createSlice({
       state.totalPrices = action.payload;
 
     },
+    setDiscountedTotalPrices: (state, action) => {
+      state.discountedTotalPrices = action.payload;
+    },
     setFormData: (state, action) => {
       state.formData = action.payload;
     },
@@ -67,6 +71,7 @@ const transactionSlices = createSlice({
         Diamond: 0,
       };
       state.totalPrices = 0;
+      state.discountedTotalPrices = 0;
       state.formData = {
         name: "",
         email: "",
@@ -84,6 +89,7 @@ const transactionSlices = createSlice({
 export const { 
 setTicketQuantities, 
 setTotalPrices, 
+setDiscountedTotalPrices,
 setFormData, 
 resetTransaction, 
 setPaymentMethodByNumber,

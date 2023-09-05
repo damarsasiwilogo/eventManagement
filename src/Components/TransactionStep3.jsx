@@ -10,7 +10,7 @@ const TransactionStep3 = () => {
     const [events, setEvents] = useState([]);
     const { id } = useParams();
     const ticketQuantities = useSelector((state) => state.transaction.ticketQuantities);
-    const totalPrices = useSelector((state) => state.transaction.totalPrices);
+    const discountedTotalPrices = useSelector((state) => state.transaction.discountedTotalPrices);
     const formData = useSelector((state) => state.transaction.formData);
     const { name, email, telepon, identitas, date, month, year } = formData;
 
@@ -77,7 +77,7 @@ const TransactionStep3 = () => {
                                 ))}
                             </Flex>
                             <Flex flexDirection={"column"}>
-                                <Text color={"white"} fontWeight={"Bold"}>Grand Total : {totalPrices.toLocaleString("id-ID", {
+                                <Text color={"white"} fontWeight={"Bold"}>Grand Total : {discountedTotalPrices.toLocaleString("id-ID", {
                                     style: "currency",
                                     currency: "IDR",
                                     maximumFractionDigits: 0

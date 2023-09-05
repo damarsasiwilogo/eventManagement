@@ -1,32 +1,37 @@
 import React, { useEffect } from 'react';
 import { Box, Flex, Text, Select, Center, ButtonGroup, useToast } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
+import { ErrorMessage } from 'formik';
 import { Input, Button, FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/react';
 import * as Yup from 'yup';
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from 'react-redux';
-import { setFormData } from '../slices/transactionSlices'; // Import the Redux action
+import { setFormData, setTotalPrices, setDiscountedTotalPrices } from '../slices/transactionSlices'; // Import the Redux action
 import { useState } from 'react';
 import api from "../api"
 
 function TransactionStep2({ onNext, onPrevious }) {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const formData = useSelector((state) => state.transaction.formData); // Access form data from Redux store
-    const [events, setEvents] = useState([]);
+    const formData = useSelector((state) => state.transaction.formData);
+    const profile = useSelector((state) => state.users.profile);
+    const totalPrices = useSelector((state) => state.transaction.totalPrices);// Access form data from Redux store
+    const discountedTotalPrices = useSelector((state) => state.transaction.discountedTotalPrices);// Access form data from Redux store
+    const [events, setEvents] = useState([])
     const toast = useToast()
-
+    const [isReffCodeValid, setIsReffCodeValid] = useState(false);
+    const [referralMessage, setReferralMessage] = useState('');
     useEffect(() => {
         api.get(`/events/${id}`).then((res) => {
             setEvents([res.data])
         }).catch((err) => {
             toast({
-              title:"Something wrong",
-              description: err.message,
-              status: "error",
-              isClosable: true
+                title: "Something wrong",
+                description: err.message,
+                status: "error",
+                isClosable: true
             })
-          });
+        });
     }, []);
 
     const months = [
@@ -148,7 +153,7 @@ function TransactionStep2({ onNext, onPrevious }) {
                             <Flex w={400}>
                                 <FormControl mt={2}>
                                     <FormLabel>
-                                        Tanggal Lahir {formData.date && formData.month && formData.year  ? null : <Text as="span" color="red">*</Text>}
+                                        Tanggal Lahir {formData.date && formData.month && formData.year ? null : <Text as="span" color="red">*</Text>}
                                     </FormLabel>
                                     <Flex gap={2}>
                                         <Field name="date">
@@ -215,38 +220,79 @@ function TransactionStep2({ onNext, onPrevious }) {
 
                                 </FormControl>
                             </Flex>
-                            <Field name="reffCode">
-                                {({ field, form }) => (
-                                    <FormControl mt={2}>
-                                        <FormLabel htmlFor="reffcode">
-                                            Refferal Code 
-                                        </FormLabel>
-                                        <Input
-                                            {...field}
-                                            id="reffCode"
-                                            placeholder="Enter refferal code "
-                                            w={300}
-                                            
-                                        />
-                                        <FormErrorMessage>{form.errors.identitas}</FormErrorMessage>
-                                    </FormControl>
+                            <Formik
+                                initialValues={{ reffCode: '' }}
+                                // Validation schema using Yup
+                                validationSchema={Yup.object().shape({
+                                    reffCode: Yup.string().notRequired(), // Use 'notRequired' to make it optional
+                                })}
+                                onSubmit={(values, { setSubmitting }) => {
+                                    // Your form submission logic here
+                                    // values contains the form values, including reffCode
+                                    // You can handle the submission and API call here if needed
+                                    setSubmitting(false);
+                                }}
+                            >
+                                {({ isSubmitting, isValid, dirty, values, setFieldValue }) => (
+                                    <Form>
+                                        <FormControl mt={2}>
+                                            <FormLabel htmlFor="reffCode">Referral Code</FormLabel>
+                                            <Input
+                                                type="text"
+                                                id="reffCode"
+                                                name="reffCode"
+                                                width={300}
+                                                placeholder="Enter referral code"
+                                                onChange={async (e) => {
+                                                    const newReffCode = e.target.value;
+
+                                                    // Update the form values as the input changes
+                                                    setFieldValue('reffCode', newReffCode);
+
+                                                    // Call the API and validation logic here
+                                                    if (newReffCode) {
+                                                        // Define a function to fetch user data based on the reffCode
+                                                        try {
+                                                            const response = await api.get(`/users`);
+                                                            const { data } = response;
+                                                            const matchedReffCode = data.filter(
+                                                                (user) => user.reffcode === newReffCode
+                                                            );
+                                                            
+                                                            // Check if the entered reffCode matches the user's own reffCode
+                                                            if (matchedReffCode.length > 0 && newReffCode === profile.reffcode) {
+                                                                // Set the message
+                                                                setReferralMessage(
+                                                                    'Referral code is valid, but you cannot use your own code'
+                                                                    
+                                                                );
+                                                                dispatch(setDiscountedTotalPrices(totalPrices))
+                                                            } else if (matchedReffCode.length > 0 && newReffCode !== profile.reffcode ){ 
+                                                                setReferralMessage('You got 5% ticket discount');
+                                                                dispatch(setDiscountedTotalPrices(totalPrices * 0.95))
+                                                            } else  {
+                                                                setReferralMessage("Invalid referral code")
+                                                                dispatch(setDiscountedTotalPrices(totalPrices))
+                                                            }
+                                                        } catch (error) {
+                                                            console.error('Error fetching user data:', error);
+                                                        }
+                                                    } else {
+                                                        // Handle the case when the input is cleared
+                                                        setReferralMessage('');
+                                                    }
+                                                }}
+                                            />
+                                            <ErrorMessage name="reffCode" component="div" className="error-message" />
+                                        </FormControl>
+                                        {referralMessage && (
+                                            <Text mt={2} color="red.500">
+                                                {referralMessage}
+                                            </Text>
+                                        )}                        
+                                    </Form>
                                 )}
-                            </Field>
-                            <Field name="couponCode">
-                                {({ field, form }) => (
-                                    <FormControl mt={2}>
-                                        <FormLabel htmlFor="couponCode">
-                                            Coupon Code 
-                                        </FormLabel>
-                                        <Input
-                                            {...field}
-                                            id="couponCode"
-                                            placeholder="Enter coupon code "
-                                            w={300}
-                                        />
-                                    </FormControl>
-                                )}
-                            </Field>                               
+                            </Formik>
                             <Box
                                 display={"flex"}
                                 bgColor="#EDEDED"
@@ -282,6 +328,7 @@ function TransactionStep2({ onNext, onPrevious }) {
                             </Box>
                         </Form>
                     </Formik>
+
                 </Flex>
             </Box >
         </>

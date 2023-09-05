@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import api from "../api"
 import { IoTicketSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
-import { setTicketQuantities, setTotalPrices } from '../slices/transactionSlices';
+import { setTicketQuantities, setTotalPrices, setDiscountedTotalPrices } from '../slices/transactionSlices';
 import { resetTransaction } from '../slices/transactionSlices';
 import { useToast } from "@chakra-ui/react";
 
@@ -167,6 +167,7 @@ function TransactionStep1() {
         }
 
         dispatch(setTotalPrices(grandTotal));
+        dispatch(setDiscountedTotalPrices(grandTotal));
         return grandTotal;
     };
 
