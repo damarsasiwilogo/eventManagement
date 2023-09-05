@@ -28,7 +28,10 @@ import {
   FormErrorMessage,
   VStack,
   Center,
-  Menu, MenuList, MenuItem, MenuButton,
+  Menu,
+  MenuList,
+  MenuItem,
+  MenuButton,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { RiSpeakLine } from "react-icons/ri";
@@ -77,19 +80,20 @@ export default function Navigation(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-      if (props.needLogin && !isLoggedIn) {
-          navigate("/");
-      }
+    if (props.needLogin && !isLoggedIn) {
+      navigate("/");
+    }
   }, [props.needLogin, navigate, isLoggedIn]);
 
   // connect db.json when new user submit on register modal
-
 
   const handleSubmit = async (values, forms) => {
     try {
       const res = await api.get("/users");
       const { data } = res;
-      const existingUsername = data.some((user) => user.username === values.username);
+      const existingUsername = data.some(
+        (user) => user.username === values.username
+      );
       const existingEmail = data.some((user) => user.email === values.email);
 
       if (existingUsername) {
@@ -119,7 +123,7 @@ export default function Navigation(props) {
         username: values.username,
         email: values.email,
         password: values.password,
-      }
+      };
 
       const response = await api.post("/users", body);
       dispatch(add(response.data));
@@ -131,8 +135,8 @@ export default function Navigation(props) {
         duration: 5000,
         isClosable: true,
         onCloseComplete: () => {
-          closeModal()
-        }
+          closeModal();
+        },
       });
 
       forms.resetForm();
@@ -142,7 +146,6 @@ export default function Navigation(props) {
     }
   };
 
-
   const handleLogin = (values, forms) => {
     api
       .get(`/users?q=${values.username}`)
@@ -150,9 +153,7 @@ export default function Navigation(props) {
         const { data } = res;
         const filteredUser = data
           .filter((user) => {
-            return (
-              user.username === values.username
-            );
+            return user.username === values.username;
           })
           .filter((user) => user.password === values.password);
         if (filteredUser.length === 0) {
@@ -163,7 +164,7 @@ export default function Navigation(props) {
             isClosable: true,
             duration: 5000,
           });
-          forms.setSubmitting(false)
+          forms.setSubmitting(false);
           return;
         }
         const [userProfile] = filteredUser;
@@ -177,7 +178,7 @@ export default function Navigation(props) {
           duration: 3000,
           onCloseComplete: () => {
             forms.resetForm();
-            closeModal()
+            closeModal();
           },
         });
       })
@@ -191,7 +192,7 @@ export default function Navigation(props) {
         });
         forms.resetForm();
       });
-  }
+  };
   // handle Input section
   useEffect(() => {
     api.get("/events").then((res) => {
@@ -200,7 +201,9 @@ export default function Navigation(props) {
   }, []);
 
   useEffect(() => {
-    const filtered = events.filter((event) => event.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    const filtered = events.filter((event) =>
+      event.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
     setFilteredEvents(filtered);
   }, [searchQuery, events]);
 
@@ -209,7 +212,9 @@ export default function Navigation(props) {
     setSearchQuery(input);
 
     // Filter suggestions berdasarkan input
-    const filtered = events.filter((event) => event.name.toLowerCase().includes(input.toLowerCase()));
+    const filtered = events.filter((event) =>
+      event.name.toLowerCase().includes(input.toLowerCase())
+    );
 
     setSuggestions(filtered);
   };
@@ -227,10 +232,8 @@ export default function Navigation(props) {
       .string()
       .required("username can't be empty")
       .min(6, "minimum characters is 6"),
-    password: yup
-      .string()
-      .required("password can't be empty")
-  })
+    password: yup.string().required("password can't be empty"),
+  });
 
   const registerSchema = yup.object().shape({
     username: yup
@@ -250,8 +253,8 @@ export default function Navigation(props) {
       .minNumbers(1, "value must contain number"),
     confirmPassword: yup
       .string()
-      .oneOf([yup.ref('password'), null], 'Passwords must match')
-      .required('Confirm Password is required'),
+      .oneOf([yup.ref("password"), null], "Passwords must match")
+      .required("Confirm Password is required"),
   });
   // Suggestion component
   const Suggestions = ({ suggestions }) => {
@@ -259,12 +262,21 @@ export default function Navigation(props) {
       return null;
     }
 
-
     return (
-      <Box mt={2} bg="white" borderRadius="md" boxShadow="md" position="absolute" width="100%" p={"10px"} zIndex={5}>
+      <Box
+        mt={2}
+        bg="white"
+        borderRadius="md"
+        boxShadow="md"
+        position="absolute"
+        width="100%"
+        p={"10px"}
+        zIndex={5}>
         <List>
           {suggestions.map((event) => (
-            <ListItem key={event.id} className="name">
+            <ListItem
+              key={event.id}
+              className="name">
               {event.name}
             </ListItem>
           ))}
@@ -288,22 +300,53 @@ export default function Navigation(props) {
 
   return (
     <>
-      <Box display={"flex"} justifyContent={"space-evenly"} bg={"#331F69"} alignItems={"center"} h={"10vh"} w={'100%'}>
+      <Box
+        display={"flex"}
+        justifyContent={"space-evenly"}
+        bg={"#331F69"}
+        alignItems={"center"}
+        h={"10vh"}
+        w={"100%"}>
         <a href="/">
-          <Image src={myTixLogo} w={"150px"} h={"45px"} />
+          <Image
+            src={myTixLogo}
+            w={"150px"}
+            h={"45px"}
+          />
         </a>
         <div style={{ position: "relative" }}>
-          <Input size={"md"} placeholder="Search an event..." w={"md"} shadow={"sm"} bg={"white"} value={searchQuery} onChange={handleSearchInputChange} onFocus={handleSearchInputFocus} onBlur={handleSearchInputBlur} />
+          <Input
+            size={"md"}
+            placeholder="Search an event..."
+            w={"md"}
+            shadow={"sm"}
+            bg={"white"}
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+            onFocus={handleSearchInputFocus}
+            onBlur={handleSearchInputBlur}
+          />
           <Suggestions suggestions={isFocused ? suggestions : []} />
         </div>
 
         {isLoggedIn ? (
           <>
-        <Button display="flex" justifyContent="flex-end" mr={0} bg="#331F69" color={"white"} _hover={{ bg: "#24105c" }} className="btn-nav-discover">
-          <a href="#discover">DISCOVER</a>
-        </Button>
-            <Flex mr={10} gap={2} alignItems={"center"} zIndex={5}>
-              <Menu >
+            <Button
+              display="flex"
+              justifyContent="flex-end"
+              mr={0}
+              bg="#331F69"
+              color={"white"}
+              _hover={{ bg: "#24105c" }}
+              className="btn-nav-discover">
+              <a href="#discover">DISCOVER</a>
+            </Button>
+            <Flex
+              mr={10}
+              gap={2}
+              alignItems={"center"}
+              zIndex={5}>
+              <Menu>
                 <MenuButton
                   as={Button}
                   rightIcon={<FaChevronDown />}
@@ -312,17 +355,15 @@ export default function Navigation(props) {
                   color={"white"}
                   colorScheme="white"
                   _hover={{ bgColor: "black", color: "white" }}
-                  zIndex={5}
-                >
+                  zIndex={5}>
                   {profile.username}
                 </MenuButton>
                 <MenuList>
-                   <CreateForm/>
+                  <CreateForm />
                   <MenuItem
                     onClick={() => {
                       dispatch(logout());
-                    }}
-                  >
+                    }}>
                     Logout
                   </MenuItem>
                 </MenuList>
@@ -330,51 +371,90 @@ export default function Navigation(props) {
             </Flex>
           </>
         ) : (
-          <Flex gap={2} justifyContent={"flex-end"} alignItems={"center"}>
-            <Button display="flex" justifyContent="flex-end" mr={0} bg="#331F69" color={"white"} _hover={{ bg: "#24105c" }} className="btn-nav-discover">
-          <a href="#discover">DISCOVER</a>
-        </Button>
-            <Button bg={"#3E60C1"} color={"white"} className="btn-nav" onClick={() => openModal("login")}>
+          <Flex
+            gap={2}
+            justifyContent={"flex-end"}
+            alignItems={"center"}>
+            <Button
+              display="flex"
+              justifyContent="flex-end"
+              mr={0}
+              bg="#331F69"
+              color={"white"}
+              _hover={{ bg: "#24105c" }}
+              className="btn-nav-discover">
+              <a href="#discover">DISCOVER</a>
+            </Button>
+            <Button
+              bg={"#3E60C1"}
+              color={"white"}
+              className="btn-nav"
+              onClick={() => openModal("login")}>
               LOGIN
             </Button>
-            <Button bg={"#F7F7F7"} color={"#2e4583"} onClick={() => openModal("register")}>
+            <Button
+              bg={"#F7F7F7"}
+              color={"#2e4583"}
+              onClick={() => openModal("register")}>
               REGISTER
             </Button>
           </Flex>
         )}
-
-
       </Box>
-      <Modal size="xl" isOpen={activeModal === "login"} onClose={closeModal} isCentered>
+      <Modal
+        size="xl"
+        isOpen={activeModal === "login"}
+        onClose={closeModal}
+        isCentered>
         <ModalOverlay />
-        <ModalContent bg="ghostwhite" size="xl">
+        <ModalContent
+          bg="ghostwhite"
+          size="xl">
           <ModalCloseButton />
           <ModalBody>
-            <Flex minH={"10vh"} align={"center"} justify={"center"} bg={useColorModeValue("whiteAlpha.50", "whiteAlpha.800")}>
-              <Flex flexDirection="column" height="50vh" backgroundColor="transparent" justifyContent="center" alignItems="center">
-                <Stack flexDir="column" mb="2" justifyContent="center" alignItems="center">
+            <Flex
+              minH={"10vh"}
+              align={"center"}
+              justify={"center"}
+              bg={useColorModeValue("whiteAlpha.50", "whiteAlpha.800")}>
+              <Flex
+                flexDirection="column"
+                height="50vh"
+                backgroundColor="transparent"
+                justifyContent="center"
+                alignItems="center">
+                <Stack
+                  flexDir="column"
+                  mb="2"
+                  justifyContent="center"
+                  alignItems="center">
                   <Avatar bg="blue.700" />
                   <Heading color="blue.600">Welcome</Heading>
                   <Box minW={{ base: "100%", md: "468px" }}>
-
                     <Formik
                       initialValues={{ username: "", password: "" }}
                       validationSchema={loginSchema}
-                      onSubmit={handleLogin}
-
-                    >
+                      onSubmit={handleLogin}>
                       {({ isSubmitting }) => (
                         <Form>
                           <VStack gap={4}>
                             <Field name="username">
                               {({ field, form }) => (
                                 <FormControl
-                                  isInvalid={form.errors.username && form.touched.username}
-                                  isDisabled={isSubmitting}
-                                >
+                                  isInvalid={
+                                    form.errors.username &&
+                                    form.touched.username
+                                  }
+                                  isDisabled={isSubmitting}>
                                   <FormLabel>Username</FormLabel>
-                                  <Input {...field} placeholder="Username" bgColor="white" />
-                                  <FormErrorMessage>{form.errors.username}</FormErrorMessage>
+                                  <Input
+                                    {...field}
+                                    placeholder="Username"
+                                    bgColor="white"
+                                  />
+                                  <FormErrorMessage>
+                                    {form.errors.username}
+                                  </FormErrorMessage>
                                 </FormControl>
                               )}
                             </Field>
@@ -383,10 +463,10 @@ export default function Navigation(props) {
                               {({ field, form }) => (
                                 <FormControl
                                   isInvalid={
-                                    form.errors.password && form.touched.password
+                                    form.errors.password &&
+                                    form.touched.password
                                   }
-                                  isDisabled={isSubmitting}
-                                >
+                                  isDisabled={isSubmitting}>
                                   <FormLabel>Password</FormLabel>
                                   <InputGroup size="md">
                                     <Input
@@ -397,8 +477,16 @@ export default function Navigation(props) {
                                       type={showPassword ? "text" : "password"}
                                     />
                                     <InputRightElement w="4.5rem">
-                                      <Button bg="white" boxShadow={"md"} size="sm" onClick={onTogglePassword}>
-                                        {showPassword ? <AiFillEyeInvisible size={"20px"} /> : <AiFillEye size={"20px"} />}
+                                      <Button
+                                        bg="white"
+                                        boxShadow={"md"}
+                                        size="sm"
+                                        onClick={onTogglePassword}>
+                                        {showPassword ? (
+                                          <AiFillEyeInvisible size={"20px"} />
+                                        ) : (
+                                          <AiFillEye size={"20px"} />
+                                        )}
                                       </Button>
                                     </InputRightElement>
                                   </InputGroup>
@@ -416,8 +504,7 @@ export default function Navigation(props) {
                                 colorScheme="red"
                                 variant="solid"
                                 w={450}
-                                boxShadow={"md"}
-                              >
+                                boxShadow={"md"}>
                                 Login
                               </Button>
                             </Center>
@@ -429,7 +516,9 @@ export default function Navigation(props) {
                 </Stack>
                 <Box>
                   New to us?{" "}
-                  <Link color="blue.500" onClick={() => openModal("register")}>
+                  <Link
+                    color="blue.500"
+                    onClick={() => openModal("register")}>
                     Sign Up
                   </Link>
                 </Box>
@@ -438,48 +527,89 @@ export default function Navigation(props) {
           </ModalBody>
         </ModalContent>
       </Modal>
-      <Modal isOpen={activeModal === "register"} onClose={closeModal} isCentered>
+      <Modal
+        isOpen={activeModal === "register"}
+        onClose={closeModal}
+        isCentered>
         <ModalOverlay />
-        <ModalContent bg="ghostwhite" size="xl">
+        <ModalContent
+          bg="ghostwhite"
+          size="xl">
           <ModalCloseButton />
           <ModalBody>
-            <Flex minH={"10vh"} align={"center"} justify={"center"} bg={useColorModeValue("whiteAlpha.50", "whiteAlpha.800")}>
-              <Stack spacing={3} mx={"auto"} maxW={"md"} py={12} px={6}>
-                <Stack align={"center"} flexDir="column" mb="2" justifyContent="center" alignItems="center">
+            <Flex
+              minH={"10vh"}
+              align={"center"}
+              justify={"center"}
+              bg={useColorModeValue("whiteAlpha.50", "whiteAlpha.800")}>
+              <Stack
+                spacing={3}
+                mx={"auto"}
+                maxW={"md"}
+                py={12}
+                px={6}>
+                <Stack
+                  align={"center"}
+                  flexDir="column"
+                  mb="2"
+                  justifyContent="center"
+                  alignItems="center">
                   <Avatar bg="blue.700" />
                   <Heading color="blue.600">Sign Up</Heading>
                 </Stack>
-                <Box rounded={"lg"} bg="ghostwhite" p={8}>
+                <Box
+                  rounded={"lg"}
+                  bg="ghostwhite"
+                  p={8}>
                   <Stack spacing={4}>
                     <Formik
-                      initialValues={{ username: "", email: "", password: "", confirmPassword: "" }}
+                      initialValues={{
+                        username: "",
+                        email: "",
+                        password: "",
+                        confirmPassword: "",
+                      }}
                       validationSchema={registerSchema}
-                      onSubmit={handleSubmit}
-                    >
+                      onSubmit={handleSubmit}>
                       {({ isSubmitting }) => (
                         <Form>
                           <VStack gap={4}>
                             <Field name="username">
                               {({ field, form }) => (
                                 <FormControl
-                                  isInvalid={form.errors.username && form.touched.username}
-                                  isDisabled={isSubmitting}
-                                >
+                                  isInvalid={
+                                    form.errors.username &&
+                                    form.touched.username
+                                  }
+                                  isDisabled={isSubmitting}>
                                   <FormLabel>Username</FormLabel>
-                                  <Input {...field} placeholder="Username" bgColor="white" />
-                                  <FormErrorMessage>{form.errors.username}</FormErrorMessage>
+                                  <Input
+                                    {...field}
+                                    placeholder="Username"
+                                    bgColor="white"
+                                  />
+                                  <FormErrorMessage>
+                                    {form.errors.username}
+                                  </FormErrorMessage>
                                 </FormControl>
                               )}
                             </Field>
                             <Field name="email">
                               {({ field, form }) => (
                                 <FormControl
-                                  isInvalid={form.errors.email && form.touched.email}
-                                  isDisabled={isSubmitting}
-                                >
+                                  isInvalid={
+                                    form.errors.email && form.touched.email
+                                  }
+                                  isDisabled={isSubmitting}>
                                   <FormLabel>Email</FormLabel>
-                                  <Input {...field} placeholder="Email" bgColor="white" />
-                                  <FormErrorMessage>{form.errors.email}</FormErrorMessage>
+                                  <Input
+                                    {...field}
+                                    placeholder="Email"
+                                    bgColor="white"
+                                  />
+                                  <FormErrorMessage>
+                                    {form.errors.email}
+                                  </FormErrorMessage>
                                 </FormControl>
                               )}
                             </Field>
@@ -487,10 +617,10 @@ export default function Navigation(props) {
                               {({ field, form }) => (
                                 <FormControl
                                   isInvalid={
-                                    form.errors.password && form.touched.password
+                                    form.errors.password &&
+                                    form.touched.password
                                   }
-                                  isDisabled={isSubmitting}
-                                >
+                                  isDisabled={isSubmitting}>
                                   <FormLabel>Password</FormLabel>
                                   <InputGroup size="md">
                                     <Input
@@ -501,8 +631,16 @@ export default function Navigation(props) {
                                       type={showPassword ? "text" : "password"}
                                     />
                                     <InputRightElement w="4.5rem">
-                                      <Button bg="white" boxShadow={"md"} size="sm" onClick={onTogglePassword}>
-                                        {showPassword ? <AiFillEyeInvisible size={"20px"} /> : <AiFillEye size={"20px"} />}
+                                      <Button
+                                        bg="white"
+                                        boxShadow={"md"}
+                                        size="sm"
+                                        onClick={onTogglePassword}>
+                                        {showPassword ? (
+                                          <AiFillEyeInvisible size={"20px"} />
+                                        ) : (
+                                          <AiFillEye size={"20px"} />
+                                        )}
                                       </Button>
                                     </InputRightElement>
                                   </InputGroup>
@@ -516,10 +654,10 @@ export default function Navigation(props) {
                               {({ field, form }) => (
                                 <FormControl
                                   isInvalid={
-                                    form.errors.confirmPassword && form.touched.confirmPassword
+                                    form.errors.confirmPassword &&
+                                    form.touched.confirmPassword
                                   }
-                                  isDisabled={isSubmitting}
-                                >
+                                  isDisabled={isSubmitting}>
                                   <FormLabel>Confirm Password</FormLabel>
                                   <InputGroup size="md">
                                     <Input
@@ -530,8 +668,16 @@ export default function Navigation(props) {
                                       type={showPassword ? "text" : "password"}
                                     />
                                     <InputRightElement w="4.5rem">
-                                      <Button bg="white" boxShadow={"md"} size="sm" onClick={onTogglePassword}>
-                                        {showPassword ? <AiFillEyeInvisible size={"20px"} /> : <AiFillEye size={"20px"} />}
+                                      <Button
+                                        bg="white"
+                                        boxShadow={"md"}
+                                        size="sm"
+                                        onClick={onTogglePassword}>
+                                        {showPassword ? (
+                                          <AiFillEyeInvisible size={"20px"} />
+                                        ) : (
+                                          <AiFillEye size={"20px"} />
+                                        )}
                                       </Button>
                                     </InputRightElement>
                                   </InputGroup>
@@ -548,8 +694,7 @@ export default function Navigation(props) {
                                 colorScheme="blue"
                                 variant="solid"
                                 w={40}
-                                boxShadow={"md"}
-                              >
+                                boxShadow={"md"}>
                                 Register
                               </Button>
                             </Center>
@@ -574,7 +719,7 @@ export default function Navigation(props) {
           </ModalBody>
         </ModalContent>
       </Modal>
-      
+
       <main>{props.children}</main>
     </>
   );
