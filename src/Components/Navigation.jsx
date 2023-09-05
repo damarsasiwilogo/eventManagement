@@ -79,7 +79,7 @@ export default function Navigation() {
 				});
 			})
 			.finally(() => {
-				forms.resetForm();
+				forms.resetform();
 			});
 	};
 
@@ -167,7 +167,8 @@ export default function Navigation() {
 				justifyContent={"space-evenly"}
 				bg={"#331F69"}
 				alignItems={"center"}
-				h={"10vh"}>
+				h={"10vh"}
+				w={"100%"}>
 				<a href="/">
 					<Image
 						src={myTixLogo}
@@ -344,8 +345,8 @@ export default function Navigation() {
 									<Stack spacing={4}>
 										<Formik
 											initialValues={{
-												fullName: "",
-												userName: "",
+												firstName: "",
+												lastName: "",
 												email: "",
 												password: "",
 											}}
@@ -354,45 +355,45 @@ export default function Navigation() {
 												<Form>
 													<HStack>
 														<Box>
-															<Field name="fullName">
+															<Field name="firstName">
 																{({ field, form }) => (
 																	<FormControl
-																		id="fullName"
+																		id="firstName"
 																		isRequired
 																		isInvalid={
-																			form.errors.fullName &&
-																			form.touched.fullName
+																			form.errors.firstName &&
+																			form.touched.firstName
 																		}
 																		isDisabled={isSubmitting}>
-																		<FormLabel>Full Name</FormLabel>
+																		<FormLabel>First Name</FormLabel>
 																		<Input
 																			type="text"
 																			{...field}
 																		/>
 																		<FormErrorMessage>
-																			{form.errors.fullName}
+																			{form.errors.firstName}
 																		</FormErrorMessage>
 																	</FormControl>
 																)}
 															</Field>
 														</Box>
 														<Box>
-															<Field name="userName">
+															<Field name="lastName">
 																{({ field, form }) => (
 																	<FormControl
-																		id="userName"
+																		id="lastName"
 																		isInvalid={
-																			form.errors.userName &&
-																			form.touched.userName
+																			form.errors.lastName &&
+																			form.touched.lastName
 																		}
 																		isDisabled={isSubmitting}>
-																		<FormLabel>username</FormLabel>
+																		<FormLabel>Last Name</FormLabel>
 																		<Input
 																			type="text"
 																			{...field}
 																		/>
 																		<FormErrorMessage>
-																			{form.errors.userName}
+																			{form.errors.lastName}
 																		</FormErrorMessage>
 																	</FormControl>
 																)}
@@ -461,7 +462,6 @@ export default function Navigation() {
 															size="lg"
 															bg={"blue.400"}
 															color={"white"}
-															type="submit"
 															_hover={{ bg: "blue.500" }}>
 															Sign up
 														</Button>

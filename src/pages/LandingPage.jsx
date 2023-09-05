@@ -1,4 +1,4 @@
-import { Box, Button, Center, Heading, Img, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Heading, Image, Img, Stack, Text } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Navigation from "../Components/Navigation";
 import Form from "../Components/Form";
@@ -9,7 +9,9 @@ import music from "../images/music.png";
 import sports from "../images/sports.jpeg";
 import webinar from "../images/webinar.jpg";
 import { useNavigate } from "react-router-dom";
-import HeroSlider, { Slide, MenuNav } from "hero-slider";
+import HeroSlider, { Slide } from "hero-slider";
+import myTixLogo from "../images/logo_mytix.png";
+import Footer from "../Components/Footer";
 
 export default function Landingpage() {
   const [events, setEvents] = useState([]);
@@ -80,13 +82,10 @@ export default function Landingpage() {
               return (
                 <>
                   <Slide
-                    shouldRenderMask
-                    label={event.type}
                     background={{
                       backgroundImageSrc: event.images,
                     }}
                   />
-                  <MenuNav />
                 </>
               );
             }
@@ -114,6 +113,41 @@ export default function Landingpage() {
             </Heading>
           </Box>
         </Center>
+      </Box>
+      <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+        <HeroSlider
+          height={"34vh"}
+          width={"75vw"}
+          autoplay
+          controller={{
+            initialSlide: 1,
+            slidingDuration: 200,
+            slidingDelay: 100,
+          }}
+          style={{ borderRadius: 10 }} 
+          
+        >
+          <Slide
+            background={{
+              backgroundImageSrc: "https://images.tokopedia.net/img/cache/1208/NsjrJu/2023/8/31/71a46224-e23c-46c7-83e8-99379cf2c770.jpg.webp?ect=4g", 
+            }} 
+            />
+           <Slide
+            background={{
+              backgroundImageSrc: "https://images.tokopedia.net/img/cache/1208/NsjrJu/2023/9/2/9017d1d3-3635-4370-b917-13e73de51487.jpg.webp?ect=4g",
+            }}
+            />
+             <Slide
+            background={{
+              backgroundImageSrc: "https://images.tokopedia.net/img/cache/1208/NsjrJu/2023/9/4/5ee226f1-68aa-47e9-8513-1b32b474f439.jpg.webp?ect=4g",
+            }}
+            />
+             <Slide
+            background={{
+              backgroundImageSrc: "https://images.tokopedia.net/img/cache/1208/NsjrJu/2023/8/29/9ccc3b04-36ac-4a2c-914d-515f67b6f8e0.jpg.webp?ect=4g",
+            }}
+            />
+          </HeroSlider>
       </Box>
 
       <Box id="discover">
@@ -143,15 +177,15 @@ export default function Landingpage() {
 
         {/* List event yang ada */}
         <Box display={"flex"} justifyContent={"center"} mt={"5px"}>
-          <Box id="left-box" h={"90vh"} overflowY={"scroll"} w={"30vw"}>
+          <Box id="left-box" h={"83vh"} overflowY={"scroll"} w={"30vw"} >
             <Center display={"flex"} flexDirection={"column"}>
               {filteredEvents.map((event) => (
                 <Box key={event.id} onClick={() => handleclick(event)}>
                   <Box
-                    w={"300px"}
+                    w={"400px"}
                     h={"200px"}
                     margin={"10px"}
-                    padding={"25px"}
+                    padding={"10px"}
                     color={"white"}
                     display={"flex"}
                     alignItems={"center"}
@@ -168,10 +202,10 @@ export default function Landingpage() {
           </Box>
 
           {/* Tampilan detail event */}
-          <Box id="right-box" ms={"30px"}>
+          <Box id="right-box" ms={"20px"} mt={2}>
             {selectedEvent && ( // Tampilkan hanya jika ada event yang dipilih
-              <Box w={"50vw"}>
-                <Img src={selectedEvent.images} w={"600px"} h={"300px"} borderRadius={"10px"}></Img>
+              <Box w={"41vw"}>
+                <Img src={selectedEvent.images} w={"600px"} h={"300px"} borderRadius={"10px"} ></Img>
                 <Heading margin={"10px 0"}>{selectedEvent.name}</Heading>
                 <Text>Date: {selectedEvent.date}</Text>
                 <Text>Time: {selectedEvent.time}</Text>
@@ -179,13 +213,15 @@ export default function Landingpage() {
                   {selectedEvent.description}
                 </Text>
                 <Text>{selectedEvent.ticketPrice}</Text>
-                <Button bgColor={"#3E60C1"} color={"white"} className="btn-nav" onClick={handleClickBuyTicket}>
+                <Button bgColor={"#3E60C1"} mt={6} color={"white"} className="btn-nav" onClick={handleClickBuyTicket}>
                   BUY TIKET
                 </Button>
               </Box>
             )}
           </Box>
         </Box>
+
+        <Footer/>
       </Box>
     </Box>
   );
