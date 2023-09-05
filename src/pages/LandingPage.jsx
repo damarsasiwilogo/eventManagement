@@ -1,5 +1,5 @@
 
-import { Box, Button, Center, Flex, Heading, Image, Img, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Heading, Image, Img, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useToast } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Navigation from "../Components/Navigation";
 import Form from "../Components/CreateForm";
@@ -26,6 +26,7 @@ export default function Landingpage() {
 
   const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
   
+  const toast = useToast();
 
 
   useEffect(() => {
