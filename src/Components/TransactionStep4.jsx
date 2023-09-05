@@ -5,7 +5,7 @@ import { IoTicketSharp } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Formik, Form, Field } from 'formik';
-import { Input, Button, FormControl, FormLabel, FormErrorMessage } from '@chakra-ui/react';
+import { Input, Button, FormControl, FormLabel, FormErrorMessage, useToast } from '@chakra-ui/react';
 import { useDispatch} from 'react-redux';
 import { setCreditCardData } from '../slices/transactionSlices'; 
 import api from "../api"
@@ -20,12 +20,19 @@ function TransactionStep4() {
     const totalPrices = useSelector((state) => state.transaction.totalPrices);
     const selectedTickets = Object.keys(ticketQuantities).filter((ticketType) => ticketQuantities[ticketType] > 0);
     const creditCardData = useSelector((state) => state.transaction.creditCardData);
-
+    const toast = useToast()
 
     useEffect(() => {
         api.get(`/events/${id}`).then((res) => {
             setEvents([res.data])
-        });
+        }).catch((err) => {
+            toast({
+              title:"Something wrong",
+              description: err.message,
+              status: "error",
+              isClosable: true
+            })
+          });
     }, []);
 
     const validationSchema = Yup.object().shape({

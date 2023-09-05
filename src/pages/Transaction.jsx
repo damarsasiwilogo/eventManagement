@@ -1,4 +1,4 @@
-import { Box, Button, Text, Progress, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Flex, Image } from "@chakra-ui/react";
+import { Box, Button, Text, Progress, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Flex, Image, useToast } from "@chakra-ui/react";
 import { useParams } from "react-router";
 import React, { useState } from "react";
 import { useEffect } from "react";
@@ -25,6 +25,7 @@ function Transaction() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const ticketQuantities = useSelector((state) => state.transaction.ticketQuantities);
+    const toast = useToast()
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -44,7 +45,14 @@ function Transaction() {
     useEffect(() => {
         api.get(`/events/${id}`).then((res) => {
             setEvents([res.data])
-        });
+        }).catch((err) => {
+            toast({
+              title:"Something wrong",
+              description: err.message,
+              status: "error",
+              isClosable: true
+            })
+          });
     }, []);
 
     useEffect(() => {
