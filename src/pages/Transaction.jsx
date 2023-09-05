@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from 'react-redux'; // Import useDispatch
 import myTixLogo from "../images/logo_mytix.png"
 import { Spinner, Center} from "@chakra-ui/react";
 import Footer from "../Components/Footer";
+import Navigation from "../Components/Navigation";
+
 
 function Transaction() {
     const { id } = useParams();
@@ -59,7 +61,6 @@ function Transaction() {
         // Reset the Redux store when rendering TransactionStep1
         dispatch(resetTransaction());
     }, [dispatch]);
-
 
     const handleNext = async () => {
         if (!isConfirmationModalOpen && currentStep < 4) {
@@ -170,9 +171,7 @@ function Transaction() {
 
     return (
         <>
-            <Box display={"flex"} justifyContent="flex-start" bg={"#331F69"} alignItems={"center"} h={"10vh"}>
-                <a href="/"><Image src={myTixLogo} w={"150px"} h={"45px"} /></a>
-            </Box>
+        <Navigation needLogin>
             <Box display={"flex"} flexDirection="column" justifyContent="center" bgColor="white" alignItems={"center"} h={"10vh"} ml={40} mr={40} mt={2} borderRadius={10}>
                 <Flex direction={"column"} justifyContent={"center"} alignItems={"center"} mt={5}>
                     <Text fontSize={"md"} fontWeight={"bold"} mt={10} my={-2}>
@@ -252,6 +251,7 @@ function Transaction() {
                 </Box>
             )}
             <Footer/>
+        
 
             <Modal isOpen={isTimeUpModalOpen} onClose={closeTimeUpModal} isCentered blockScrollOnMount={true}
                 closeOnOverlayClick={false}>
@@ -289,6 +289,7 @@ function Transaction() {
                     </ModalFooter>
                 </ModalContent>
             </Modal>
+        </Navigation>
         </>
     )
 }

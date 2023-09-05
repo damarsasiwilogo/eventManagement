@@ -4,6 +4,10 @@ const initialState = {
 	users: [],
 	totalData: 0,
 	isLoaded: false,
+	isLoggedIn: window.localStorage.getItem("isLoggedIn") === "true",
+    profile: window.localStorage.getItem("profile")
+      ? JSON.parse(window.localStorage.getItem("profile"))
+      : {},
 };
 
 const usersSlice = createSlice({
@@ -19,8 +23,20 @@ const usersSlice = createSlice({
 			state.users.push(action.payload);
 			state.totalData++;
 		},
+		login(state, action) {
+            state.isLoggedIn = true;
+            state.profile = action.payload;
+            window.localStorage.setItem("isLoggedIn", "true");
+            window.localStorage.setItem("profile", JSON.stringify(action.payload));
+          },
+          logout(state) {
+            state.isLoggedIn = false;
+            state.profile = {};
+            window.localStorage.setItem("isLoggedIn", false);
+            window.localStorage.setItem("profile", JSON.stringify({}));
+          },
 	},
 });
 
-export const { setInitialData, add } = usersSlice.actions;
+export const { setInitialData, add, login, logout } = usersSlice.actions;
 export default usersSlice.reducer;
