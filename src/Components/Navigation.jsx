@@ -38,6 +38,7 @@ import { RiSpeakLine } from "react-icons/ri";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import "../index.css";
 import { FaUserAlt, FaLock } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import { useState, useEffect } from "react";
 import api from "../api";
 import { List, ListItem } from "@chakra-ui/react";
@@ -59,6 +60,7 @@ YupPassword(yup);
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
+const CMdEmail = chakra(MdEmail);
 
 export default function Navigation(props) {
   // declare Regist
@@ -86,7 +88,6 @@ export default function Navigation(props) {
   }, [props.needLogin, navigate, isLoggedIn]);
 
   // connect db.json when new user submit on register modal
-
   const handleSubmit = async (values, forms) => {
     try {
       const res = await api.get("/users");
@@ -140,11 +141,19 @@ export default function Navigation(props) {
 
       forms.resetForm();
     } catch (error) {
+      toast({
+        title: "Error creating an account",
+        description: error.message,
+        status: error,
+        duration: 5000,
+        isClosable: true,
+      });
       // Handle other errors if needed
       console.error("Error:", error);
     }
   };
 
+  //connect db.json when registered user submit on login modal
   const handleLogin = (values, forms) => {
     api
       .get(`/users?q=${values.username}`)
@@ -242,7 +251,15 @@ export default function Navigation(props) {
     }
 
     return (
-      <Box mt={2} bg="white" borderRadius="md" boxShadow="md" position="absolute" width="100%" p={"10px"} zIndex={5}>
+      <Box
+        mt={2}
+        bg="white"
+        borderRadius="md"
+        boxShadow="md"
+        position="absolute"
+        width="100%"
+        p={"10px"}
+        zIndex={5}>
         <Menu>
           {suggestions.map((event) => (
             <MenuItem
@@ -251,8 +268,7 @@ export default function Navigation(props) {
               onClick={() => {
                 navigate(`/Transaction/${event.id}`);
               }}
-              _hover={{bg: "#EDEDED"}}>
-
+              _hover={{ bg: "#EDEDED" }}>
               {event.name}
             </MenuItem>
           ))}
@@ -273,30 +289,79 @@ export default function Navigation(props) {
 
   // declare to show or hide the text in password input
   // jadinya dipakeee JANGAN DIHAPUS
+  // const handleShowClick = () => setShowPassword(!showPassword);
 
   return (
     <>
-      <Box display={"flex"} justifyContent={"space-evenly"} bg={"#331F69"} alignItems={"center"} h={"10vh"} w={"100%"}>
+      <Box
+        display={"flex"}
+        justifyContent={"space-evenly"}
+        bg={"#331F69"}
+        alignItems={"center"}
+        h={"10vh"}
+        w={"100%"}>
         <a href="/">
-          <Image src={myTixLogo} w={"150px"} h={"45px"} />
+          <Image
+            src={myTixLogo}
+            w={"150px"}
+            h={"45px"}
+          />
         </a>
         <div style={{ position: "relative" }}>
-          <Input size={"md"} placeholder="Search an event..." w={"md"} shadow={"sm"} bg={"white"} value={searchQuery} onChange={handleSearchInputChange} onFocus={handleSearchInputFocus} onBlur={handleSearchInputBlur} />
+          <Input
+            size={"md"}
+            placeholder="Search an event..."
+            w={"md"}
+            shadow={"sm"}
+            bg={"white"}
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+            onFocus={handleSearchInputFocus}
+            onBlur={handleSearchInputBlur}
+          />
           <Suggestions suggestions={isFocused ? suggestions : []} />
         </div>
 
         {isLoggedIn ? (
           <>
-            <Button display="flex" justifyContent="flex-end" mr={0} bg="#331F69" color={"white"} _hover={{ bg: "#24105c" }} className="btn-nav-discover">
+            <Button
+              display="flex"
+              justifyContent="flex-end"
+              mr={0}
+              bg="#331F69"
+              color={"white"}
+              _hover={{ bg: "#24105c" }}
+              className="btn-nav-discover">
               <a href="#discover">DISCOVER</a>
             </Button>
-            <Flex mr={10} gap={2} alignItems={"center"} zIndex={5}>
+            <Flex
+              mr={10}
+              gap={2}
+              alignItems={"center"}
+              zIndex={5}>
               <Menu>
-                <MenuButton as={Button} rightIcon={<FaChevronDown />} rounded="full" variant="outline" color={"white"} colorScheme="white" _hover={{ bgColor: "black", color: "white" }} zIndex={5}>
+                <MenuButton
+                  as={Button}
+                  rightIcon={<FaChevronDown />}
+                  rounded="full"
+                  variant="outline"
+                  color={"white"}
+                  colorScheme="white"
+                  _hover={{ bgColor: "black", color: "white" }}
+                  zIndex={5}>
                   {profile.username}
                 </MenuButton>
                 <MenuList>
-                  <Flex justifyContent={"center"} p={2} mx={4} flexDir={"column"} alignItems={"center"} borderRadius={10} bg={"#331F69"} color={"white"} boxShadow={"md"}>
+                  <Flex
+                    justifyContent={"center"}
+                    p={2}
+                    mx={4}
+                    flexDir={"column"}
+                    alignItems={"center"}
+                    borderRadius={10}
+                    bg={"#331F69"}
+                    color={"white"}
+                    boxShadow={"md"}>
                     <Text fontWeight={"bold"}> Refferal Code</Text>
                     <Text> {profile.reffcode}</Text>
                   </Flex>
@@ -304,8 +369,7 @@ export default function Navigation(props) {
                   <MenuItem
                     onClick={() => {
                       dispatch(logout());
-                    }}
-                  >
+                    }}>
                     Logout
                   </MenuItem>
                 </MenuList>
@@ -313,53 +377,119 @@ export default function Navigation(props) {
             </Flex>
           </>
         ) : (
-          <Flex gap={2} justifyContent={"flex-end"} alignItems={"center"}>
-            <Button display="flex" justifyContent="flex-end" mr={0} bg="#331F69" color={"white"} _hover={{ bg: "#24105c" }} className="btn-nav-discover">
+          <Flex
+            gap={2}
+            justifyContent={"flex-end"}
+            alignItems={"center"}>
+            <Button
+              display="flex"
+              justifyContent="flex-end"
+              mr={0}
+              bg="#331F69"
+              color={"white"}
+              _hover={{ bg: "#24105c" }}
+              className="btn-nav-discover">
               <a href="#discover">DISCOVER</a>
             </Button>
-            <Button bg={"#3E60C1"} color={"white"} className="btn-nav" onClick={() => openModal("login")}>
+            <Button
+              bg={"#3E60C1"}
+              color={"white"}
+              className="btn-nav"
+              onClick={() => openModal("login")}>
               LOGIN
             </Button>
-            <Button bg={"#F7F7F7"} color={"#2e4583"} onClick={() => openModal("register")}>
+            <Button
+              bg={"#F7F7F7"}
+              color={"#2e4583"}
+              onClick={() => openModal("register")}>
               REGISTER
             </Button>
           </Flex>
         )}
       </Box>
-      <Modal size="xl" isOpen={activeModal === "login"} onClose={closeModal} isCentered>
+      <Modal
+        isOpen={activeModal === "login"}
+        onClose={closeModal}
+        isCentered>
         <ModalOverlay />
-        <ModalContent bg="ghostwhite" size="xl">
+        <ModalContent
+          bg="ghostwhite"
+          size="xl">
           <ModalCloseButton />
           <ModalBody>
-            <Flex minH={"10vh"} align={"center"} justify={"center"} bg={useColorModeValue("whiteAlpha.50", "whiteAlpha.800")}>
-              <Flex flexDirection="column" height="50vh" backgroundColor="transparent" justifyContent="center" alignItems="center">
-                <Stack flexDir="column" mb="2" justifyContent="center" alignItems="center">
+            <Flex
+              minH={"1vh"}
+              align={"center"}
+              justify={"center"}
+              bg={useColorModeValue("whiteAlpha.50", "whiteAlpha.800")}>
+              <Flex
+                flexDirection="column"
+                width="40vh"
+                height="50vh"
+                backgroundColor="transparent"
+                justifyContent="center"
+                alignItems="center">
+                <Stack
+                  flexDir="column"
+                  mb="1"
+                  justifyContent="center"
+                  alignItems="center">
                   <Avatar bg="blue.700" />
                   <Heading color="blue.600">Welcome</Heading>
-                  <Box minW={{ base: "100%", md: "468px" }}>
-                    <Formik initialValues={{ username: "", password: "" }} validationSchema={loginSchema} onSubmit={handleLogin}>
-                      {({ isSubmitting }) => (
-                        <Form>
-                          <VStack gap={4}>
+                  <Box minW={{ base: "90%", md: "468px" }}>
+                    <Stack
+                      spacing={4}
+                      p="2rem"
+                      backgroundColor="transparent">
+                      <Formik
+                        initialValues={{ username: "", password: "" }}
+                        validationSchema={loginSchema}
+                        onSubmit={handleLogin}>
+                        {({ isSubmitting }) => (
+                          <Form>
                             <Field name="username">
                               {({ field, form }) => (
-                                <FormControl isInvalid={form.errors.username && form.touched.username} isDisabled={isSubmitting}>
+                                <FormControl
+                                  isInvalid={form.errors.username && form.touched.username}
+                                  isDisabled={isSubmitting}>
                                   <FormLabel>Username</FormLabel>
-                                  <Input {...field} placeholder="Username" bgColor="white" />
+                                  <InputGroup>
+                                    <InputLeftElement
+                                      pointerEvents="none"
+                                      children={<CFaUserAlt color="gray.300" />}
+                                    />
+                                    <Input
+                                      type="text"
+                                      {...field}
+                                      placeholder="Username"
+                                    />
+                                  </InputGroup>
                                   <FormErrorMessage>{form.errors.username}</FormErrorMessage>
                                 </FormControl>
                               )}
                             </Field>
-
                             <Field name="password">
                               {({ field, form }) => (
-                                <FormControl isInvalid={form.errors.password && form.touched.password} isDisabled={isSubmitting}>
+                                <FormControl
+                                  isInvalid={form.errors.password && form.touched.password}
+                                  isDisabled={isSubmitting}>
                                   <FormLabel>Password</FormLabel>
-                                  <InputGroup size="md">
-                                    <Input {...field} placeholder="Password" bgColor="white" pr="4.5rem" type={showPassword ? "text" : "password"} />
-                                    <InputRightElement w="4.5rem">
-                                      <Button bg="white" boxShadow={"md"} size="sm" onClick={onTogglePassword}>
-                                        {showPassword ? <AiFillEyeInvisible size={"20px"} /> : <AiFillEye size={"20px"} />}
+                                  <InputGroup>
+                                    <InputLeftElement
+                                      pointerEvents="none"
+                                      color="gray.300"
+                                      children={<CFaLock color="gray.300" />}
+                                    />
+                                    <Input
+                                      type={showPassword ? "text" : "password"}
+                                      {...field}
+                                      placeholder="Password"
+                                    />
+                                    <InputRightElement h="full">
+                                      <Button
+                                        variant="ghost"
+                                        onClick={onTogglePassword}>
+                                        {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                                       </Button>
                                     </InputRightElement>
                                   </InputGroup>
@@ -367,82 +497,143 @@ export default function Navigation(props) {
                                 </FormControl>
                               )}
                             </Field>
-
-                            <Center>
-                              <Button isLoading={isSubmitting} type="submit" colorScheme="red" variant="solid" w={450} boxShadow={"md"}>
+                            <Stack pt={3}>
+                              <Button
+                                isLoading={isSubmitting}
+                                loadingText="Logging In"
+                                boxShadow={"md"}
+                                type="submit"
+                                colorScheme="red">
                                 Login
                               </Button>
-                            </Center>
-                          </VStack>
-                        </Form>
-                      )}
-                    </Formik>
+                            </Stack>
+                          </Form>
+                        )}
+                      </Formik>
+                    </Stack>
+                    <Center>
+                      <Box>
+                        New to us?{" "}
+                        <Link
+                          color="blue.500"
+                          onClick={() => openModal("register")}>
+                          Sign Up
+                        </Link>
+                      </Box>
+                    </Center>
                   </Box>
                 </Stack>
-                <Box>
-                  New to us?{" "}
-                  <Link color="blue.500" onClick={() => openModal("register")}>
-                    Sign Up
-                  </Link>
-                </Box>
               </Flex>
             </Flex>
           </ModalBody>
         </ModalContent>
       </Modal>
-      <Modal isOpen={activeModal === "register"} onClose={closeModal} isCentered>
+      <Modal
+        isOpen={activeModal === "register"}
+        onClose={closeModal}
+        isCentered>
         <ModalOverlay />
-        <ModalContent bg="ghostwhite" size="xl">
+        <ModalContent
+          bg="ghostwhite"
+          size="xl">
           <ModalCloseButton />
           <ModalBody>
-            <Flex minH={"10vh"} align={"center"} justify={"center"} bg={useColorModeValue("whiteAlpha.50", "whiteAlpha.800")}>
-              <Stack spacing={3} mx={"auto"} maxW={"md"} py={12} px={6}>
-                <Stack align={"center"} flexDir="column" mb="2" justifyContent="center" alignItems="center">
+            <Flex
+              minH={"65vh"}
+              align={"center"}
+              justify={"center"}
+              backgroundColor="ghostwhite">
+              <Flex
+                flexDirection="column"
+                width="70vh"
+                height="50vh"
+                justifyContent="center"
+                alignItems="center">
+                <Stack
+                  flexDir="column"
+                  mb="2"
+                  justifyContent="center"
+                  alignItems="center">
                   <Avatar bg="blue.700" />
                   <Heading color="blue.600">Sign Up</Heading>
-                </Stack>
-                <Box rounded={"lg"} bg="ghostwhite" p={8}>
-                  <Stack spacing={4}>
-                    <Formik
-                      initialValues={{
-                        username: "",
-                        email: "",
-                        password: "",
-                        confirmPassword: "",
-                      }}
-                      validationSchema={registerSchema}
-                      onSubmit={handleSubmit}
-                    >
-                      {({ isSubmitting }) => (
-                        <Form>
-                          <VStack gap={4}>
+                  <Box minW={{ base: "90%", md: "468px" }}>
+                    <Stack
+                      spacing={4}
+                      p="2rem"
+                      backgroundColor="transparent">
+                      <Formik
+                        initialValues={{
+                          username: "",
+                          email: "",
+                          password: "",
+                          confirmPassword: "",
+                        }}
+                        validationSchema={registerSchema}
+                        onSubmit={handleSubmit}>
+                        {({ isSubmitting }) => (
+                          <Form>
                             <Field name="username">
                               {({ field, form }) => (
-                                <FormControl isInvalid={form.errors.username && form.touched.username} isDisabled={isSubmitting}>
+                                <FormControl
+                                  isInvalid={form.errors.username && form.touched.username}
+                                  isDisabled={isSubmitting}>
                                   <FormLabel>Username</FormLabel>
-                                  <Input {...field} placeholder="Username" bgColor="white" />
+                                  <InputGroup>
+                                    <InputLeftElement
+                                      pointerEvents="none"
+                                      children={<CFaUserAlt color="gray.300" />}
+                                    />
+                                    <Input
+                                      type="text"
+                                      {...field}
+                                      placeholder="Username"
+                                    />
+                                  </InputGroup>
                                   <FormErrorMessage>{form.errors.username}</FormErrorMessage>
                                 </FormControl>
                               )}
                             </Field>
                             <Field name="email">
                               {({ field, form }) => (
-                                <FormControl isInvalid={form.errors.email && form.touched.email} isDisabled={isSubmitting}>
+                                <FormControl
+                                  isInvalid={form.errors.email && form.touched.email}
+                                  isDisabled={isSubmitting}>
                                   <FormLabel>Email</FormLabel>
-                                  <Input {...field} placeholder="Email" bgColor="white" />
+                                  <InputGroup>
+                                    <InputLeftElement
+                                      pointerEvents="none"
+                                      children={<CMdEmail color="gray.300" />}
+                                    />
+                                    <Input
+                                      {...field}
+                                      placeholder="Email"
+                                    />
+                                  </InputGroup>
                                   <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                                 </FormControl>
                               )}
                             </Field>
                             <Field name="password">
                               {({ field, form }) => (
-                                <FormControl isInvalid={form.errors.password && form.touched.password} isDisabled={isSubmitting}>
+                                <FormControl
+                                  isInvalid={form.errors.password && form.touched.password}
+                                  isDisabled={isSubmitting}>
                                   <FormLabel>Password</FormLabel>
-                                  <InputGroup size="md">
-                                    <Input {...field} placeholder="Password" bgColor="white" pr="4.5rem" type={showPassword ? "text" : "password"} />
-                                    <InputRightElement w="4.5rem">
-                                      <Button bg="white" boxShadow={"md"} size="sm" onClick={onTogglePassword}>
-                                        {showPassword ? <AiFillEyeInvisible size={"20px"} /> : <AiFillEye size={"20px"} />}
+                                  <InputGroup>
+                                    <InputLeftElement
+                                      pointerEvents="none"
+                                      children={<CFaLock color="gray.300" />}
+                                    />
+                                    <Input
+                                      {...field}
+                                      placeholder="Password"
+                                      type={showPassword ? "text" : "password"}
+                                    />
+                                    <InputRightElement h="full">
+                                      <Button
+                                        variant="ghost"
+                                        onClick={onTogglePassword}>
+                                        {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                                       </Button>
                                     </InputRightElement>
                                   </InputGroup>
@@ -452,13 +643,25 @@ export default function Navigation(props) {
                             </Field>
                             <Field name="confirmPassword">
                               {({ field, form }) => (
-                                <FormControl isInvalid={form.errors.confirmPassword && form.touched.confirmPassword} isDisabled={isSubmitting}>
+                                <FormControl
+                                  isInvalid={form.errors.confirmPassword && form.touched.confirmPassword}
+                                  isDisabled={isSubmitting}>
                                   <FormLabel>Confirm Password</FormLabel>
-                                  <InputGroup size="md">
-                                    <Input {...field} placeholder="Confirm password" bgColor="white" pr="4.5rem" type={showPassword ? "text" : "password"} />
-                                    <InputRightElement w="4.5rem">
-                                      <Button bg="white" boxShadow={"md"} size="sm" onClick={onTogglePassword}>
-                                        {showPassword ? <AiFillEyeInvisible size={"20px"} /> : <AiFillEye size={"20px"} />}
+                                  <InputGroup>
+                                    <InputLeftElement
+                                      pointerEvents="none"
+                                      children={<CFaLock color="gray.300" />}
+                                    />
+                                    <Input
+                                      {...field}
+                                      placeholder="Confirm password"
+                                      type={showPassword ? "text" : "password"}
+                                    />
+                                    <InputRightElement h="full">
+                                      <Button
+                                        variant="ghost"
+                                        onClick={onTogglePassword}>
+                                        {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                                       </Button>
                                     </InputRightElement>
                                   </InputGroup>
@@ -466,26 +669,33 @@ export default function Navigation(props) {
                                 </FormControl>
                               )}
                             </Field>
-                            <Center>
-                              <Button isLoading={isSubmitting} type="submit" colorScheme="blue" variant="solid" w={40} boxShadow={"md"}>
+                            <Stack pt={3}>
+                              <Button
+                                isLoading={isSubmitting}
+                                loadingText="Registering"
+                                boxShadow={"md"}
+                                type="submit"
+                                colorScheme="blue">
                                 Register
                               </Button>
-                            </Center>
-                            <Stack>
-                              <Text align={"center"}>
-                                Already a user?{" "}
-                                <Link color={"blue.400"} onClick={() => openModal("login")}>
-                                  Login
-                                </Link>
-                              </Text>
                             </Stack>
-                          </VStack>
-                        </Form>
-                      )}
-                    </Formik>
-                  </Stack>
-                </Box>
-              </Stack>
+                          </Form>
+                        )}
+                      </Formik>
+                    </Stack>
+                    <Center>
+                      <Box>
+                        Already a user?{" "}
+                        <Link
+                          color={"blue.400"}
+                          onClick={() => openModal("login")}>
+                          Login
+                        </Link>
+                      </Box>
+                    </Center>
+                  </Box>
+                </Stack>
+              </Flex>
             </Flex>
           </ModalBody>
         </ModalContent>
