@@ -278,7 +278,7 @@ export default function Navibar(props) {
             <IconButton size="md" icon={isOpen ? <CloseIcon /> : <HamburgerIcon />} aria-label="Open Menu" display={{ lg: "none" }} onClick={isOpen ? onClose : onOpen} />
             <HStack spacing={8}>
               <a href="/">
-                <Image src={myTixLogo} w={"150px"} h={"45px"} display={{ base: "none", sm: "flex", md: "flex", lg: "flex" }} />
+                <Image src={myTixLogo} w={"150px"} h={"45px"} />
               </a>
             </HStack>
             <HStack as="nav" spacing={4} display={{ base: "none", lg: "flex" }}>
@@ -330,7 +330,7 @@ export default function Navibar(props) {
             <Box pb={4} display={{ lg: "none" }}>
               <Stack as="nav" spacing={4}>
                 <div style={{ position: "relative" }}>
-                  <Input size={"md"} placeholder="Search an event..." w={{ sm: "md" }} shadow={"sm"} bg={"white"} value={searchQuery} onChange={handleSearchInputChange} onFocus={handleSearchInputFocus} onBlur={handleSearchInputBlur} />
+                  <Input size={"md"} placeholder="Search an event..." w={"100%"} shadow={"sm"} bg={"white"} value={searchQuery} onChange={handleSearchInputChange} onFocus={handleSearchInputFocus} onBlur={handleSearchInputBlur} />
                   <Suggestions suggestions={isFocused ? suggestions : []} />
                 </div>
                 <Stack>

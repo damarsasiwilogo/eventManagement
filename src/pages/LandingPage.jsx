@@ -5,7 +5,7 @@ import "../index.css";
 import api from "../api.js";
 import music from "../images/music.png";
 import sports from "../images/sports.jpeg";
-import webinar from "../images/webinar.jpg";
+import webinar from "../images/webinar-2.jpeg";
 import { useNavigate } from "react-router-dom";
 import HeroSlider, { Slide } from "hero-slider";
 import Footer from "../Components/Footer";
@@ -130,25 +130,23 @@ export default function Landingpage({ openModal }) {
           {/* End Of Image Slider */}
         </Box>
 
-        <Box display={"flex"} className="box-type">
-          <Center w={"100%"} h={"45vh"}>
-            <Box bg={"navy"} w={"400px"} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={music} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow " onClick={handleclickBox}>
+        <Box display={"flex"} className="box-type" h={"45vh"} flexDirection={{base: 'column', md:"column", lg: "row"}} justifyContent={'center'} alignItems={'center'} padding="10px">
+            <Box bg={"navy"} width={{ base: "300px", sm: "700px", lg: "600px"}} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={music} bgSize={"contain"}  display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow " onClick={handleclickBox}>
               <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading">
                 MUSIC
               </Heading>
             </Box>
-            <Box bg={"navy"} w={"400px"} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={webinar} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow" onClick={handleclickBox}>
+            <Box bg={"navy"} width={{ base: "300px", sm: "700px", lg: "600px"}} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={webinar} bgSize={"contain"}  display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow" onClick={handleclickBox}>
               <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading">
                 WEBINAR
               </Heading>
             </Box>
 
-            <Box bg={"navy"} w={"400px"} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={sports} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow" onClick={handleclickBox}>
+            <Box bg={"navy"} width={{ base: "300px", sm: "700px", lg: "600px"}} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={sports} bgSize={"contain"}  display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow" onClick={handleclickBox}>
               <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading">
                 SPORTS
               </Heading>
             </Box>
-          </Center>
         </Box>
         <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
           <HeroSlider
@@ -177,10 +175,9 @@ export default function Landingpage({ openModal }) {
         </Box>
 
         <Box id="discover">
-          <Box>
+          <Box w={'100%'}>
             {/* filter list */}
-            <Center>
-              <ul style={{ listStyleType: "none", padding: 0, display: "flex" }}>
+              <ul style={{ listStyleType: "none", padding: 0, display: "flex", justifyContent: "center" }}>
                 {locations.map((location) => (
                   <li
                     key={location}
@@ -198,7 +195,6 @@ export default function Landingpage({ openModal }) {
                   </li>
                 ))}
               </ul>
-            </Center>
           </Box>
 
           {/* List event yang ada */}

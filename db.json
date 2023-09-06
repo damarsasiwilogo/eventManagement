@@ -1,22 +1,21 @@
 {
   "couponcode": [
     {
-      "code" : "MYTIXDDT",
+      "code": "MYTIXDDT",
       "discount": 0.1,
-      "images" : "https://i.imgur.com/pGKX33B.png"
+      "images": "https://i.imgur.com/pGKX33B.png"
     },
     {
-      "code" : "MYTIXNOW",
+      "code": "MYTIXNOW",
       "discount": 0.25,
-      "images" : "https://i.imgur.com/uVpUZAi.png" 
+      "images": "https://i.imgur.com/uVpUZAi.png"
     },
     {
-      "code" : "MYTIXFRIENDS",
+      "code": "MYTIXFRIENDS",
       "discount": 0.15,
-      "images" : "https://i.imgur.com/CiGRfq6.png"
+      "images": "https://i.imgur.com/CiGRfq6.png"
     }
-  ], 
-  
+  ],
   "users": [
     {
       "username": "anggaratriputra",
@@ -31,6 +30,13 @@
       "password": "Damar123",
       "reffcode": "mytixdamarsasi",
       "id": 2
+    },
+    {
+      "username": "rizkys",
+      "email": "fauzasmg@gmail.com",
+      "password": "RR11zky",
+      "reffcode": "mytixrizkys",
+      "id": 3
     }
   ],
   "events": [
