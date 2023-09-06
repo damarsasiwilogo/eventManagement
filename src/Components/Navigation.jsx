@@ -251,6 +251,7 @@ export default function Navigation(props) {
               onClick={() => {
                 navigate(`/events/${event.id}`);
               }}>
+
               {event.name}
             </MenuItem>
           ))}
@@ -302,7 +303,8 @@ export default function Navigation(props) {
                   <MenuItem
                     onClick={() => {
                       dispatch(logout());
-                    }}>
+                    }}
+                  >
                     Logout
                   </MenuItem>
                 </MenuList>
@@ -408,7 +410,8 @@ export default function Navigation(props) {
                         confirmPassword: "",
                       }}
                       validationSchema={registerSchema}
-                      onSubmit={handleSubmit}>
+                      onSubmit={handleSubmit}
+                    >
                       {({ isSubmitting }) => (
                         <Form>
                           <VStack gap={4}>

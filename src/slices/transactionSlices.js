@@ -9,10 +9,12 @@ const transactionSlices = createSlice({
       Diamond: 0,
     },
     totalPrices: 0,
+    discountedTotalPricesByReff: 0,
+    discountedTotalPricesByCoupon: 0,
     discountedTotalPrices: 0,
     formData: {
       name: "",
-      email: "",
+      email: "",           
       telepon: "",
       identitas: "",
       date: "",
@@ -48,8 +50,14 @@ const transactionSlices = createSlice({
       state.totalPrices = action.payload;
 
     },
-    setDiscountedTotalPrices: (state, action) => {
-      state.discountedTotalPrices = action.payload;
+    setDiscountedTotalPricesByReff: (state, action) => {
+      state.discountedTotalPricesByReff = action.payload;
+    },
+    setDiscountedTotalPricesByCoupon: (state, action) => {
+      state.discountedTotalPricesByCoupon = action.payload;
+    },
+    setDiscountedTotalPrices: (state) => {
+      state.discountedTotalPrices = state.totalPrices - state.discountedTotalPricesByCoupon - state.discountedTotalPricesByReff;
     },
     setFormData: (state, action) => {
       state.formData = action.payload;
@@ -90,6 +98,8 @@ export const {
 setTicketQuantities, 
 setTotalPrices, 
 setDiscountedTotalPrices,
+setDiscountedTotalPricesByReff,
+setDiscountedTotalPricesByCoupon,
 setFormData, 
 resetTransaction, 
 setPaymentMethodByNumber,
