@@ -46,6 +46,7 @@ import CreateForm from "./CreateForm";
 import { login } from "../slices/userSlices";
 import { logout } from "../slices/userSlices";
 import { useDispatch, useSelector } from "react-redux";
+import { add } from "../slices/userSlices";
 import { Field, Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 
@@ -367,7 +368,7 @@ export default function Navibar(props) {
             <IconButton size="md" icon={isOpen ? <CloseIcon /> : <HamburgerIcon />} aria-label="Open Menu" display={{ lg: "none" }} onClick={isOpen ? onClose : onOpen} />
             <HStack spacing={8}>
               <a href="/">
-                <Image src={myTixLogo} w={"150px"} h={"45px"} display={{ base: "none", sm: "flex", md: "flex", lg: "flex" }} />
+                <Image src={myTixLogo} w={"150px"} h={"45px"} />
               </a>
             </HStack>
             <HStack as="nav" spacing={4} display={{ base: "none", lg: "flex" }}>
