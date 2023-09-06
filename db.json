@@ -3,22 +3,17 @@
     {
       "code" : "MYTIXDDT",
       "discount": 0.1,
-      "images" : "https://images.tokopedia.net/img/cache/1208/NsjrJu/2023/8/31/71a46224-e23c-46c7-83e8-99379cf2c770.jpg.webp?ect=4g"
+      "images" : "https://i.imgur.com/pGKX33B.png"
     },
     {
-      "code" : "HOTSALE",
+      "code" : "MYTIXNOW",
+      "discount": 0.25,
+      "images" : "https://i.imgur.com/uVpUZAi.png" 
+    },
+    {
+      "code" : "MYTIXFRIENDS",
       "discount": 0.15,
-      "images" : "https://images.tokopedia.net/img/cache/1208/NsjrJu/2023/8/31/71a46224-e23c-46c7-83e8-99379cf2c770.jpg.webp?ect=4g"
-    },
-    {
-      "code" : "DEPOKTEAM",
-      "discount": 0.2,
-      "images" : "https://images.tokopedia.net/img/cache/1208/NsjrJu/2023/8/31/71a46224-e23c-46c7-83e8-99379cf2c770.jpg.webp?ect=4g"
-    },
-    {
-      "code" : "MYTIXSALE",
-      "discount": 0.1,
-      "images" : "https://images.tokopedia.net/img/cache/1208/NsjrJu/2023/8/31/71a46224-e23c-46c7-83e8-99379cf2c770.jpg.webp?ect=4g"
+      "images" : "https://i.imgur.com/CiGRfq6.png"
     }
   ], 
   
