@@ -38,6 +38,7 @@ import { RiSpeakLine } from "react-icons/ri";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import "../index.css";
 import { FaUserAlt, FaLock } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import { useState, useEffect } from "react";
 import api from "../api";
 import { List, ListItem } from "@chakra-ui/react";
@@ -59,6 +60,7 @@ YupPassword(yup);
 
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
+const CMdEmail = chakra(MdEmail);
 
 export default function Navigation(props) {
   // declare Regist
@@ -497,9 +499,10 @@ export default function Navigation(props) {
                             <Stack pt={3}>
                               <Button
                                 isLoading={isSubmitting}
+                                loadingText="Logging In"
+                                boxShadow={"md"}
                                 type="submit"
-                                colorScheme="red"
-                                variant="solid">
+                                colorScheme="red">
                                 Login
                               </Button>
                             </Stack>
@@ -535,146 +538,163 @@ export default function Navigation(props) {
           <ModalCloseButton />
           <ModalBody>
             <Flex
-              minH={"10vh"}
+              minH={"65vh"}
               align={"center"}
               justify={"center"}
-              bg={useColorModeValue("whiteAlpha.50", "whiteAlpha.800")}>
-              <Stack
-                spacing={3}
-                mx={"auto"}
-                maxW={"md"}
-                py={12}
-                px={6}>
+              backgroundColor="ghostwhite">
+              <Flex
+                flexDirection="column"
+                width="70vh"
+                height="50vh"
+                justifyContent="center"
+                alignItems="center">
                 <Stack
-                  align={"center"}
                   flexDir="column"
                   mb="2"
                   justifyContent="center"
                   alignItems="center">
                   <Avatar bg="blue.700" />
                   <Heading color="blue.600">Sign Up</Heading>
+                  <Box minW={{ base: "90%", md: "468px" }}>
+                    <Stack
+                      spacing={4}
+                      p="2rem"
+                      backgroundColor="transparent">
+                      <Formik
+                        initialValues={{
+                          username: "",
+                          email: "",
+                          password: "",
+                          confirmPassword: "",
+                        }}
+                        validationSchema={registerSchema}
+                        onSubmit={handleSubmit}>
+                        {({ isSubmitting }) => (
+                          <Form>
+                            <Field name="username">
+                              {({ field, form }) => (
+                                <FormControl
+                                  isInvalid={form.errors.username && form.touched.username}
+                                  isDisabled={isSubmitting}>
+                                  <FormLabel>Username</FormLabel>
+                                  <InputGroup>
+                                    <InputLeftElement
+                                      pointerEvents="none"
+                                      children={<CFaUserAlt color="gray.300" />}
+                                    />
+                                    <Input
+                                      type="text"
+                                      {...field}
+                                      placeholder="Username"
+                                    />
+                                  </InputGroup>
+                                  <FormErrorMessage>{form.errors.username}</FormErrorMessage>
+                                </FormControl>
+                              )}
+                            </Field>
+                            <Field name="email">
+                              {({ field, form }) => (
+                                <FormControl
+                                  isInvalid={form.errors.email && form.touched.email}
+                                  isDisabled={isSubmitting}>
+                                  <FormLabel>Email</FormLabel>
+                                  <InputGroup>
+                                    <InputLeftElement
+                                      pointerEvents="none"
+                                      children={<CMdEmail color="gray.300" />}
+                                    />
+                                    <Input
+                                      {...field}
+                                      placeholder="Email"
+                                    />
+                                  </InputGroup>
+                                  <FormErrorMessage>{form.errors.email}</FormErrorMessage>
+                                </FormControl>
+                              )}
+                            </Field>
+                            <Field name="password">
+                              {({ field, form }) => (
+                                <FormControl
+                                  isInvalid={form.errors.password && form.touched.password}
+                                  isDisabled={isSubmitting}>
+                                  <FormLabel>Password</FormLabel>
+                                  <InputGroup>
+                                    <InputLeftElement
+                                      pointerEvents="none"
+                                      children={<CFaLock color="gray.300" />}
+                                    />
+                                    <Input
+                                      {...field}
+                                      placeholder="Password"
+                                      type={showPassword ? "text" : "password"}
+                                    />
+                                    <InputRightElement h="full">
+                                      <Button
+                                        variant="ghost"
+                                        onClick={onTogglePassword}>
+                                        {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                                      </Button>
+                                    </InputRightElement>
+                                  </InputGroup>
+                                  <FormErrorMessage>{form.errors.password}</FormErrorMessage>
+                                </FormControl>
+                              )}
+                            </Field>
+                            <Field name="confirmPassword">
+                              {({ field, form }) => (
+                                <FormControl
+                                  isInvalid={form.errors.confirmPassword && form.touched.confirmPassword}
+                                  isDisabled={isSubmitting}>
+                                  <FormLabel>Confirm Password</FormLabel>
+                                  <InputGroup>
+                                    <InputLeftElement
+                                      pointerEvents="none"
+                                      children={<CFaLock color="gray.300" />}
+                                    />
+                                    <Input
+                                      {...field}
+                                      placeholder="Confirm password"
+                                      type={showPassword ? "text" : "password"}
+                                    />
+                                    <InputRightElement h="full">
+                                      <Button
+                                        variant="ghost"
+                                        onClick={onTogglePassword}>
+                                        {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                                      </Button>
+                                    </InputRightElement>
+                                  </InputGroup>
+                                  <FormErrorMessage>{form.errors.confirmPassword}</FormErrorMessage>
+                                </FormControl>
+                              )}
+                            </Field>
+                            <Stack pt={3}>
+                              <Button
+                                isLoading={isSubmitting}
+                                loadingText="Registering"
+                                boxShadow={"md"}
+                                type="submit"
+                                colorScheme="blue">
+                                Register
+                              </Button>
+                            </Stack>
+                          </Form>
+                        )}
+                      </Formik>
+                    </Stack>
+                    <Center>
+                      <Box>
+                        Already a user?{" "}
+                        <Link
+                          color={"blue.400"}
+                          onClick={() => openModal("login")}>
+                          Login
+                        </Link>
+                      </Box>
+                    </Center>
+                  </Box>
                 </Stack>
-                <Box
-                  rounded={"lg"}
-                  bg="ghostwhite"
-                  p={8}>
-                  <Stack spacing={4}>
-                    <Formik
-                      initialValues={{
-                        username: "",
-                        email: "",
-                        password: "",
-                        confirmPassword: "",
-                      }}
-                      validationSchema={registerSchema}
-                      onSubmit={handleSubmit}>
-                      {({ isSubmitting }) => (
-                        <Form>
-                          <Field name="username">
-                            {({ field, form }) => (
-                              <FormControl
-                                isInvalid={form.errors.username && form.touched.username}
-                                isDisabled={isSubmitting}>
-                                <FormLabel>Username</FormLabel>
-                                <Input
-                                  type="text"
-                                  {...field}
-                                  placeholder="Username"
-                                />
-                                <FormErrorMessage>{form.errors.username}</FormErrorMessage>
-                              </FormControl>
-                            )}
-                          </Field>
-                          <Field name="email">
-                            {({ field, form }) => (
-                              <FormControl
-                                isInvalid={form.errors.email && form.touched.email}
-                                isDisabled={isSubmitting}>
-                                <FormLabel>Email</FormLabel>
-                                <Input
-                                  {...field}
-                                  placeholder="Email"
-                                />
-                                <FormErrorMessage>{form.errors.email}</FormErrorMessage>
-                              </FormControl>
-                            )}
-                          </Field>
-                          <Field name="password">
-                            {({ field, form }) => (
-                              <FormControl
-                                isInvalid={form.errors.password && form.touched.password}
-                                isDisabled={isSubmitting}>
-                                <FormLabel>Password</FormLabel>
-                                <InputGroup>
-                                  <Input
-                                    {...field}
-                                    placeholder="Password"
-                                    type={showPassword ? "text" : "password"}
-                                  />
-                                  <InputRightElement h="full">
-                                    <Button
-                                      variant="ghost"
-                                      onClick={onTogglePassword}>
-                                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                                    </Button>
-                                  </InputRightElement>
-                                </InputGroup>
-                                <FormErrorMessage>{form.errors.password}</FormErrorMessage>
-                              </FormControl>
-                            )}
-                          </Field>
-                          <Field name="confirmPassword">
-                            {({ field, form }) => (
-                              <FormControl
-                                isInvalid={form.errors.confirmPassword && form.touched.confirmPassword}
-                                isDisabled={isSubmitting}>
-                                <FormLabel>Confirm Password</FormLabel>
-                                <InputGroup>
-                                  <Input
-                                    {...field}
-                                    placeholder="Confirm password"
-                                    type={showPassword ? "text" : "password"}
-                                  />
-                                  <InputRightElement h="full">
-                                    <Button
-                                      variant="ghost"
-                                      onClick={onTogglePassword}>
-                                      {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                                    </Button>
-                                  </InputRightElement>
-                                </InputGroup>
-                                <FormErrorMessage>{form.errors.confirmPassword}</FormErrorMessage>
-                              </FormControl>
-                            )}
-                          </Field>
-                          <Stack pt={3}>
-                            <Button
-                              isLoading={isSubmitting}
-                              loadingText="Submitting"
-                              bg="blue.400"
-                              color="white"
-                              type="submit"
-                              boxShadow={"md"}
-                              _hover={{ bg: "blue.500" }}>
-                              Register
-                            </Button>
-                          </Stack>
-                        </Form>
-                      )}
-                    </Formik>
-                  </Stack>
-                  <Center>
-                    <Box>
-                      Already a user?{" "}
-                      <Link
-                        color={"blue.400"}
-                        onClick={() => openModal("login")}>
-                        Login
-                      </Link>
-                    </Box>
-                  </Center>
-                </Box>
-              </Stack>
+              </Flex>
             </Flex>
           </ModalBody>
         </ModalContent>
