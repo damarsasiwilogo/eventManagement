@@ -250,8 +250,8 @@ export default function Navigation(props) {
               className="name"
               onClick={() => {
                 navigate(`/events/${event.id}`);
-              }}
-            >
+              }}>
+
               {event.name}
             </MenuItem>
           ))}
