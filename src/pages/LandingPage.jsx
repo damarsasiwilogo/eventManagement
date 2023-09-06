@@ -1,7 +1,5 @@
-import { Box, Button, Center, Flex, Heading, Image, Img, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useToast } from "@chakra-ui/react";
+import { Box, Button, Center, Heading, Img, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useToast } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-import Navigation from "../Components/Navigation";
-import Form from "../Components/CreateForm";
 import { useState } from "react";
 import "../index.css";
 import api from "../api.js";
@@ -12,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import HeroSlider, { Slide } from "hero-slider";
 import Footer from "../Components/Footer";
 import { useSelector } from "react-redux";
+import Navibar from "../Components/Navibar";
 
 export default function Landingpage({ openModal }) {
   const [events, setEvents] = useState([]);
@@ -101,8 +100,7 @@ export default function Landingpage({ openModal }) {
 
   return (
     <Box h={"200vh"}>
-      <Navigation>
-        {/* <Form/> */}
+      <Navibar>
         {/* Image Slider */}
         <Box marginTop={"10px"} display={"flex"} justifyContent={"center"}>
           <HeroSlider
@@ -263,7 +261,7 @@ export default function Landingpage({ openModal }) {
 
           <Footer />
         </Box>
-      </Navigation>
+      </Navibar>
     </Box>
   );
 }
