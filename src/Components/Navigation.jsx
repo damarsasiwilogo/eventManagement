@@ -249,8 +249,9 @@ export default function Navigation(props) {
               key={event.id}
               className="name"
               onClick={() => {
-                navigate(`/events/${event.id}`);
-              }}>
+                navigate(`/Transaction/${event.id}`);
+              }}
+              _hover={{bg: "#EDEDED"}}>
 
               {event.name}
             </MenuItem>
