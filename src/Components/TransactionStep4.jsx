@@ -65,7 +65,7 @@ function TransactionStep4() {
 
   return (
     <>
-      <Box display={"flex"} flexDirection="column" bgColor="#EDEDED" ml={40} mr={40} mt={2} borderTopRadius={10}>
+      <Box display={"flex"} flexDirection="column" w="30vw" ml={40} mr={40} mt={2} borderTopRadius={10}>
         {events.map((event) => (
           <Flex justifyContent={"flex-end"} mx={10} mt={4}>
             <Text fontWeight={"bold"}>{event.name}</Text>

@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const transactionSlices = createSlice({
-  name: 'transaction',
+  name: "transaction",
   initialState: {
     ticketQuantities: {
       Gold: 0,
@@ -14,41 +14,28 @@ const transactionSlices = createSlice({
     discountedTotalPrices: 0,
     formData: {
       name: "",
-      email: "",           
+      email: "",
       telepon: "",
-      identitas: "",
       date: "",
       month: "",
       year: "",
     },
-    
-    paymentMethodByNumber: {
-      paymentBy : "",
-      nohp : "",
-    },
-
-    paymentMethodByVirtualAcc: {
-      BCA : "60022200321",
-      Mandiri: "70021239922",
-      BNI : "23003044502",
-    },
-
+    paymentMethod: "",
+    eventName: "",
     creditCardData: {
       cardHolder: "",
       cardNumber: "",
       cardMonth: "",
       cardYear: "",
-      cvvNumber : "",
+      cvvNumber: "",
     },
   },
   reducers: {
     setTicketQuantities: (state, action) => {
       state.ticketQuantities = action.payload;
     },
-
     setTotalPrices: (state, action) => {
       state.totalPrices = action.payload;
-
     },
     setDiscountedTotalPricesByReff: (state, action) => {
       state.discountedTotalPricesByReff = action.payload;
@@ -62,15 +49,14 @@ const transactionSlices = createSlice({
     setFormData: (state, action) => {
       state.formData = action.payload;
     },
-
-    setPaymentMethodByNumber: (state, action) => {
-      state.paymentMethodByNumber = action.payload;
-    },
-    setPaymentMethodByVirtualAcc: (state, action) => {
-      state.paymentMethodByVirtualAcc = action.payload;
-    },
     setCreditCardData: (state, action) => {
       state.creditCardData = action.payload;
+    },
+    setPaymentMethod: (state, action) => {
+      state.paymentMethod = action.payload;
+    },
+    setEventName: (state, action) => {
+      state.eventName = action.payload;
     },
     resetTransaction: (state) => {
       state.ticketQuantities = {
@@ -80,11 +66,12 @@ const transactionSlices = createSlice({
       };
       state.totalPrices = 0;
       state.discountedTotalPrices = 0;
+      state.discountedTotalPricesByCoupon = 0;
+      state.discountedTotalPricesByReff = 0;
       state.formData = {
         name: "",
         email: "",
         telepon: "",
-        identitas: "",
         date: "",
         month: "",
         year: "",
@@ -93,16 +80,6 @@ const transactionSlices = createSlice({
   },
 });
 
-
-export const { 
-setTicketQuantities, 
-setTotalPrices, 
-setDiscountedTotalPrices,
-setDiscountedTotalPricesByReff,
-setDiscountedTotalPricesByCoupon,
-setFormData, 
-resetTransaction, 
-setPaymentMethodByNumber,
-setPaymentMethodByVirtualAcc,
-setCreditCardData } = transactionSlices.actions;
+export const { setTicketQuantities, setTotalPrices, setDiscountedTotalPrices, setDiscountedTotalPricesByReff, setDiscountedTotalPricesByCoupon, setFormData, resetTransaction, setPaymentMethod, setCreditCardData, setEventName } =
+  transactionSlices.actions;
 export default transactionSlices.reducer;
