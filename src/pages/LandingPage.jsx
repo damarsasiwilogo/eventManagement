@@ -1,17 +1,43 @@
-import { Box, Button, Center, Flex, Heading, Image, Img, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Center,
+  Divider,
+  Heading,
+  Image,
+  Img,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  SimpleGrid,
+  Stack,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import React, { useEffect } from "react";
-import Navigation from "../Components/Navigation";
-import Form from "../Components/CreateForm";
 import { useState } from "react";
 import "../index.css";
 import api from "../api.js";
 import music from "../images/music.png";
 import sports from "../images/sports.jpeg";
-import webinar from "../images/webinar.jpg";
+import webinar from "../images/webinar-2.jpeg";
 import { useNavigate } from "react-router-dom";
 import HeroSlider, { Slide } from "hero-slider";
 import Footer from "../Components/Footer";
 import { useSelector } from "react-redux";
+import Navibar from "../Components/Navibar";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
 export default function Landingpage({ openModal }) {
   const [events, setEvents] = useState([]);
@@ -67,8 +93,6 @@ export default function Landingpage({ openModal }) {
     }
   }, [filterLocation, events]); // akan melakukan perubahan jika state filterloc & events berubah
 
-  
-
   // Fungsi akan memperbarui state detail event dengan data dari event yang diklik.
   function handleclick(event) {
     setselectedEvent(event);
@@ -99,8 +123,7 @@ export default function Landingpage({ openModal }) {
 
   return (
     <Box h={"200vh"}>
-      <Navigation>
-        {/* <Form/> */}
+      <Navibar>
         {/* Image Slider */}
         <Box marginTop={"10px"} display={"flex"} justifyContent={"center"}>
           <HeroSlider
@@ -111,8 +134,7 @@ export default function Landingpage({ openModal }) {
               initialSlide: 1,
               slidingDuration: 200,
               slidingDelay: 100,
-            }}
-          >
+            }}>
             {events.map((event) => {
               if (filterType === null || event.type.toLowerCase() === filterType) {
                 return (
@@ -130,25 +152,59 @@ export default function Landingpage({ openModal }) {
           {/* End Of Image Slider */}
         </Box>
 
-        <Box display={"flex"} className="box-type">
-          <Center w={"100%"} h={"45vh"}>
-            <Box bg={"navy"} w={"400px"} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={music} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow " onClick={handleclickBox}>
-              <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading">
-                MUSIC
-              </Heading>
-            </Box>
-            <Box bg={"navy"} w={"400px"} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={webinar} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow" onClick={handleclickBox}>
-              <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading">
-                WEBINAR
-              </Heading>
-            </Box>
+        <Box display={"flex"} className="box-type" h={"45vh"} flexDirection={{ base: "column", md: "column", lg: "row" }} justifyContent={"center"} alignItems={"center"} padding="10px">
+          <Box
+            bg={"navy"}
+            width={{ base: "300px", sm: "450px", md: "700px" }}
+            h={"80%"}
+            margin={"10px"}
+            borderRadius={"10px"}
+            bgImage={music}
+            bgSize={"contain"}
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            className="box-shadow "
+            onClick={handleclickBox}>
+            <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"100%"} display={"flex"} justifyContent={"center"} className="heading">
+              MUSIC
+            </Heading>
+          </Box>
+          <Box
+            bg={"navy"}
+            width={{ base: "300px", sm: "450px", md: "700px" }}
+            h={"80%"}
+            margin={"10px"}
+            borderRadius={"10px"}
+            bgImage={webinar}
+            bgSize={"contain"}
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            className="box-shadow"
+            onClick={handleclickBox}>
+            <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"100%"} display={"flex"} justifyContent={"center"} className="heading">
+              WEBINAR
+            </Heading>
+          </Box>
 
-            <Box bg={"navy"} w={"400px"} h={"80%"} margin={"10px"} borderRadius={"10px"} bgImage={sports} bgSize={"cover"} display={"flex"} justifyContent={"center"} alignItems={"center"} className="box-shadow" onClick={handleclickBox}>
-              <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"400px"} display={"flex"} justifyContent={"center"} className="heading">
-                SPORTS
-              </Heading>
-            </Box>
-          </Center>
+          <Box
+            bg={"navy"}
+            width={{ base: "300px", sm: "450px", md: "700px" }}
+            h={"80%"}
+            margin={"10px"}
+            borderRadius={"10px"}
+            bgImage={sports}
+            bgSize={"contain"}
+            display={"flex"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            className="box-shadow"
+            onClick={handleclickBox}>
+            <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"100%"} display={"flex"} justifyContent={"center"} className="heading">
+              SPORTS
+            </Heading>
+          </Box>
         </Box>
         <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
           <HeroSlider
@@ -160,10 +216,9 @@ export default function Landingpage({ openModal }) {
               slidingDuration: 200,
               slidingDelay: 100,
             }}
-            style={{ borderRadius: 10 }}
-          >
+            style={{ borderRadius: 10 }}>
             {coupons.map((coupon) => {
-               return (
+              return (
                 <>
                   <Slide
                     background={{
@@ -171,38 +226,55 @@ export default function Landingpage({ openModal }) {
                     }}
                   />
                 </>
-                )
-          })}
+              );
+            })}
           </HeroSlider>
         </Box>
 
         <Box id="discover">
-          <Box>
-            {/* filter list */}
-            <Center>
-              <ul style={{ listStyleType: "none", padding: 0, display: "flex" }}>
+          <Box w={"100%"}>
+            {/* Filter List for small screen */}
+            <Box display={{ base: "flex", md: "none" }} m={'15px'}>
+              <Menu>
+                <MenuButton as={Button} variant="link" cursor="pointer" minW={0}>
+                  <Text>
+                    <ChevronDownIcon />
+                    Location
+                  </Text>
+                </MenuButton>
+                <MenuList>
+                  {locations.map((location) => (
+                    <MenuItem onClick={() => handleFilter(location === "All" ? null : location)}>{location}</MenuItem>
+                  ))}
+                </MenuList>
+              </Menu>
+            </Box>
+
+            {/* filter list for desktop */}
+            <Box display={{ base: "none", md: "flex" }} justifyContent={'center'}>
+              <ul style={{ listStyleType: "none", padding: 0, display: "flex", justifyContent: "center" }}>
                 {locations.map((location) => (
-                  <li
-                    key={location}
-                    style={{
-                      margin: "5px",
-                      padding: "5px 10px",
-                      backgroundColor: filterLocation === location ? "#331F69" : "transparent",
-                      color: filterLocation === location ? "white" : "black",
-                      cursor: "pointer",
-                      borderRadius: "5px",
-                    }}
-                    onClick={() => handleFilter(location === "All" ? null : location)}
-                  >
-                    {location}
+                  <li key={location} onClick={() => handleFilter(location === "All" ? null : location)}>
+                    <Text
+                      fontSize={{ base: "10px", sm: "12px", md: "15px", lg: "20px" }}
+                      margin={{ base: "10px 0px 0px 0px", sm: "10px 5px", md: "15px", lg: "20px" }}
+                      padding={"0 5px"}
+                      style={{
+                        backgroundColor: filterLocation === location ? "#331F69" : "transparent",
+                        color: filterLocation === location ? "white" : "black",
+                        cursor: "pointer",
+                        borderRadius: "5px",
+                      }}>
+                      {location}
+                    </Text>
                   </li>
                 ))}
               </ul>
-            </Center>
+            </Box>
           </Box>
 
           {/* List event yang ada */}
-          <Box display={"flex"} justifyContent={"center"} mt={"5px"}>
+          <Box display={{ base: "none", sm: "none", md: "flex" }} justifyContent={"center"} mt={"5px"}>
             <Box id="left-box" h={"83vh"} overflowY={"scroll"} w={"30vw"} overflowX={"hidden"}>
               <Center display={"flex"} flexDirection={"column"}>
                 {filteredEvents.map((event) => (
@@ -220,8 +292,7 @@ export default function Landingpage({ openModal }) {
                       bgImage={event.images}
                       bgSize={"cover"}
                       bgRepeat={"no-repeat"}
-                      bgPos={"center"}
-                    ></Box>
+                      bgPos={"center"}></Box>
                   </Box>
                 ))}
               </Center>
@@ -235,7 +306,7 @@ export default function Landingpage({ openModal }) {
                   <Heading margin={"10px 0"}>{selectedEvent.name}</Heading>
                   <Text>Date: {selectedEvent.date}</Text>
                   <Text>Time: {selectedEvent.time}</Text>
-                  <Text fontSize={"sm"} w={"600px"}>
+                  <Text fontSize={"sm"} w={{md: "400px", lg:"500px"}}>
                     {selectedEvent.description}
                   </Text>
                   <Text>{selectedEvent.ticketPrice}</Text>
@@ -246,6 +317,33 @@ export default function Landingpage({ openModal }) {
               )}
             </Box>
           </Box>
+
+          {/*Display For Small Screen */}
+          <Box display={{ base: "flex", sm: "flex", md: "none" }} justifyContent={"center"} mt={"5px"} flexDirection={"column"}>
+            <SimpleGrid spacing={4} columns={{ base: 1, sm: 2 }} padding={"0 15px"}>
+              {filteredEvents.map((event) => (
+                <Card maxW="sm">
+                  <CardBody>
+                    <Image src={event.images} alt={event.name} borderRadius="lg" />
+                    <Stack mt="6" spacing="3">
+                      <Heading size="md">{event.name}</Heading>
+                      <Text>{event.date}</Text>
+                      <Text>{event.time}</Text>
+                      <Text>{event.description}</Text>
+                      <Text>{event.ticketPrice}</Text>
+                    </Stack>
+                  </CardBody>
+                  <Divider />
+                  <CardFooter>
+                    <Button variant="solid" colorScheme="blue" onClick={handleClickBuyTicket}>
+                      BUY TIKET
+                    </Button>
+                  </CardFooter>
+                </Card>
+              ))}
+            </SimpleGrid>
+          </Box>
+
           <Modal isOpen={isModalOpen} onClose={closeModal} isCentered blockScrollOnMount={true} closeOnOverlayClick={false}>
             <ModalOverlay />
             <ModalContent>
@@ -261,7 +359,7 @@ export default function Landingpage({ openModal }) {
 
           <Footer />
         </Box>
-      </Navigation>
+      </Navibar>
     </Box>
   );
 }

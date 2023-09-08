@@ -44,6 +44,20 @@
       "password": "Anggara123",
       "reffcode": "mytixanggaratriputra",
       "id": 1
+    },
+    {
+      "username": "rizkys",
+      "email": "fauzasmg@gmail.com",
+      "password": "RR11zky",
+      "reffcode": "mytixrizkys",
+      "id": 2
+    },
+    {
+      "username": "damarsasiwilogo",
+      "email": "damarsasiwilogo@gmail.com",
+      "password": "Breadbradpit123",
+      "reffcode": "mytixdamarsasiwilogo",
+      "id": 3
     }
   ],
   "events": [
