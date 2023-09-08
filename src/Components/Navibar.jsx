@@ -34,6 +34,8 @@ import {
   Center,
   Link,
   chakra,
+  ModalHeader,
+  ModalFooter,
 } from "@chakra-ui/react";
 import api from "../api.js";
 import "../index.css";
@@ -63,6 +65,7 @@ export default function Navibar(props) {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { isOpen: showPassword, onToggle: onTogglePassword } = useDisclosure();
@@ -104,8 +107,23 @@ export default function Navibar(props) {
   };
 
   const handleSearchInputBlur = () => {
-    setIsFocused(false);
+    setTimeout(() => {
+      setIsFocused(false);
+    }, 500);
   };
+
+  const handleClickInput = (id) => {
+    if (isLoggedIn) {
+      navigate(`/Transaction/${id}`);
+    } else {
+      setIsModalOpen(true);
+    }
+  };
+
+  const closeModals = () => {
+    setIsModalOpen(false);
+  };
+
   // Suggestion component
   const Suggestions = ({ suggestions }) => {
     if (suggestions.length === 0) {
@@ -118,8 +136,9 @@ export default function Navibar(props) {
             <MenuItem
               key={event.id}
               className="name"
+              _hover={{ bg: "#EDEDED" }}
               onClick={() => {
-                navigate(`/events/${event.id}`);
+                handleClickInput(event.id);
               }}>
               {event.name}
             </MenuItem>
@@ -597,6 +616,20 @@ export default function Navibar(props) {
               </Flex>
             </Flex>
           </ModalBody>
+        </ModalContent>
+      </Modal>
+
+      {/* Pop up login alert */}
+      <Modal isOpen={isModalOpen} onClose={closeModal} isCentered blockScrollOnMount={true} closeOnOverlayClick={false}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Warning</ModalHeader>
+          <ModalBody>Kamu belum login!</ModalBody>
+          <ModalFooter>
+            <Button colorScheme="facebook" color={"white"} _hover={{ bg: "#24105c" }} onClick={closeModals}>
+              OK
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
       <main>{props.children}</main>
