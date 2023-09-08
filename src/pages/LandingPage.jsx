@@ -48,9 +48,7 @@ export default function Landingpage({ openModal }) {
   const filteredEvents = filterLocation ? events.filter((event) => event.location === filterLocation) : events;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const locations = ["All", "Online", "Jakarta", "Bekasi", "Surabaya", "Lombok", "Bali", "Lampung", "Malaysia"];
-
   const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
-
   const toast = useToast();
 
   useEffect(() => {
