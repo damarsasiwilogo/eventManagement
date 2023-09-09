@@ -15,7 +15,7 @@
       "prices": 1960000,
       "diskon": 840000,
       "status": "Waiting for payment",
-      "timestamp": 1694222103138,
+      "timestamp": 1693740527000,
       "id": 1
     },
     {
@@ -23,56 +23,19 @@
       "name": "Anggara Tri Putra",
       "email": "anggaratriputra@gmail.com",
       "phonenumber": "081381873043",
-      "paymentmethod": "OVO",
-      "eventname": "PERTAMINA GRAND PRIX OF INDONESIA 2023",
-      "ticket": {
-        "Gold": 0,
-        "Platinum": 1,
-        "Diamond": 0
-      },
-      "prices": 400000,
-      "diskon": 100000,
-      "status": "Waiting for payment",
-      "timestamp": 1694222525424,
-      "id": 2
-    },
-    {
-      "username": "anggaratriputra",
-      "name": "Anggara Tri Putra",
-      "email": "anggaratriputra@gmail.com",
-      "phonenumber": "081381873043",
-      "paymentmethod": "OVO",
-      "eventname": "PERTAMINA GRAND PRIX OF INDONESIA 2023",
-      "ticket": {
-        "Gold": 0,
-        "Platinum": 0,
-        "Diamond": 1
-      },
-      "prices": 552500,
-      "diskon": 97500,
-      "status": "Waiting for payment",
-      "timestamp": 1694222689546,
-      "id": 3
-    },
-    {
-      "username": "anggaratriputra",
-      "name": "Anggara Tri Putra",
-      "email": "anggaratriputra@gmail.com",
-      "phonenumber": "081381873043",
-      "paymentmethod": "Virtual Account BCA",
-      "eventname": "2023 AHN HYO SEOP ASIA TOUR THE PRESENT SHOW IN JAKARTA HERE AND NOW",
+      "paymentmethod": "Virtual Account BCA 8800081381873043",
+      "eventname": "2023 ASIA FAN MEETING IN JAKARTA: KIMBUM ",
       "ticket": {
         "Gold": 1,
         "Platinum": 0,
         "Diamond": 0
       },
-      "prices": 1225000,
+      "prices": 75000,
       "diskon": 0,
       "status": "Waiting for payment",
-      "timestamp": 1694223443601,
-      "id": 4
+      "timestamp": 1694260961655,
+      "id": 6
     }
-   
   ],
   "couponcode": [
     {

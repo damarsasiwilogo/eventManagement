@@ -19,9 +19,6 @@ const TransactionStep3 = ({onPrevious}) => {
   const selectedTickets = Object.keys(ticketQuantities).filter((ticketType) => ticketQuantities[ticketType] > 0);
   const toast = useToast();
   const potonganHarga = discountCoupon + discountReff;
-  const virtualAccBCA = "8800" + telepon;
-  const virtualAccMandiri = "9002" + telepon;
-  const virtualAccBNI = "1001" + telepon;
   const profile = useSelector((state) => state.users.profile);
   const eventName = useSelector((state) => state.transaction.eventName);
   const navigate = useNavigate();
@@ -176,26 +173,6 @@ const TransactionStep3 = ({onPrevious}) => {
                   </b>
                   {""} dari diskon.
                 </Text>
-              </Flex>
-              <Flex direction={"column"}>
-                {paymentMethod === "Virtual Account BCA" && (
-                  <Text color={"white"} fontWeight={"bold"}>
-                    {" "}
-                    Virtual Account : {virtualAccBCA}
-                  </Text>
-                )}
-                {paymentMethod === "Virtual Account Livin' By Mandiri" && (
-                  <Text color={"white"} fontWeight={"bold"}>
-                    {" "}
-                    Virtual Account{virtualAccMandiri}
-                  </Text>
-                )}
-                {paymentMethod === "Virtual Account BNI" && (
-                  <Text color={"white"} fontWeight={"bold"}>
-                    {" "}
-                    VirtualAccount{virtualAccBNI}
-                  </Text>
-                )}
               </Flex>
             </Flex>
             <Flex ml={{ lg: "200px" }} justifyContent={{ base: "center" }} mb={{ base: "30px" }}>
