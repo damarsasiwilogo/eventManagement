@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Transaction from "./pages/Transaction";
+import MyTickets from "./pages/MyTickets"
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setInitialData } from "./slices/userSlices";
@@ -35,6 +36,9 @@ function App() {
 				<Route
 					path="/Transaction/:id"
 					element={<Transaction />}></Route>
+				<Route
+					path="/MyTickets/"
+					element={<MyTickets />}></Route>
 			</Routes>
 		</>
 	);

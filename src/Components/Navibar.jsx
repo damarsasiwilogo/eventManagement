@@ -333,6 +333,12 @@ export default function Navibar(props) {
                     </Flex>
                     <CreateForm />
                     <MenuItem
+                          onClick={() => {
+                            navigate("/MyTickets");
+                          }}>
+                          MyTickets
+                        </MenuItem>
+                    <MenuItem
                       onClick={() => {
                         dispatch(logout());
                       }}>
@@ -367,6 +373,12 @@ export default function Navibar(props) {
                           <Text> {profile.reffcode}</Text>
                         </Flex>
                         <CreateForm />
+                        <MenuItem
+                          onClick={() => {
+                            navigate("/MyTickets");
+                          }}>
+                          MyTickets
+                        </MenuItem>
                         <MenuItem
                           onClick={() => {
                             dispatch(logout());
