@@ -13,7 +13,6 @@ export default function CreateForm() {
   const [selectedTime, setSelectedTime] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [eventsData, setEventsData] = useState([]);
-  const [activeModal, setActiveModal] = useState(null)
 
   const toast = useToast();
 
@@ -60,13 +59,6 @@ export default function CreateForm() {
     images: yup.string().required(),
   });
 
-  const openModal = (modal) => {
-    setActiveModal(modal)
-  }
-
-  const closeModal = () => {
-    setActiveModal(null)
-  }
 
   return (
     <>
@@ -79,7 +71,7 @@ export default function CreateForm() {
           <ModalBody pb={6}>
             <Formik
               initialValues={{ name: "", type: selectedType, date: selectedDate, time: selectedTime, location: selectedLocation, description: "", images: "", ticket_types: { Diamond: 0, Platinum: 0, Gold: 0 } }}
-              onSubmit={(values, actions) => {
+              onSubmit={(values) => {
                 // Lakukan pemrosesan formulir seperti menyimpan data ke server
                 handleSubmit(values);
       
