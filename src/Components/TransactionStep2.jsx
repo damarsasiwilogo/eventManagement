@@ -57,7 +57,7 @@ function TransactionStep2({ onNext, onPrevious }) {
   const handleFormDataChange = (fieldName, value) => {
     const updatedFormData = { ...formData, [fieldName]: value };
     dispatch(setFormData(updatedFormData));
-     // Dispatch the Redux action to update form data
+    // Dispatch the Redux action to update form data
   };
 
   return (
@@ -71,327 +71,329 @@ function TransactionStep2({ onNext, onPrevious }) {
         }}
       >
         <>
-          <Box display={"flex"} flexDirection="column" ml={40} mr={40} mt={2} borderRadius={10}>
-            {/* Event details display here */}
+          <Flex direction={{base: "column", lg : "row"}} >
+            <Box display={"flex"} flexDirection={{ base: "column" }} ml={{ lg: "40" }} mr={{ lg: "40" }} mt={2} borderRadius={10}>
+              {/* Event details display here */}
 
-            {events.map((event) => {
-              dispatch(setEventName(event.name))// Automatically dispatch event.name
-              return (
-                <Flex justifyContent={"flex-end"} mx={10} mt={4} key={event.id}>
-                  <Text fontWeight={"bold"}>{event.name}</Text>
-                </Flex>
-              );
-            })}
-            <Flex mt={4} ml={10} flexDirection={"column"} mb={30}>
-              <Form>
-                <Field name="name">
-                  {({ field, form }) => (
-                    <FormControl isInvalid={form.errors.name && form.touched.name}>
-                      <FormLabel htmlFor="name">
-                        Name{" "}
-                        {formData.name ? null : (
-                          <Text as="span" color="red">
-                            *
-                          </Text>
-                        )}
-                      </FormLabel>
-                      <Input
-                        {...field}
-                        id="name"
-                        placeholder="Enter your name"
-                        w={400}
-                        value={formData.name}
-                        onChange={(e) => {
-                          handleFormDataChange("name", e.target.value); // Update form data in Redux store
-                          // validateTransactionForm({ ...formData, name: e.target.value }); // Validate the entire form
-                        }} // Update form data in Redux store
-                      />
-                      <FormErrorMessage>{form.errors.name}</FormErrorMessage>
-                    </FormControl>
-                  )}
-                </Field>
-                <Field name="email">
-                  {({ field, form }) => (
-                    <FormControl mt={2} isInvalid={form.errors.email && form.touched.email}>
-                      <FormLabel htmlFor="email">
-                        Email{" "}
-                        {formData.email ? null : (
-                          <Text as="span" color="red">
-                            *
-                          </Text>
-                        )}
-                      </FormLabel>
-                      <Input
-                        {...field}
-                        id="email"
-                        placeholder="Enter your email"
-                        value={formData.email}
-                        w={400}
-                        onChange={(e) => {
-                          handleFormDataChange("email", e.target.value); // Update form data in Redux store
-                          // validateTransactionForm({ ...formData, email: e.target.value }); // Validate the entire form
-                        }} // Update form data in Redux store
-                      />
-                      <Text fontSize={"xs"}> E-ticket akan dikirimkan melalui email</Text>
-                      <FormErrorMessage>{form.errors.email}</FormErrorMessage>
-                    </FormControl>
-                  )}
-                </Field>
-                <Field name="telepon">
-                  {({ field, form }) => (
-                    <FormControl mt={2} isInvalid={form.errors.telepon && form.touched.telepon}>
-                      <FormLabel htmlFor="telepon">
-                        Telepon{" "}
-                        {formData.telepon ? null : (
-                          <Text as="span" color="red">
-                            *
-                          </Text>
-                        )}
-                      </FormLabel>
-                      <Input
-                        {...field}
-                        id="telepon"
-                        placeholder="Enter your number"
-                        w={200}
-                        type="tel"
-                        value={formData.telepon}
-                        onChange={(e) => {
-                          const numericValue = e.target.value.replace(/\D/g, "");
-                          handleFormDataChange("telepon", numericValue); // Update form data in Redux store
-                          // validateTransactionForm({ ...formData, telepon: numericValue }); // Validate the entire form
-                        }} // Update form data in Redux store
-                      />
-                      <FormErrorMessage>{form.errors.telepon}</FormErrorMessage>
-                    </FormControl>
-                  )}
-                </Field>
-                <Flex w={400}>
-                  <FormControl mt={2}>
-                    <FormLabel>
-                      Tanggal Lahir{" "}
-                      {formData.date && formData.month && formData.year ? null : (
-                        <Text as="span" color="red">
-                          *
-                        </Text>
-                      )}
-                    </FormLabel>
-                    <Flex gap={2}>
-                      <Field name="date">
-                        {({ field, form }) => (
-                          <FormControl isInvalid={form.errors.date && form.touched.date}>
-                            <Select
-                              {...field}
-                              placeholder="Date"
-                              value={formData.date}
-                              onChange={(e) => {
-                                handleFormDataChange("date", e.target.value); // Update form data in Redux store
-                                // validateTransactionForm({ ...formData, date: e.target.value }); // Validate the entire form
-                              }}
-                            >
-                              {Array.from({ length: 31 }, (_, i) => (
-                                <option key={i + 1} value={(i + 1).toString().padStart(2, "0")}>
-                                  {(i + 1).toString().padStart(2, "0")}
-                                </option>
-                              ))}
-                            </Select>
-                            <FormErrorMessage>{form.errors.date}</FormErrorMessage>
-                          </FormControl>
-                        )}
-                      </Field>
-                      <Field name="month">
-                        {({ field, form }) => (
-                          <FormControl isInvalid={form.errors.month && form.touched.month}>
-                            <Select
-                              {...field}
-                              placeholder="Month"
-                              value={formData.month}
-                              onChange={(e) => {
-                                handleFormDataChange("month", e.target.value); // Update form data in Redux store
-                                // validateTransactionForm({ ...formData, month: e.target.value }); // Validate the entire form
-                              }}
-                            >
-                              {months.map((month, index) => (
-                                <option key={index} value={(index + 1).toString().padStart(2, "0")}>
-                                  {month}
-                                </option>
-                              ))}
-                            </Select>
-                            <FormErrorMessage>{form.errors.month}</FormErrorMessage>
-                          </FormControl>
-                        )}
-                      </Field>
-                      <Field name="year">
-                        {({ field, form }) => (
-                          <FormControl isInvalid={form.errors.year && form.touched.year}>
-                            <Select
-                              {...field}
-                              placeholder="Year"
-                              value={formData.year}
-                              onChange={(e) => {
-                                handleFormDataChange("year", e.target.value); // Update form data in Redux store
-                                // validateTransactionForm({ ...formData, year: e.target.value }); // Validate the entire form
-                              }}
-                            >
-                              {years.map((year) => (
-                                <option key={year} value={year}>
-                                  {year}
-                                </option>
-                              ))}
-                            </Select>
-                            <FormErrorMessage>{form.errors.year}</FormErrorMessage>
-                          </FormControl>
-                        )}
-                      </Field>
-                    </Flex>
-                  </FormControl>
-                </Flex>
-                <Formik
-                  initialValues={{ reffCode: "" }}
-                  // Validation schema using Yup
-                  validationSchema={Yup.object().shape({
-                    reffCode: Yup.string().notRequired(), // Use 'notRequired' to make it optional
-                  })}
-                  onSubmit={(values, { setSubmitting }) => {
-                    // Your form submission logic here
-                    // values contains the form values, including reffCode
-                    // You can handle the submission and API call here if needed
-                    setSubmitting(false);
-                  }}
-                >
-                  {({ isSubmitting, isValid, dirty, values, setFieldValue }) => (
-                    <Form>
-                      <FormControl mt={2}>
-                        <FormLabel htmlFor="reffCode">Referral Code</FormLabel>
+              {events.map((event) => {
+                dispatch(setEventName(event.name)); // Automatically dispatch event.name
+                return (
+                  <Flex justifyContent={"flex-end"} mx={10} mt={4} key={event.id}>
+                    <Text fontWeight={"bold"}>{event.name}</Text>
+                  </Flex>
+                );
+              })}
+              <Flex mt={4} ml={{md: 10,  lg: "10" }} px={{ base: 2 }} flexDirection={"column"} mb={30}>
+                <Form>
+                  <Field name="name">
+                    {({ field, form }) => (
+                      <FormControl isInvalid={form.errors.name && form.touched.name}>
+                        <FormLabel htmlFor="name">
+                          Name{" "}
+                          {formData.name ? null : (
+                            <Text as="span" color="red">
+                              *
+                            </Text>
+                          )}
+                        </FormLabel>
                         <Input
-                          type="text"
-                          id="reffCode"
-                          name="reffCode"
-                          width={300}
-                          placeholder="Enter referral code"
-                          onChange={async (e) => {
-                            const newReffCode = e.target.value;
-
-                            // Update the form values as the input changes
-                            setFieldValue("reffCode", newReffCode);
-
-                            // Call the API and validation logic here
-                            if (newReffCode) {
-                              // Define a function to fetch user data based on the reffCode
-                              try {
-                                const response = await api.get(`/users`);
-                                const { data } = response;
-                                const matchedReffCode = data.filter((user) => user.reffcode === newReffCode);
-
-                                // Check if the entered reffCode matches the user's own reffCode
-                                if (matchedReffCode.length > 0 && newReffCode === profile.reffcode) {
-                                  // Set the message
-                                  setReferralMessage("Referral code is valid, but you cannot use your own code");
-                                  dispatch(setDiscountedTotalPricesByReff(0));
-                                  dispatch(setDiscountedTotalPrices());
-                                } else if (matchedReffCode.length > 0 && newReffCode !== profile.reffcode) {
-                                  setReferralMessage("You got 5% ticket discount");
-                                  dispatch(setDiscountedTotalPricesByReff(totalPrices * 0.05));
-                                  dispatch(setDiscountedTotalPrices());
-                                } else {
-                                  setReferralMessage("Invalid referral code");
-                                  dispatch(setDiscountedTotalPricesByReff(0));
-                                  dispatch(setDiscountedTotalPrices());
-                                }
-                              } catch (error) {
-                                console.error("Error fetching user data:", error);
-                              }
-                            } else {
-                              // Handle the case when the input is cleared
-                              setReferralMessage("");
-                            }
-                          }}
+                          {...field}
+                          id="name"
+                          placeholder="Enter your name"
+                          w={{base: 300 , lg: 400}}
+                          value={formData.name}
+                          onChange={(e) => {
+                            handleFormDataChange("name", e.target.value); // Update form data in Redux store
+                            // validateTransactionForm({ ...formData, name: e.target.value }); // Validate the entire form
+                          }} // Update form data in Redux store
                         />
-                        <ErrorMessage name="reffCode" component="div" className="error-message" />
+                        <FormErrorMessage>{form.errors.name}</FormErrorMessage>
                       </FormControl>
-                      {referralMessage && (
-                        <Text mt={2} color="red.500">
-                          {referralMessage}
-                        </Text>
-                      )}
-                    </Form>
-                  )}
-                </Formik>
-                <Formik
-                  initialValues={{ couponCode: "" }}
-                  // Validation schema using Yup
-                  validationSchema={Yup.object().shape({
-                    couponCode: Yup.string().notRequired(), // Use 'notRequired' to make it optional
-                  })}
-                  onSubmit={(values, { setSubmitting }) => {
-                    // Your form submission logic here
-                    // values contains the form values, including reffCode
-                    // You can handle the submission and API call here if needed
-                    setSubmitting(false);
-                  }}
-                >
-                  {({ isSubmitting, isValid, dirty, values, setFieldValue }) => (
-                    <Form>
-                      <FormControl mt={2}>
-                        <FormLabel htmlFor="couponCode">Coupon Code</FormLabel>
+                    )}
+                  </Field>
+                  <Field name="email">
+                    {({ field, form }) => (
+                      <FormControl mt={2} isInvalid={form.errors.email && form.touched.email}>
+                        <FormLabel htmlFor="email">
+                          Email{" "}
+                          {formData.email ? null : (
+                            <Text as="span" color="red">
+                              *
+                            </Text>
+                          )}
+                        </FormLabel>
                         <Input
-                          type="text"
-                          id="couponCode"
-                          name="couponCode"
-                          width={300}
-                          placeholder="Enter coupon code"
-                          onChange={async (e) => {
-                            const newCouponCode = e.target.value;
+                          {...field}
+                          id="email"
+                          placeholder="Enter your email"
+                          value={formData.email}
+                          w={{base: 300 , lg: 400}}
+                          onChange={(e) => {
+                            handleFormDataChange("email", e.target.value); // Update form data in Redux store
+                            // validateTransactionForm({ ...formData, email: e.target.value }); // Validate the entire form
+                          }} // Update form data in Redux store
+                        />
+                        <Text fontSize={"xs"}> E-ticket akan dikirimkan melalui email</Text>
+                        <FormErrorMessage>{form.errors.email}</FormErrorMessage>
+                      </FormControl>
+                    )}
+                  </Field>
+                  <Field name="telepon">
+                    {({ field, form }) => (
+                      <FormControl mt={2} isInvalid={form.errors.telepon && form.touched.telepon}>
+                        <FormLabel htmlFor="telepon">
+                          Telepon{" "}
+                          {formData.telepon ? null : (
+                            <Text as="span" color="red">
+                              *
+                            </Text>
+                          )}
+                        </FormLabel>
+                        <Input
+                          {...field}
+                          id="telepon"
+                          placeholder="Enter your number"
+                          w={{lg: 400}}
+                          type="tel"
+                          value={formData.telepon}
+                          onChange={(e) => {
+                            const numericValue = e.target.value.replace(/\D/g, "");
+                            handleFormDataChange("telepon", numericValue); // Update form data in Redux store
+                            // validateTransactionForm({ ...formData, telepon: numericValue }); // Validate the entire form
+                          }} // Update form data in Redux store
+                        />
+                        <FormErrorMessage>{form.errors.telepon}</FormErrorMessage>
+                      </FormControl>
+                    )}
+                  </Field>
+                  <Flex w={{md: 400 , lg: 400}}>
+                    <FormControl mt={2}>
+                      <FormLabel>
+                        Tanggal Lahir{" "}
+                        {formData.date && formData.month && formData.year ? null : (
+                          <Text as="span" color="red">
+                            *
+                          </Text>
+                        )}
+                      </FormLabel>
+                      <Flex gap={2}>
+                        <Field name="date">
+                          {({ field, form }) => (
+                            <FormControl isInvalid={form.errors.date && form.touched.date}>
+                              <Select
+                                {...field}
+                                placeholder="Date"
+                                value={formData.date}
+                                onChange={(e) => {
+                                  handleFormDataChange("date", e.target.value); // Update form data in Redux store
+                                  // validateTransactionForm({ ...formData, date: e.target.value }); // Validate the entire form
+                                }}
+                              >
+                                {Array.from({ length: 31 }, (_, i) => (
+                                  <option key={i + 1} value={(i + 1).toString().padStart(2, "0")}>
+                                    {(i + 1).toString().padStart(2, "0")}
+                                  </option>
+                                ))}
+                              </Select>
+                              <FormErrorMessage>{form.errors.date}</FormErrorMessage>
+                            </FormControl>
+                          )}
+                        </Field>
+                        <Field name="month">
+                          {({ field, form }) => (
+                            <FormControl isInvalid={form.errors.month && form.touched.month}>
+                              <Select
+                                {...field}
+                                placeholder="Month"
+                                value={formData.month}
+                                onChange={(e) => {
+                                  handleFormDataChange("month", e.target.value); // Update form data in Redux store
+                                  // validateTransactionForm({ ...formData, month: e.target.value }); // Validate the entire form
+                                }}
+                              >
+                                {months.map((month, index) => (
+                                  <option key={index} value={(index + 1).toString().padStart(2, "0")}>
+                                    {month}
+                                  </option>
+                                ))}
+                              </Select>
+                              <FormErrorMessage>{form.errors.month}</FormErrorMessage>
+                            </FormControl>
+                          )}
+                        </Field>
+                        <Field name="year">
+                          {({ field, form }) => (
+                            <FormControl isInvalid={form.errors.year && form.touched.year}>
+                              <Select
+                                {...field}
+                                placeholder="Year"
+                                value={formData.year}
+                                onChange={(e) => {
+                                  handleFormDataChange("year", e.target.value); // Update form data in Redux store
+                                  // validateTransactionForm({ ...formData, year: e.target.value }); // Validate the entire form
+                                }}
+                              >
+                                {years.map((year) => (
+                                  <option key={year} value={year}>
+                                    {year}
+                                  </option>
+                                ))}
+                              </Select>
+                              <FormErrorMessage>{form.errors.year}</FormErrorMessage>
+                            </FormControl>
+                          )}
+                        </Field>
+                      </Flex>
+                    </FormControl>
+                  </Flex>
+                  <Formik
+                    initialValues={{ reffCode: "" }}
+                    // Validation schema using Yup
+                    validationSchema={Yup.object().shape({
+                      reffCode: Yup.string().notRequired(), // Use 'notRequired' to make it optional
+                    })}
+                    onSubmit={(values, { setSubmitting }) => {
+                      // Your form submission logic here
+                      // values contains the form values, including reffCode
+                      // You can handle the submission and API call here if needed
+                      setSubmitting(false);
+                    }}
+                  >
+                    {({ isSubmitting, isValid, dirty, values, setFieldValue }) => (
+                      <Form>
+                        <FormControl mt={2}>
+                          <FormLabel htmlFor="reffCode">Referral Code</FormLabel>
+                          <Input
+                            type="text"
+                            id="reffCode"
+                            name="reffCode"
+                            width={300}
+                            placeholder="Enter referral code"
+                            onChange={async (e) => {
+                              const newReffCode = e.target.value;
 
-                            // Update the form values as the input changes
-                            setFieldValue("couponCode", newCouponCode);
+                              // Update the form values as the input changes
+                              setFieldValue("reffCode", newReffCode);
 
-                            if (newCouponCode) {
-                              try {
-                                const response = await api.get(`/couponcode`);
-                                const couponsData = response.data;
-                                const matchedCouponCode = couponsData.some((coupon) => coupon.code === newCouponCode);
+                              // Call the API and validation logic here
+                              if (newReffCode) {
+                                // Define a function to fetch user data based on the reffCode
+                                try {
+                                  const response = await api.get(`/users`);
+                                  const { data } = response;
+                                  const matchedReffCode = data.filter((user) => user.reffcode === newReffCode);
 
-                                if (matchedCouponCode) {
-                                  // Assuming setCouponMessage is a state setter function
-                                  const matchedCoupon = couponsData.find((coupon) => coupon.code === newCouponCode);
-                                  if (matchedCoupon) {
-                                    setCouponMessage(`You got ${matchedCoupon.discount * 100}% ticket discount`);
-                                    dispatch(setDiscountedTotalPricesByCoupon(totalPrices * matchedCoupon.discount));
+                                  // Check if the entered reffCode matches the user's own reffCode
+                                  if (matchedReffCode.length > 0 && newReffCode === profile.reffcode) {
+                                    // Set the message
+                                    setReferralMessage("Referral code is valid, but you cannot use your own code");
+                                    dispatch(setDiscountedTotalPricesByReff(0));
+                                    dispatch(setDiscountedTotalPrices());
+                                  } else if (matchedReffCode.length > 0 && newReffCode !== profile.reffcode) {
+                                    setReferralMessage("You got 5% ticket discount");
+                                    dispatch(setDiscountedTotalPricesByReff(totalPrices * 0.05));
+                                    dispatch(setDiscountedTotalPrices());
+                                  } else {
+                                    setReferralMessage("Invalid referral code");
+                                    dispatch(setDiscountedTotalPricesByReff(0));
                                     dispatch(setDiscountedTotalPrices());
                                   }
-                                } else {
-                                  setCouponMessage("Invalid coupon code");
-                                  dispatch(setDiscountedTotalPricesByCoupon(0));
-                                  dispatch(setDiscountedTotalPrices());
+                                } catch (error) {
+                                  console.error("Error fetching user data:", error);
                                 }
-                              } catch (error) {
-                                setCouponMessage("Error fetching coupon data");
+                              } else {
+                                // Handle the case when the input is cleared
+                                setReferralMessage("");
                               }
-                            } else {
-                              // Handle the case when the input is cleared
-                              setCouponMessage("");
-                            }
-                          }}
-                        />
-                        <ErrorMessage name="couponCode" component="div" className="error-message" />
-                      </FormControl>
-                      {couponMessage && (
-                        <Text mt={2} color="red.500">
-                          {couponMessage}
-                        </Text>
-                      )}
-                    </Form>
-                  )}
-                </Formik>
-                <Box display={"flex"} justifyContent="flex-start" h={"10vh"} mt={5} mb={5}>
-                  <Button bg={"#F7F7F7"} color={"#2e4583"} size="sm" mr={4} mt={5} w={"90px"} onClick={onPrevious}>
-                    Kembali
-                  </Button>
-                </Box>
-              </Form>
-            </Flex>
-          </Box>
-          <PaymentMethod onNext={onNext} />
+                            }}
+                          />
+                          <ErrorMessage name="reffCode" component="div" className="error-message" />
+                        </FormControl>
+                        {referralMessage && (
+                          <Text mt={2} color="red.500">
+                            {referralMessage}
+                          </Text>
+                        )}
+                      </Form>
+                    )}
+                  </Formik>
+                  <Formik
+                    initialValues={{ couponCode: "" }}
+                    // Validation schema using Yup
+                    validationSchema={Yup.object().shape({
+                      couponCode: Yup.string().notRequired(), // Use 'notRequired' to make it optional
+                    })}
+                    onSubmit={(values, { setSubmitting }) => {
+                      // Your form submission logic here
+                      // values contains the form values, including reffCode
+                      // You can handle the submission and API call here if needed
+                      setSubmitting(false);
+                    }}
+                  >
+                    {({ isSubmitting, isValid, dirty, values, setFieldValue }) => (
+                      <Form>
+                        <FormControl mt={2}>
+                          <FormLabel htmlFor="couponCode">Coupon Code</FormLabel>
+                          <Input
+                            type="text"
+                            id="couponCode"
+                            name="couponCode"
+                            width={300}
+                            placeholder="Enter coupon code"
+                            onChange={async (e) => {
+                              const newCouponCode = e.target.value;
+
+                              // Update the form values as the input changes
+                              setFieldValue("couponCode", newCouponCode);
+
+                              if (newCouponCode) {
+                                try {
+                                  const response = await api.get(`/couponcode`);
+                                  const couponsData = response.data;
+                                  const matchedCouponCode = couponsData.some((coupon) => coupon.code === newCouponCode);
+
+                                  if (matchedCouponCode) {
+                                    // Assuming setCouponMessage is a state setter function
+                                    const matchedCoupon = couponsData.find((coupon) => coupon.code === newCouponCode);
+                                    if (matchedCoupon) {
+                                      setCouponMessage(`You got ${matchedCoupon.discount * 100}% ticket discount`);
+                                      dispatch(setDiscountedTotalPricesByCoupon(totalPrices * matchedCoupon.discount));
+                                      dispatch(setDiscountedTotalPrices());
+                                    }
+                                  } else {
+                                    setCouponMessage("Invalid coupon code");
+                                    dispatch(setDiscountedTotalPricesByCoupon(0));
+                                    dispatch(setDiscountedTotalPrices());
+                                  }
+                                } catch (error) {
+                                  setCouponMessage("Error fetching coupon data");
+                                }
+                              } else {
+                                // Handle the case when the input is cleared
+                                setCouponMessage("");
+                              }
+                            }}
+                          />
+                          <ErrorMessage name="couponCode" component="div" className="error-message" />
+                        </FormControl>
+                        {couponMessage && (
+                          <Text mt={2} color="red.500">
+                            {couponMessage}
+                          </Text>
+                        )}
+                      </Form>
+                    )}
+                  </Formik>
+                  <Box display={"flex"} justifyContent="flex-start" h={{ lg: "10vh" }} mt={5} mb={{ lg: "5" }}>
+                    <Button bg={"#F7F7F7"} color={"#2e4583"} size="sm" mr={4} mt={{ lg: "5" }} w={"90px"} onClick={onPrevious}>
+                      Kembali
+                    </Button>
+                  </Box>
+                </Form>
+              </Flex>
+            </Box>
+            <PaymentMethod onNext={onNext} />
+          </Flex>
         </>
       </Formik>
     </>

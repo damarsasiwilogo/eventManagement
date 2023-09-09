@@ -165,26 +165,26 @@ function TransactionStep1() {
   };
 
   return (
-    <>
-      <Box display={"flex"} flexDirection="column" ml={40} mr={40} mt={2} borderTopRadius={10}>
+    <Box h={{lg: "80vh"}}> 
+      <Box display={"flex"} flexDirection="column" ml={{lg: "40"}}  mr={{lg: "40"}} mt={2} borderTopRadius={10}>
         {events.map((event) => (
           <>
-            <Image src={event.images} mx={20} mt={4} borderRadius={15} />
-            <Flex mx={100}>
-              <Table variant="simple" colorScheme="blackAlpha">
+            <Image src={event.images} mx={{base :"4" ,lg: "20"}}  mt={4} borderRadius={15} />
+            <Flex mx={{lg: "100"}} mt={{base: 4}} >
+              <Table variant="simple" colorScheme="blackAlpha" size={{base: "sm"}}>
                 <Thead>
                   <Tr>
-                    <Th width="300px">
-                      <Text fontSize={"sm"}>Jenis Kategori</Text>
+                    <Th width={{lg: "300px"}} >
+                      <Text fontSize={{base :"xs",lg: "sm"}}>Jenis Kategori</Text>
                     </Th>
                     <Th textAlign="center">
-                      <Text fontSize={"sm"}>Harga per tiket</Text>
+                      <Text fontSize={{base :"xs",lg: "sm"}}>Harga per tiket</Text>
                     </Th>
                     <Th textAlign="center">
-                      <Text fontSize={"sm"}>Kuantitas</Text>
+                      <Text fontSize={{base :"xs",lg: "sm"}}>Kuantitas</Text>
                     </Th>
                     <Th textAlign="center" width="200px">
-                      <Text fontSize={"sm"}>Jumlah</Text>
+                      <Text fontSize={{base :"xs",lg: "sm"}}>Jumlah</Text>
                     </Th>
                   </Tr>
                 </Thead>
@@ -192,7 +192,7 @@ function TransactionStep1() {
                   {Object.entries(event.ticket_types).map(([ticketType, price]) => (
                     <Tr key={ticketType}>
                       <Td>
-                        <Flex direction={"row"} alignItems={"center"} gap={3}>
+                        <Flex direction={{base: "column"}} alignItems={"center"} gap={3}>
                           <IoTicketSharp size={"20px"} />
                           <Flex direction={"column"}>
                             <Text fontSize="sm" fontWeight="bold" colorScheme="blackAlpha">
@@ -257,7 +257,7 @@ function TransactionStep1() {
           </ModalContent>
         </Modal>
       </Box>
-    </>
+    </Box>
   );
 }
 export default TransactionStep1;

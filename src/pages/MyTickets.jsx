@@ -85,7 +85,7 @@ function MyTickets() {
     <Navibar>
       <Box minH={"90vh"}>
       <Flex flexDirection="column" justifyContent="center" alignItems="center" ml={10} mr={10}>
-      <Text p={5} fontSize={"3xl"} fontWeight={"bold"}> My Tickets</Text>
+      <Text p={{ base: '2px', md: '4px', lg: '10px' }} fontSize={{ base: '25px', md: '30px', lg: '36px' }} fontWeight={"bold"}> My Tickets</Text>
 
       {purchasedTicket
         .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
@@ -98,8 +98,8 @@ function MyTickets() {
           ml={8}
           mr={8}
           mt={2}
-          h="320px"
-          width="1200px"
+          h={{ base: '640px', md: '800px', lg: '280px' }}
+          width={{ base: '390px', md: '500px', lg: '1200px' }}
           boxShadow="lg"
           p={4}
           borderRadius="md"
@@ -110,67 +110,67 @@ function MyTickets() {
             <Text> {data.status} </Text>
             <Text> {data.eventname}</Text>
           </Flex>
-          <Flex bgColor={"#331F69"} alignItems={"center"} boxShadow={"2xl"}>
-            <Flex direction={"row"} gap={2} p={10} m={4}>
+          <Flex bgColor={"#331F69"} alignItems={"center"} boxShadow={"2xl"} direction={{base: "column", md: "column", lg: "row"}}>
+            <Flex direction={"row"} gap={2} p = {{ base: '2px', md: '4px', lg: '10px' }} m={4}>
               <Flex direction={"column"} justifyContent={"center"}>
-                <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+                <Text fontWeight={"bold"} fontSize={{ base: '14px', md: '16px', lg: '18px' }} color="white">
                   Purchase Date 
                 </Text>
-                <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+                <Text fontWeight={"bold"}  fontSize={{ base: '14px', md: '16px', lg: '18px' }} color="white">
                   Nama
                 </Text>
-                <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+                <Text fontWeight={"bold"}  fontSize={{ base: '14px', md: '16px', lg: '18px' }} color="white">
                   Email
                 </Text>
-                <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+                <Text fontWeight={"bold"}  fontSize={{ base: '14px', md: '16px', lg: '18px' }} color="white">
                   Telepon
                 </Text>
-                <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+                <Text fontWeight={"bold"}  fontSize={{ base: '14px', md: '16px', lg: '18px' }} color="white">
                   Payment Method
                 </Text>
               </Flex>
               <Flex direction={"column"} justifyContent={"center"}>
-                <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+                <Text fontWeight={"bold"}  fontSize={{ base: '14px', md: '16px', lg: '18px' }} color="white">
                   :
                 </Text>
-                <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+                <Text fontWeight={"bold"}  fontSize={{ base: '14px', md: '16px', lg: '18px' }} color="white">
                   :
                 </Text>
-                <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+                <Text fontWeight={"bold"}  fontSize={{ base: '14px', md: '16px', lg: '18px' }}color="white">
                   :
                 </Text>
-                <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+                <Text fontWeight={"bold"}  fontSize={{ base: '14px', md: '16px', lg: '18px' }} color="white">
                   :
                 </Text>
-                <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+                <Text fontWeight={"bold"} fontSize={{ base: '14px', md: '16px', lg: '18px' }} color="white">
                   :
                 </Text>
               </Flex>
               <Flex direction={"column"} justifyContent={"center"}>
-                <Text fontSize={"lg"} color="white">
+                <Text  fontSize={{ base: '14px', md: '16px', lg: '18px' }} color="white">
                 {new Date(data.timestamp).toLocaleString()}
                 </Text>
-                <Text fontSize={"lg"} color="white">
+                <Text  fontSize={{ base: '14px', md: '16px', lg: '18px' }} color="white">
                   {data.name}
                 </Text>
-                <Text fontSize={"lg"} color="white">
+                <Text  fontSize={{ base: '14px', md: '16px', lg: '18px' }} color="white">
                   {data.email}
                 </Text>
-                <Text fontSize={"lg"} color="white">
+                <Text  fontSize={{ base: '14px', md: '16px', lg: '18px' }} color="white">
                   {data.phonenumber}
                 </Text>
-                <Text fontSize={"lg"} color="white">
+                <Text  fontSize={{ base: '14px', md: '16px', lg: '18px' }} color="white">
                   {data.paymentmethod}
                 </Text>
               </Flex>
             </Flex>
 
-            <Flex justifyContent="flex-start" gap="15" ml={10} direction={"row"}>
-              <Flex alignItems={"center"}>
+            <Flex justifyContent="flex-start" gap="15" ml={{ base: '0px', md: '16px', lg: '70px' }} direction={{ base: "column", md: 'column', lg: 'row' }}>
+              <Flex alignItems={"center"} justifyContent={{ base: "center", md: 'center'}}>
                 <IoTicketSharp color="white" size={"35px"} />
               </Flex>
-              <Flex flexDirection={"column"} justifyContent={"center"}>
-                <Flex flexDirection={"column"}>
+              <Flex flexDirection={"column"} justifyContent={"center"} alignItems={{ base: "center", md: 'center'}}>
+                <Flex flexDirection={"column"} justifyContent={{base: "center"}}>
                   {Object.keys(data.ticket).map(
                     (ticketType) =>
                       data.ticket[ticketType] > 0 && (
@@ -181,7 +181,7 @@ function MyTickets() {
                   )}
                 </Flex>
 
-                <Flex flexDirection={"column"}>
+                <Flex flexDirection={"column"} alignItems = {{base: "center"}}>
                   <Text color={"white"} fontWeight={"Bold"}>
                     Grand Total :{" "}
                     {data.prices.toLocaleString("id-ID", {
@@ -217,7 +217,7 @@ function MyTickets() {
                   </Flex>
                 )}
               </Flex>
-              <Flex ml="140px">
+              <Flex ml={{lg: "200px"}} justifyContent={{base: "center"}} mb={{base: "30px"}}>
                 {(data.paymentmethod === "GOPAY" || data.paymentmethod === "OVO" || data.paymentmethod === "DANA") && (
                   <Flex direction={"column"} justifyContent={"center"} alignItems={"center"}>
                     <Text color={"white"} fontWeight={"bold"}>
