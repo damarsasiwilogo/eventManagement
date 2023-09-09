@@ -29,6 +29,7 @@ const transactionSlices = createSlice({
       cardYear: "",
       cvvNumber: "",
     },
+    
   },
   reducers: {
     setTicketQuantities: (state, action) => {

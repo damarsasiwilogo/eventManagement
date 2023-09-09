@@ -6,12 +6,9 @@ import api from "../api";
 import TransactionStep1 from "../Components/TransactionStep1";
 import TransactionStep2 from "../Components/TransactionStep2";
 import TransactionStep3 from "../Components/TransactionStep3";
-import TransactionStep4 from "../Components/TransactionStep4";
-import PaymentMethod from "../Components/PaymentMethod";
 import { useNavigate } from "react-router-dom";
 import { resetTransaction } from "../slices/transactionSlices";
 import { useDispatch, useSelector } from "react-redux"; // Import useDispatch
-import myTixLogo from "../images/logo_mytix.png";
 import { Spinner, Center } from "@chakra-ui/react";
 import Footer from "../Components/Footer";
 import Navigation from "../Components/Navigation";

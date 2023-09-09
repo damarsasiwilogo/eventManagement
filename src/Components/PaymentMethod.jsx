@@ -39,7 +39,11 @@ function PaymentMethod({ onNext }) {
     const formStatus = await formikBuyerInfo.submitForm();
     // Call onNext only if validation is successful (isTransactionFormValid is true)
     if (formStatus) {
+      
+      
+      
       onNext();
+
     } else {
       toast({
         title: "Form Validation Error",

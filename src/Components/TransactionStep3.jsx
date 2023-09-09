@@ -30,6 +30,7 @@ const TransactionStep3 = () => {
 
   const handlePurchase = () => {
   try {
+    const currentTimestamp = Date.now();
     const body = {
       username: profile.username,
       name: formData.name,
@@ -39,7 +40,9 @@ const TransactionStep3 = () => {
       eventname: eventName,
       ticket : ticketQuantities,
       prices : discountedTotalPrices,
-      status : "Waiting for payment"
+      diskon : discountCoupon + discountReff,
+      status : "Waiting for payment",
+      timestamp: currentTimestamp,
     };
 
     api.post("/purchasedticket", body);

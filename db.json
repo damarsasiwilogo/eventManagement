@@ -5,21 +5,74 @@
       "name": "Anggara Tri Putra",
       "email": "anggaratriputra@gmail.com",
       "phonenumber": "081381873043",
+      "paymentmethod": "GOPAY",
+      "eventname": "Neckdeep Live in Australia & Asia - JAKARTA",
+      "ticket": {
+        "Gold": 1,
+        "Platinum": 1,
+        "Diamond": 1
+      },
+      "prices": 1960000,
+      "diskon": 840000,
+      "status": "Waiting for payment",
+      "timestamp": 1694222103138,
+      "id": 1
+    },
+    {
+      "username": "anggaratriputra",
+      "name": "Anggara Tri Putra",
+      "email": "anggaratriputra@gmail.com",
+      "phonenumber": "081381873043",
+      "paymentmethod": "OVO",
+      "eventname": "PERTAMINA GRAND PRIX OF INDONESIA 2023",
+      "ticket": {
+        "Gold": 0,
+        "Platinum": 1,
+        "Diamond": 0
+      },
+      "prices": 400000,
+      "diskon": 100000,
+      "status": "Waiting for payment",
+      "timestamp": 1694222525424,
+      "id": 2
+    },
+    {
+      "username": "anggaratriputra",
+      "name": "Anggara Tri Putra",
+      "email": "anggaratriputra@gmail.com",
+      "phonenumber": "081381873043",
+      "paymentmethod": "OVO",
+      "eventname": "PERTAMINA GRAND PRIX OF INDONESIA 2023",
+      "ticket": {
+        "Gold": 0,
+        "Platinum": 0,
+        "Diamond": 1
+      },
+      "prices": 552500,
+      "diskon": 97500,
+      "status": "Waiting for payment",
+      "timestamp": 1694222689546,
+      "id": 3
+    },
+    {
+      "username": "anggaratriputra",
+      "name": "Anggara Tri Putra",
+      "email": "anggaratriputra@gmail.com",
+      "phonenumber": "081381873043",
       "paymentmethod": "Virtual Account BCA",
-      "eventname": "2023 ASIA FAN MEETING IN JAKARTA: KIMBUM ",
+      "eventname": "2023 AHN HYO SEOP ASIA TOUR THE PRESENT SHOW IN JAKARTA HERE AND NOW",
       "ticket": {
         "Gold": 1,
         "Platinum": 0,
         "Diamond": 0
       },
-      "prices": 56250,
+      "prices": 1225000,
+      "diskon": 0,
       "status": "Waiting for payment",
-      "id": 1
+      "timestamp": 1694223443601,
+      "id": 4
     }
   ],
-
-  
-
   "couponcode": [
     {
       "code": "MYTIXDDT",
@@ -58,6 +111,13 @@
       "password": "Breadbradpit123",
       "reffcode": "mytixdamarsasiwilogo",
       "id": 3
+    },
+    {
+      "username": "anggaratriputratest",
+      "email": "anggaratriputraa@gmail.com",
+      "password": "Anggara123",
+      "reffcode": "mytixanggaratriputratest",
+      "id": 4
     }
   ],
   "events": [

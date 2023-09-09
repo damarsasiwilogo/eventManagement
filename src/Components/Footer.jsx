@@ -3,6 +3,7 @@ import myTixLogo from "../images/logo_mytix.png";
 import ddt from "../images/ddt.png";
 function Footer() {
   return (
+    
     <Box id="footer" h={"80px"} bgColor={"#331F69"} color={"whiteAlpha.500"} display={"flex"} w={"100%"} justifyContent={"space-evenly"} alignItems={"center"} overflow={"hidden"} mt={"15px"}>
       <Img src={myTixLogo} w={{base: "100px", sm: "100px", md: "140px" }} h={{ base: "30px" ,sm: "32px", md: "45px" }}></Img>
       <Flex justifyContent={"center"} alignItems={"center"}>
