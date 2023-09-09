@@ -11,14 +11,13 @@ import { resetTransaction } from "../slices/transactionSlices";
 import { useDispatch, useSelector } from "react-redux"; // Import useDispatch
 import { Spinner, Center } from "@chakra-ui/react";
 import Footer from "../Components/Footer";
-import Navigation from "../Components/Navigation";
-
+import Navibar from "../Components/Navibar";
 
 function Transaction() {
   const { id } = useParams();
   const [events, setEvents] = useState([]);
   const [currentStep, setCurrentStep] = useState(1);
-  const [remainingTime, setRemainingTime] = useState(30 * 60); // Waktu dalam detik (15 menit)
+  const [remainingTime, setRemainingTime] = useState(100 * 60); // Waktu dalam detik (15 menit)
   const [isTimeUpModalOpen, setIsTimeUpModalOpen] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +25,7 @@ function Transaction() {
   const dispatch = useDispatch();
   const ticketQuantities = useSelector((state) => state.transaction.ticketQuantities);
   const toast = useToast();
-
+  const [isButtonVisible, setButtonVisibility] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -66,11 +65,13 @@ function Transaction() {
 
   const handleNext = async () => {
     if (!isConfirmationModalOpen && currentStep < 4) {
-      setIsLoading(true); // Set loading to true before transitioning
+      setIsLoading(true);
+      // Set loading to true before transitioning
       // Simulate a delay for loading effect (you can replace this with actual data fetching)
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setCurrentStep(currentStep + 1);
       setIsLoading(false); // Set loading to false after transitioning
+      setButtonVisibility(true);
     }
   };
 
@@ -99,7 +100,7 @@ function Transaction() {
       case 2:
         return (
           <Flex>
-            <TransactionStep2 onNext={handleNext} onPrevious={handlePrevious} isLoading={isLoading}  />
+            <TransactionStep2 onNext={handleNext} onPrevious={handlePrevious} isLoading={isLoading} />
           </Flex>
         );
       case 3:
@@ -139,9 +140,9 @@ function Transaction() {
     }
   };
 
-  const handleClose = () =>  {
-    navigate("/")
-  }
+  const handleClose = () => {
+    navigate("/");
+  };
 
   const openTimeUpModal = () => {
     setIsTimeUpModalOpen(true);
@@ -156,6 +157,7 @@ function Transaction() {
       setIsConfirmationModalOpen(true);
     } else {
       handleNext();
+      setButtonVisibility(false);
     }
   };
 
@@ -165,99 +167,102 @@ function Transaction() {
 
   return (
     <>
-      <Navigation needLogin>
-        <Box display={"flex"} flexDirection="column" justifyContent="center" bgColor="white" alignItems={"center"} h={"10vh"} ml={40} mr={40} mt={2} borderRadius={10}>
-          <Flex direction={"column"} ml="60px" justifyContent={"center"} alignItems={"center"} mt={5}>
-            <Text fontSize={"md"} fontWeight={"bold"} mt={10} my={-2}>
-              WAKTU TERSISA
-            </Text>
-            <Text fontSize={"4xl"} fontWeight={"bold"} mb={2} color={"red"}>
-              {Math.floor(remainingTime / 60)
-                .toString()
-                .padStart(2, "0")}{" "}
-              : {(remainingTime % 60).toString().padStart(2, "0")}
-            </Text>
-          </Flex>
-        </Box>
-        <Box display="flex" justifyContent="space-around" alignItems="center" h="5vh">
-          {stepTexts.map((text, index) => (
-            <Text key={index} fontSize="lg" fontWeight={index === currentStep - 1 ? "bold" : "normal"}>
-              {text}
-            </Text>
-          ))}
-        </Box>
-        {/* Progress Bar */}
-        <Box display="flex" flexDir="column" justifyContent="center" ml={40} mr={40} borderRadius={10}>
-          <Progress mx="4px" value={calculateProgress()} size="sm" colorScheme="facebook" borderRadius={10} hasStripe />
-        </Box>
-
-        {isLoading ? (
-          <Center h="80vh" mx={40}>
-            <Spinner size="xl" thickness="6px" color="#331F69" />
-          </Center>
-        ) : (
-          renderStep()
-        )}
-
-        {currentStep !== 2 && (
-          <Box display={"flex"} justifyContent={"flex-end"} h={"10vh"} ml={40} mr={40} mb={5} borderBottomRadius={10}>
-            {currentStep > 1 && (
-              <Button bg={"#F7F7F7"} color={"#2e4583"} size="sm" mr={4} mt={5} w={"90px"} onClick={handlePrevious}>
-                Kembali
-              </Button>
-            )}
-
-            {currentStep !== 3 && (
-              <Button
-                colorScheme="facebook"
-                color={"white"}
-                _hover={{ bg: "#24105c" }}
-                size="sm"
-                mr={20}
-                mt={5}
-                w={"90px"}
-                onClick={() => {
-                  handleConfirmation();
-                }}
-              >
-                {buttonProgress()}
-              </Button>
-            )}
+      <Navibar needLogin>
+        <Box height={{ lg: "120vh" }}>
+          <Box display={"flex"} flexDirection="column" justifyContent="center" bgColor="white" alignItems={"center"} h={"10vh"} ml={{ lg: "40" }} mr={{ lg: "40" }} mt={2} borderRadius={10}>
+            <Flex direction={"column"} ml={{ lg: "60px" }} justifyContent={"center"} alignItems={"center"} mt={5}>
+              <Text fontSize={{ base: "md" }} fontWeight={"bold"} mt={10} my={1}>
+                WAKTU TERSISA
+              </Text>
+              <Text fontSize={{ base: "xl", md: "xl", lg: "3xl" }} fontWeight={"bold"} mb={2} color={"red"}>
+                {Math.floor(remainingTime / 60)
+                  .toString()
+                  .padStart(2, "0")}{" "}
+                : {(remainingTime % 60).toString().padStart(2, "0")}
+              </Text>
+            </Flex>
           </Box>
-        )}
-        <Footer />
+          <Box display="flex" justifyContent="space-around" alignItems="center" h="5vh">
+            {stepTexts.map((text, index) => (
+              <Text key={index} fontSize="lg" fontWeight={index === currentStep - 1 ? "bold" : "normal"}>
+                {text}
+              </Text>
+            ))}
+          </Box>
+          {/* Progress Bar */}
+          <Box display="flex" flexDir="column" justifyContent="center" ml={{ lg: "40" }} mr={{ lg: "40" }} borderRadius={10}>
+            <Progress mx="4px" value={calculateProgress()} size="sm" colorScheme="facebook" borderRadius={10} hasStripe />
+          </Box>
 
-        <Modal isOpen={isTimeUpModalOpen} onClose={closeTimeUpModal} isCentered blockScrollOnMount={true} closeOnOverlayClick={false}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Warning</ModalHeader>
-            <ModalBody>Waktu telah habis. Silakan kembali ke halaman utama.</ModalBody>
-            <ModalFooter>
-              <Button
-                colorScheme="blue"
-                onClick={() => {
-                  closeTimeUpModal();
-                  navigate("/");
-                }}
-              >
-                OK
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-        <Modal isOpen={isConfirmationModalOpen} onClose={closeModal} isCentered blockScrollOnMount={true} closeOnOverlayClick={false}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Confirmation</ModalHeader>
-            <ModalBody>Kamu belum memilih tiket</ModalBody>
-            <ModalFooter>
-              <Button colorScheme="facebook" color="white" _hover={{ bg: "#24105c" }} onClick={closeModal}>
-                OK
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      </Navigation>
+          {isLoading ? (
+            <Center h="80vh" mx={40}>
+              <Spinner size="xl" thickness="6px" color="#331F69" />
+            </Center>
+          ) : (
+            renderStep()
+          )}
+          <Flex justifyContent={{ base: "center", md: "center", lg: "flex-end" }} mt={{ lg: "20" }} mr={{ lg: "80" }}>
+            {currentStep !== 2 && (
+              <Box display={"flex"} justifyContent={{ base: "center", lg: "flex-end" }} w={{ base: "20vw" }} h={"10vh"} mb={5} borderBottomRadius={10}>
+                {currentStep > 1 && currentStep !== 3 && (
+                  <Button bg={"#F7F7F7"} color={"#2e4583"} size="sm" mr={4} mt={5} w={"90px"} onClick={handlePrevious}>
+                    Kembali
+                  </Button>
+                )}
+
+                {currentStep !== 3 && isButtonVisible && (
+                  <Button
+                    colorScheme="facebook"
+                    color="white"
+                    _hover={{ bg: "#24105c" }}
+                    size="sm"
+                    mr={{ lg: "0" }}
+                    mt={5}
+                    w="90px"
+                    onClick={() => {
+                      handleConfirmation();
+                    }}
+                  >
+                    {buttonProgress()}
+                  </Button>
+                )}
+              </Box>
+            )}
+          </Flex>
+
+          <Modal isOpen={isTimeUpModalOpen} onClose={closeTimeUpModal} isCentered blockScrollOnMount={true} closeOnOverlayClick={false}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Warning</ModalHeader>
+              <ModalBody>Waktu telah habis. Silakan kembali ke halaman utama.</ModalBody>
+              <ModalFooter>
+                <Button
+                  colorScheme="blue"
+                  onClick={() => {
+                    closeTimeUpModal();
+                    navigate("/");
+                  }}
+                >
+                  OK
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+          <Modal isOpen={isConfirmationModalOpen} onClose={closeModal} isCentered blockScrollOnMount={true} closeOnOverlayClick={false}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Confirmation</ModalHeader>
+              <ModalBody>Kamu belum memilih tiket</ModalBody>
+              <ModalFooter>
+                <Button colorScheme="facebook" color="white" _hover={{ bg: "#24105c" }} onClick={closeModal}>
+                  OK
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+        </Box>
+        <Footer />
+      </Navibar>
     </>
   );
 }

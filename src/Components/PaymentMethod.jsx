@@ -108,7 +108,7 @@ function PaymentMethod({ onNext }) {
   };
   return (
     <>
-      <Box display={"flex"} borderRadius={10} alignItems="center" bg="#331F69" padding={10} mt={6} flexDirection="column" w="35vw" h="100vh">
+      <Box display={"flex"} borderRadius={10} alignItems="center" bg="#331F69" padding={{lg:"10"}} py={{base: "4"}} mt={{lg: "6"}} flexDirection="column" w={{md :"100vw" ,lg: "35vw"}} h={{lg: "100vh"}}>
         <Flex justifyContent="flex-start" gap="15" direction={"row"} mb={5}>
           <Flex alignItems={"center"}>
             <IoTicketSharp color="white" size={"35px"} />
@@ -149,7 +149,7 @@ function PaymentMethod({ onNext }) {
           </Flex>
         </Flex>
         <Accordion
-          w={"34vw"}
+          w={{base: "98vw", lg: "34vw"}}
           bg="#331F69"
           allowToggle
           onChange={(index) => {
@@ -194,8 +194,8 @@ function PaymentMethod({ onNext }) {
                           <Input
                             {...field}
                             id="cardNumber"
-                            placeholder="Enter card number (e.g 1111 4242 3333 5555)"
-                            w={400}
+                            placeholder="Enter card number (ex 1111 4242 3333 5555)"
+                            w={{base: "305px" , lg: "400px"}}
                             value={creditCardData.cardNumber}
                             inputMode="numeric" // Allow only numeric input
                             onChange={(e) => {
@@ -223,7 +223,7 @@ function PaymentMethod({ onNext }) {
                             {...field}
                             id="cardHolder"
                             placeholder="Enter card holder name"
-                            w={400}
+                            w={{base: "305px" , lg: "400px"}}
                             value={creditCardData.cardHolder}
                             onChange={(e) => handleCreditCardDataChange("cardHolder", e.target.value)} // Update form data in Redux store
                           />
@@ -232,7 +232,7 @@ function PaymentMethod({ onNext }) {
                       )}
                     </Field>
 
-                    <Flex w={400}>
+                    <Flex w={{base: "305px" , lg: "400px"}}>
                       <FormControl mt={2}>
                         <FormLabel>
                           Expiration Date{" "}
@@ -324,7 +324,7 @@ function PaymentMethod({ onNext }) {
             </h2>
             <AccordionPanel pb={4} color={"white"}>
               <Accordion
-                w={"33vw"}
+                w={{base: "94vw", lg: "33vw"}}
                 allowToggle
                 onChange={(index) => {
                   if (index === 0) {
@@ -580,7 +580,7 @@ function PaymentMethod({ onNext }) {
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4} color={"white"}>
-              <Accordion w={"33vw"} 
+              <Accordion w={{base: "94vw", lg: "33vw"}} 
               allowToggle  
               onChange={(index) => {
                   if (index === 0) {

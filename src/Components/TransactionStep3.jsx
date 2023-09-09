@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 import api from "../api";
 import mytixQr from "../images/mytixqr.png";
 
-
-const TransactionStep3 = () => {
+const TransactionStep3 = ({onPrevious}) => {
   const [events, setEvents] = useState([]);
   const { id } = useParams();
   const ticketQuantities = useSelector((state) => state.transaction.ticketQuantities);
@@ -26,49 +25,46 @@ const TransactionStep3 = () => {
   const profile = useSelector((state) => state.users.profile);
   const eventName = useSelector((state) => state.transaction.eventName);
   const navigate = useNavigate();
-  
 
   const handlePurchase = () => {
-  try {
-    const currentTimestamp = Date.now();
-    const body = {
-      username: profile.username,
-      name: formData.name,
-      email: formData.email,
-      phonenumber : formData.telepon,
-      paymentmethod : paymentMethod,
-      eventname: eventName,
-      ticket : ticketQuantities,
-      prices : discountedTotalPrices,
-      diskon : discountCoupon + discountReff,
-      status : "Waiting for payment",
-      timestamp: currentTimestamp,
-    };
+    try {
+      const currentTimestamp = Date.now();
+      const body = {
+        username: profile.username,
+        name: formData.name,
+        email: formData.email,
+        phonenumber: formData.telepon,
+        paymentmethod: paymentMethod,
+        eventname: eventName,
+        ticket: ticketQuantities,
+        prices: discountedTotalPrices,
+        diskon: discountCoupon + discountReff,
+        status: "Waiting for payment",
+        timestamp: currentTimestamp,
+      };
 
-    api.post("/purchasedticket", body);
-    toast({
-      title: "Ticket has been booked, please complete your transaction",
-      description: "Redirecting you to homepage",
-      status: "success",
-      duration: 6000,
-      isClosable: true,
-      onCloseComplete: () => {
-        navigate("/");
-      },
-    });
-  } catch (error) {
-    // Handle other errors if needed
-    console.error("Error:", error);
-  }
-};
-
+      api.post("/purchasedticket", body);
+      toast({
+        title: "Ticket has been booked, please complete your transaction",
+        description: "Redirecting you to homepage",
+        status: "success",
+        duration: 6000,
+        isClosable: true,
+        onCloseComplete: () => {
+          navigate("/");
+        },
+      });
+    } catch (error) {
+      // Handle other errors if needed
+      console.error("Error:", error);
+    }
+  };
 
   useEffect(() => {
     api
       .get(`/events/${id}`)
       .then((res) => {
         setEvents([res.data]);
-      
       })
       .catch((err) => {
         toast({
@@ -81,17 +77,17 @@ const TransactionStep3 = () => {
   }, []);
 
   return (
-    <>
-      <Box display={"flex"} flexDirection="column" ml={10} mr={10} mt={2} h={"50vh"} borderTopRadius={10}>
+    <Box height={{ base: "72vh" }}>
+      <Box display={"flex"} flexDirection="column" ml={{ lg: 10 }} mr={{ lg: 10 }} mt={2} h={"50vh"} borderTopRadius={10}>
         {events.map((event) => (
-          <Flex justifyContent={"space-between"} mx={10} mt={4} mb={4}>
+          <Flex justifyContent={"space-between"} gap={{ base: 14 }} mx={{ lg: 10 }} mt={4} mb={4}>
             {paymentMethod === "Credit Card" ? (
-              <Text fontWeight={"bold"} color={"white"} bg={"green"} p={2} borderRadius={20} boxShadow={"dark-lg"}>
+              <Text ml={{ base: 4 }} fontSize={{ base: "xs" }} fontWeight={"bold"} color={"white"} bg={"green"} p={2} borderRadius={20} boxShadow={"dark-lg"}>
                 {" "}
                 Waiting for credit card confirmation
               </Text>
             ) : (
-              <Text fontWeight={"bold"} color={"white"} bg={"green"} p={2} borderRadius={20} boxShadow={"dark-lg"}>
+              <Text ml={{ base: 4 }} fontSize={{ base: "xs" }} fontWeight={"bold"} color={"white"} bg={"green"} p={2} borderRadius={20} boxShadow={"dark-lg"}>
                 {" "}
                 Waiting for payment
               </Text>
@@ -99,65 +95,65 @@ const TransactionStep3 = () => {
             <Text fontWeight={"bold"}>{event.name}</Text>
           </Flex>
         ))}
-        <Flex bgColor={"#331F69"} alignItems={"center"} boxShadow={"2xl"} borderRadius={15} >
-          <Flex direction={"row"} gap={2} p={10} m={4}>
+        <Flex bgColor={"#331F69"} alignItems={"center"} direction={{ base: "column", md: "column", lg: "row" }} boxShadow={"2xl"} borderRadius={15}>
+          <Flex direction={"row"} gap={2} p={{ base: "2px", md: "4px", lg: "10px" }} m={4}>
             <Flex direction={"column"} justifyContent={"center"}>
-              <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
                 Nama
               </Text>
-              <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
                 Email
               </Text>
-              <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
                 Telepon
               </Text>
-              <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
                 Payment Method
               </Text>
             </Flex>
             <Flex direction={"column"} justifyContent={"center"}>
-              <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
-              <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
-              <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
-              <Text fontWeight={"bold"} fontSize={"lg"} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
             </Flex>
             <Flex direction={"column"} justifyContent={"center"}>
-              <Text fontSize={"lg"} color="white">
+              <Text fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
                 {name}
               </Text>
-              <Text fontSize={"lg"} color="white">
+              <Text fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
                 {email}
               </Text>
-              <Text fontSize={"lg"} color="white">
+              <Text fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
                 {telepon}
               </Text>
-              <Text fontSize={"lg"} color="white">
+              <Text fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
                 {paymentMethod}
               </Text>
             </Flex>
           </Flex>
 
-          <Flex justifyContent="flex-start" gap="15" ml={10} direction={"row"}>
-            <Flex alignItems={"center"}>
+          <Flex justifyContent="flex-start" gap="15" ml={{ base: "0px", md: "16px", lg: "70px" }} direction={{ base: "column", md: "column", lg: "row" }}>
+            <Flex alignItems={"center"} justifyContent={{ base: "center", md: "center" }}>
               <IoTicketSharp color="white" size={"35px"} />
             </Flex>
-            <Flex flexDirection={"column"} justifyContent={"center"}>
-              <Flex flexDirection={"column"}>
+            <Flex flexDirection={"column"} justifyContent={{ base: "center" }}>
+              <Flex flexDirection={"column"} justifyContent={{ base: "center" }} alignItems={{ base: "center" }}>
                 {selectedTickets.map((ticketType) => (
                   <Text color={"white"} key={ticketType}>
                     {ticketQuantities[ticketType]} {ticketType} Tickets
                   </Text>
                 ))}
               </Flex>
-              <Flex flexDirection={"column"}>
+              <Flex flexDirection={"column"} alignItems={{ base: "center" }}>
                 <Text color={"white"} fontWeight={"Bold"}>
                   Grand Total : {""}
                   {discountedTotalPrices.toLocaleString("id-ID", {
@@ -202,7 +198,7 @@ const TransactionStep3 = () => {
                 )}
               </Flex>
             </Flex>
-            <Flex ml="140px">
+            <Flex ml={{ lg: "200px" }} justifyContent={{ base: "center" }} mb={{ base: "30px" }}>
               {(paymentMethod === "GOPAY" || paymentMethod === "OVO" || paymentMethod === "DANA") && (
                 <Flex direction={"column"} justifyContent={"center"} alignItems={"center"}>
                   <Text color={"white"} fontWeight={"bold"}>
@@ -214,9 +210,16 @@ const TransactionStep3 = () => {
             </Flex>
           </Flex>
         </Flex>
-        <Button onClick={handlePurchase} mt={4} colorScheme="red" borderRadius={15} boxShadow={"lg"}>Konfirmasi</Button>
+        <Flex gap={2} justifyContent={{ base: "center", lg: "flex-end" }} alignItems={"center"}>
+          <Button bg={"#F7F7F7"} color={"#2e4583"} width={40} padding={{ base: "8px" }} onClick={onPrevious} mt={4} colorScheme="red" borderRadius={15} boxShadow={"lg"}>
+            Kembali
+          </Button>
+          <Button width={40} padding={{ base: "8px" }} onClick={handlePurchase} mt={4} colorScheme="red" borderRadius={15} boxShadow={"lg"}>
+            Konfirmasi
+          </Button>
+        </Flex>
       </Box>
-    </>
+    </Box>
   );
 };
 
