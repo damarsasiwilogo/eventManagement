@@ -143,10 +143,10 @@ export default function CreateForm() {
                           value={selectedLocation}
                           w={"50%"}>
                           <Stack direction={"row"}>
-                            <Radio value="online">Online</Radio>
-                            <Radio value="jakarta">Jakarta</Radio>
-                            <Radio value="bekasi">Bekasi</Radio>
-                            <Radio value="surabaya">Surabaya</Radio>
+                            <Radio value="Online">Online</Radio>
+                            <Radio value="Jakarta">Jakarta</Radio>
+                            <Radio value="Bekasi">Bekasi</Radio>
+                            <Radio value="Surabaya">Surabaya</Radio>
                           </Stack>
                         </RadioGroup>
                         <RadioGroup
@@ -157,10 +157,10 @@ export default function CreateForm() {
                           value={selectedLocation}
                           w={"50%"}>
                           <Stack direction={"row"}>
-                            <Radio value="lombok">Lombok</Radio>
-                            <Radio value="bali">Bali</Radio>
-                            <Radio value="lampung">Lampung</Radio>
-                            <Radio value="malaysia">Malaysia</Radio>
+                            <Radio value="Lombok">Lombok</Radio>
+                            <Radio value="Bali">Bali</Radio>
+                            <Radio value="Lampung">Lampung</Radio>
+                            <Radio value="Malaysia">Malaysia</Radio>
                           </Stack>
                         </RadioGroup>
                       </FormControl>
