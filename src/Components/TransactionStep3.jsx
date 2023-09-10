@@ -188,7 +188,7 @@ const TransactionStep3 = ({onPrevious}) => {
           </Flex>
         </Flex>
         <Flex gap={2} justifyContent={{ base: "center", lg: "flex-end" }} alignItems={"center"}>
-          <Button bg={"#F7F7F7"} color={"#2e4583"} width={40} padding={{ base: "8px" }} onClick={onPrevious} mt={4} colorScheme="red" borderRadius={15} boxShadow={"lg"}>
+          <Button bg={"#F7F7F7"} color={"#2e4583"} width={40} padding={{ base: "8px" }} onClick={onPrevious} mt={4} borderRadius={15} boxShadow={"lg"}>
             Kembali
           </Button>
           <Button width={40} padding={{ base: "8px" }} onClick={handlePurchase} mt={4} colorScheme="red" borderRadius={15} boxShadow={"lg"}>
