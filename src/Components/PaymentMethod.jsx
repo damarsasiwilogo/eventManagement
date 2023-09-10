@@ -196,7 +196,7 @@ function PaymentMethod({ onNext }) {
                             {...field}
                             id="cardNumber"
                             placeholder="Enter card number (ex 1111 4242 3333 5555)"
-                            w={{base: "305px" , lg: "400px"}}
+                            w={{base: "305px" , lg: "350px"}}
                             value={creditCardData.cardNumber}
                             inputMode="numeric" // Allow only numeric input
                             onChange={(e) => {
@@ -224,7 +224,7 @@ function PaymentMethod({ onNext }) {
                             {...field}
                             id="cardHolder"
                             placeholder="Enter card holder name"
-                            w={{base: "305px" , lg: "400px"}}
+                            w={{base: "305px" , lg: "350px"}}
                             value={creditCardData.cardHolder}
                             onChange={(e) => handleCreditCardDataChange("cardHolder", e.target.value)} // Update form data in Redux store
                           />
@@ -233,7 +233,7 @@ function PaymentMethod({ onNext }) {
                       )}
                     </Field>
 
-                    <Flex w={{base: "305px" , lg: "400px"}}>
+                    <Flex w={{base: "305px" , lg: "350px"}}>
                       <FormControl mt={2}>
                         <FormLabel>
                           Expiration Date{" "}
