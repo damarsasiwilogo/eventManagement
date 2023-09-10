@@ -29,18 +29,15 @@ function PaymentMethod({ onNext }) {
 
   const potonganHarga = discountCoupon + discountReff;
   const formData = useSelector((state) => state.transaction.formData);
-  const { telepon } = formData;
-  const virtualAccBCA = " " + "8800" + telepon;
-  const virtualAccMandiri =  " " + "9002" + telepon;
-  const virtualAccBNI = " " +  "1001" +  telepon;
+  const virtualAccBCA = "8800" + formData.telepon;
+  const virtualAccMandiri = "9002" + formData.telepon;
+  const virtualAccBNI = "1001" +  formData.telepon;
 
   const handleButtonClick = async (values) => {
     // Call the onFormValidation function to trigger form validation
     const formStatus = await formikBuyerInfo.submitForm();
     // Call onNext only if validation is successful (isTransactionFormValid is true)
     if (formStatus) {
-      
-      
       
       onNext();
 
@@ -329,11 +326,11 @@ function PaymentMethod({ onNext }) {
                 allowToggle
                 onChange={(index) => {
                   if (index === 0) {
-                    dispatch(setPaymentMethod("Virtual Account BCA" + virtualAccBCA));
+                    dispatch(setPaymentMethod("Virtual Account BCA " + virtualAccBCA));
                   } else if (index === 1) {
-                    dispatch(setPaymentMethod("Virtual Account Livin' by Mandiri" + virtualAccMandiri));
+                    dispatch(setPaymentMethod("Virtual Account Livin' by Mandiri " + virtualAccMandiri));
                   } else if (index === 2) {
-                    dispatch(setPaymentMethod("Virtual Account BNI" + virtualAccBNI))
+                    dispatch(setPaymentMethod("Virtual Account BNI " + virtualAccBNI))
                   }
                 }}
               >
