@@ -35,6 +35,168 @@
       "status": "Waiting for payment",
       "timestamp": 1694260961655,
       "id": 6
+    },
+    {
+      "username": "rizkys",
+      "name": "Fauza rizky",
+      "email": "fauzasmg@gmail.com",
+      "phonenumber": "12345678",
+      "paymentmethod": "Virtual Account BCA 880012345678",
+      "eventname": "Indonesia Marketing Festival 2023 - JATIM",
+      "ticket": {
+        "Gold": 1,
+        "Platinum": 0,
+        "Diamond": 0
+      },
+      "prices": 100000,
+      "diskon": 0,
+      "status": "Waiting for payment",
+      "timestamp": 1694319562623,
+      "id": 7
+    },
+    {
+      "username": "rizkys",
+      "name": "Fauza rizky",
+      "email": "fauzasmg@gmail.com",
+      "phonenumber": "12345678",
+      "paymentmethod": "GOPAY",
+      "eventname": "Ultra Beach Bali 2023",
+      "ticket": {
+        "Gold": 0,
+        "Platinum": 1,
+        "Diamond": 0
+      },
+      "prices": 1625000,
+      "diskon": 0,
+      "status": "Waiting for payment",
+      "timestamp": 1694319654966,
+      "id": 8
+    },
+    {
+      "username": "rizkys",
+      "name": "Fauza Rizky",
+      "email": "fauzasmg@gmail.com",
+      "phonenumber": "085155480119",
+      "paymentmethod": "Virtual Account BNI 100108156601507",
+      "eventname": "A Family Symphony Concert",
+      "ticket": {
+        "Gold": 0,
+        "Platinum": 0,
+        "Diamond": 1
+      },
+      "prices": 2650000,
+      "diskon": 0,
+      "status": "Waiting for payment",
+      "timestamp": 1694319898890,
+      "id": 9
+    },
+    {
+      "username": "rizkys",
+      "name": "Fauza Rizky",
+      "email": "fauzasmg@gmail.com",
+      "phonenumber": "085155480119",
+      "paymentmethod": "OVO",
+      "eventname": "ATLAS NYE PARTY 2023 Alert: Martin Garrix Takes Center Stage! Get set for THE BIGGEST NYE PARTY you’ll ever have",
+      "ticket": {
+        "Gold": 0,
+        "Platinum": 1,
+        "Diamond": 0
+      },
+      "prices": 2000000,
+      "diskon": 0,
+      "status": "Waiting for payment",
+      "timestamp": 1694319970098,
+      "id": 10
+    },
+    {
+      "username": "rizkys",
+      "name": "Fauza Rizky",
+      "email": "fauzasmg@gmail.com",
+      "phonenumber": "085155480119",
+      "paymentmethod": "Virtual Account BCA 8800085155480119",
+      "eventname": "PERTAMINA GRAND PRIX OF INDONESIA 2023",
+      "ticket": {
+        "Gold": 0,
+        "Platinum": 1,
+        "Diamond": 0
+      },
+      "prices": 500000,
+      "diskon": 0,
+      "status": "Waiting for payment",
+      "timestamp": 1694320144980,
+      "id": 11
+    },
+    {
+      "username": "rizkys",
+      "name": "Fauza Rizky",
+      "email": "fauzasmg@gmail.com",
+      "phonenumber": "085155480119",
+      "paymentmethod": "GOPAY",
+      "eventname": "SCRUBB LIVE IN JAKARTA",
+      "ticket": {
+        "Gold": 0,
+        "Platinum": 1,
+        "Diamond": 1
+      },
+      "prices": 1880000,
+      "diskon": 0,
+      "status": "Waiting for payment",
+      "timestamp": 1694320468991,
+      "id": 12
+    },
+    {
+      "username": "rizkys",
+      "name": "Fauza Rizky",
+      "email": "fauzasmg@gmail.com",
+      "phonenumber": "085155480119",
+      "paymentmethod": "GOPAY",
+      "eventname": "Indonesia Marketing Festival 2023 - JATIM",
+      "ticket": {
+        "Gold": 1,
+        "Platinum": 0,
+        "Diamond": 0
+      },
+      "prices": 100000,
+      "diskon": 0,
+      "status": "Waiting for payment",
+      "timestamp": 1694320572341,
+      "id": 13
+    },
+    {
+      "username": "rizkys",
+      "name": "Fauza Rizky",
+      "email": "fauzasmg@gmail.com",
+      "phonenumber": "085155480119",
+      "paymentmethod": "Virtual Account BCA 8800",
+      "eventname": "BRI LIGA 1 2023-2024 PERSEBAYA SURABAYA VS BORNEO FC",
+      "ticket": {
+        "Gold": 0,
+        "Platinum": 0,
+        "Diamond": 1
+      },
+      "prices": 150000,
+      "diskon": 0,
+      "status": "Waiting for payment",
+      "timestamp": 1694321150804,
+      "id": 14
+    },
+    {
+      "username": "rizkys",
+      "name": "Fauza Rizky",
+      "email": "fauzasmg@gmail.com",
+      "phonenumber": "085155480119",
+      "paymentmethod": "GOPAY",
+      "eventname": "Resistance Bali 2023",
+      "ticket": {
+        "Gold": 1,
+        "Platinum": 0,
+        "Diamond": 0
+      },
+      "prices": 625000,
+      "diskon": 0,
+      "status": "Waiting for payment",
+      "timestamp": 1694321212115,
+      "id": 15
     }
   ],
   "couponcode": [
