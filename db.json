@@ -167,7 +167,7 @@
       "name": "Fauza Rizky",
       "email": "fauzasmg@gmail.com",
       "phonenumber": "085155480119",
-      "paymentmethod": "Virtual Account BCA 8800",
+      "paymentmethod": "Virtual Account BCA 8800085155480119",
       "eventname": "BRI LIGA 1 2023-2024 PERSEBAYA SURABAYA VS BORNEO FC",
       "ticket": {
         "Gold": 0,
@@ -221,7 +221,7 @@
       "name": "Damarsasi Cahyo Wilogo",
       "email": "damarsasiwilogo@gmail.com",
       "phonenumber": "08122093378",
-      "paymentmethod": "Virtual Account BCA 8800",
+      "paymentmethod": "Virtual Account BCA 880008122093378",
       "eventname": "ATLAS NYE PARTY 2023 Alert: Martin Garrix Takes Center Stage! Get set for THE BIGGEST NYE PARTY you’ll ever have",
       "ticket": {
         "Gold": 0,
@@ -323,6 +323,24 @@
       "status": "Waiting for payment",
       "timestamp": 1694325418324,
       "id": 22
+    },
+    {
+      "username": "anggaratriputra",
+      "name": "Anggara Tri Putra",
+      "email": "anggaratriputra@gmail.com",
+      "phonenumber": "081381873043",
+      "paymentmethod": "Virtual Account BCA 8800081381873043",
+      "eventname": "2023 ASIA FAN MEETING IN JAKARTA: KIMBUM ",
+      "ticket": {
+        "Gold": 1,
+        "Platinum": 0,
+        "Diamond": 0
+      },
+      "prices": 75000,
+      "diskon": 0,
+      "status": "Waiting for payment",
+      "timestamp": 1694355205418,
+      "id": 23
     }
   ],
   "couponcode": [
