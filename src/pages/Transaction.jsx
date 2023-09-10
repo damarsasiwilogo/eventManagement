@@ -17,7 +17,7 @@ function Transaction() {
   const { id } = useParams();
   const [events, setEvents] = useState([]);
   const [currentStep, setCurrentStep] = useState(1);
-  const [remainingTime, setRemainingTime] = useState(100 * 60); // Waktu dalam detik (15 menit)
+  const [remainingTime, setRemainingTime] = useState(15 * 60); // Waktu dalam detik (15 menit)
   const [isTimeUpModalOpen, setIsTimeUpModalOpen] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -123,7 +123,7 @@ function Transaction() {
     }
   };
 
-  const stepTexts = ["Pilih Kategori", "Informasi Personal", "Bayar"];
+  const stepTexts = ["Pilih Kategori", "Informasi Personal", "Pembayaran"];
 
   const buttonProgress = () => {
     switch (currentStep) {
@@ -168,9 +168,9 @@ function Transaction() {
   return (
     <>
       <Navibar needLogin>
-        <Box height={{ lg: "120vh" }}>
+        <Box>
           <Box display={"flex"} flexDirection="column" justifyContent="center" bgColor="white" alignItems={"center"} h={"10vh"} ml={{ lg: "40" }} mr={{ lg: "40" }} mt={2} borderRadius={10}>
-            <Flex direction={"column"} ml={{ lg: "60px" }} justifyContent={"center"} alignItems={"center"} mt={5}>
+            <Flex direction={"column"} ml={{ lg: "18px" }} justifyContent={"center"} alignItems={"center"} mt={5}>
               <Text fontSize={{ base: "md" }} fontWeight={"bold"} mt={10} my={1}>
                 WAKTU TERSISA
               </Text>
@@ -182,9 +182,9 @@ function Transaction() {
               </Text>
             </Flex>
           </Box>
-          <Box display="flex" justifyContent="space-around" alignItems="center" h="5vh">
+          <Box display="flex" justifyContent="space-around" gap={2} alignItems="center" h="5vh">
             {stepTexts.map((text, index) => (
-              <Text key={index} fontSize="lg" fontWeight={index === currentStep - 1 ? "bold" : "normal"}>
+              <Text key={index} fontSize={{base: "14px", lg: "lg"}} fontWeight={index === currentStep - 1 ? "bold" : "normal"}>
                 {text}
               </Text>
             ))}
@@ -201,7 +201,7 @@ function Transaction() {
           ) : (
             renderStep()
           )}
-          <Flex justifyContent={{ base: "center", md: "center", lg: "flex-end" }} mt={{ lg: "20" }} mr={{ lg: "80" }}>
+          <Flex justifyContent={{ base: "center", md: "center", lg: "flex-end" }} mr={{ lg: "80" }}>
             {currentStep !== 2 && (
               <Box display={"flex"} justifyContent={{ base: "center", lg: "flex-end" }} w={{ base: "20vw" }} h={"10vh"} mb={5} borderBottomRadius={10}>
                 {currentStep > 1 && currentStep !== 3 && (
@@ -209,14 +209,13 @@ function Transaction() {
                     Kembali
                   </Button>
                 )}
-
                 {currentStep !== 3 && isButtonVisible && (
                   <Button
                     colorScheme="facebook"
                     color="white"
                     _hover={{ bg: "#24105c" }}
                     size="sm"
-                    mr={{ lg: "0" }}
+                    mr={{ lg: "10" }}
                     mt={5}
                     w="90px"
                     onClick={() => {

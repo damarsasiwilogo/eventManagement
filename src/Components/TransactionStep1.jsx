@@ -8,8 +8,6 @@ import { setTicketQuantities, setTotalPrices, setDiscountedTotalPrices } from ".
 import { resetTransaction } from "../slices/transactionSlices";
 import { useToast } from "@chakra-ui/react";
 
-
-
 function TransactionStep1() {
   const [events, setEvents] = useState([]);
 
@@ -40,7 +38,6 @@ function TransactionStep1() {
         });
       });
   }, []);
-
 
   const handleDecrement = (ticketType) => {
     switch (ticketType) {
@@ -165,26 +162,26 @@ function TransactionStep1() {
   };
 
   return (
-    <Box h={{lg: "80vh"}}> 
-      <Box display={"flex"} flexDirection="column" ml={{lg: "40"}}  mr={{lg: "40"}} mt={2} borderTopRadius={10}>
+    <Box>
+      <Box display={"flex"} alignItems={{lg: "center"}} flexDirection="column" ml={{ lg: "40" }} mr={{ lg: "40" }} mt={2} borderTopRadius={10}>
         {events.map((event) => (
           <>
-            <Image src={event.images} mx={{base :"4" ,lg: "20"}}  mt={4} borderRadius={15} />
-            <Flex mx={{lg: "100"}} mt={{base: 4}} >
-              <Table variant="simple" colorScheme="blackAlpha" size={{base: "sm"}}>
+            <Image src={event.images} h={{base: "180px", lg: "376px"}} w={{base: "340px", lg : "800px"}} mx={{ base: "4", lg: "20" }} mt={4} borderRadius={15} />
+            <Flex mx={{ lg: "100" }} mt={{ base: 4 }}>
+              <Table variant="simple" colorScheme="blackAlpha" size={{ base: "sm" }}>
                 <Thead>
                   <Tr>
-                    <Th width={{lg: "300px"}} >
-                      <Text fontSize={{base :"xs",lg: "sm"}}>Jenis Kategori</Text>
+                    <Th width={{ lg: "300px" }}>
+                      <Text fontSize={{ base: "xs", lg: "sm" }}>Jenis Kategori</Text>
                     </Th>
                     <Th textAlign="center">
-                      <Text fontSize={{base :"xs",lg: "sm"}}>Harga per tiket</Text>
+                      <Text fontSize={{ base: "xs", lg: "sm" }}>Harga per tiket</Text>
                     </Th>
                     <Th textAlign="center">
-                      <Text fontSize={{base :"xs",lg: "sm"}}>Kuantitas</Text>
+                      <Text fontSize={{ base: "xs", lg: "sm" }}>Kuantitas</Text>
                     </Th>
                     <Th textAlign="center" width="200px">
-                      <Text fontSize={{base :"xs",lg: "sm"}}>Jumlah</Text>
+                      <Text fontSize={{ base: "xs", lg: "sm" }}>Jumlah</Text>
                     </Th>
                   </Tr>
                 </Thead>
@@ -192,7 +189,7 @@ function TransactionStep1() {
                   {Object.entries(event.ticket_types).map(([ticketType, price]) => (
                     <Tr key={ticketType}>
                       <Td>
-                        <Flex direction={{base: "column"}} alignItems={"center"} gap={3}>
+                        <Flex direction={{ base: "column", lg : "row" }} alignItems={"center"} gap={3}>
                           <IoTicketSharp size={"20px"} />
                           <Flex direction={"column"}>
                             <Text fontSize="sm" fontWeight="bold" colorScheme="blackAlpha">
