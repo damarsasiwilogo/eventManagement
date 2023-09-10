@@ -80,7 +80,8 @@ function PaymentMethod({ onNext }) {
     cardYear: Yup.string().required("Year is required"),
     cvvNumber: Yup.string()
       .required("CVV number is required")
-      .min(3, "cvv number must be 3 digits")
+      .min(3, "CVV number must be 3 digits")
+      .max(3, "CVV number must be 3 digits")
       .matches(/^[0-9]+$/, "CVV number must contain only numbers"),
   });
 
@@ -108,7 +109,7 @@ function PaymentMethod({ onNext }) {
   };
   return (
     <>
-      <Box display={"flex"} borderRadius={10} alignItems="center" bg="#331F69" padding={{lg:"10"}} py={{base: "4"}} mt={{lg: "6"}} flexDirection="column" w={{md :"100vw" ,lg: "35vw"}} h={{lg: "100vh"}}>
+      <Box display={"flex"} borderRadius={10} alignItems="center" bg="#331F69" padding={{lg:"10"}} py={{base: "4"}} mt={{lg: "6"}} flexDirection="column" w={{md :"100vw" ,lg: "35vw"}} >
         <Flex justifyContent="flex-start" gap="15" direction={"row"} mb={5}>
           <Flex alignItems={"center"}>
             <IoTicketSharp color="white" size={"35px"} />
