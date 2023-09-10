@@ -43,7 +43,7 @@ const TransactionStep3 = ({onPrevious}) => {
       api.post("/purchasedticket", body);
       toast({
         title: "Ticket has been booked, please complete your transaction",
-        description: "Redirecting you to homepage",
+        description: "Redirecting you to your tickets page",
         status: "success",
         duration: 6000,
         isClosable: true,

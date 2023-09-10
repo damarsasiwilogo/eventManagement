@@ -138,7 +138,7 @@ function MyTickets() {
                   {" "}
                   {calculateRemainingTime(data.timestamp)}
                 </Text>
-                <Text fontSize={{base:"12px", lg: "20px"}}textAlign={"center"}> {calculateRemainingTime(data.timestamp) !== "Payment Canceled" ? data.status : "Ticket are canceled"} </Text>
+                <Text fontSize={{base:"12px", lg: "20px"}}textAlign={"center"}> {calculateRemainingTime(data.timestamp) !== "Payment Canceled" ? data.status : "Ticket cancelled due to payment timeout"} </Text>
                 <Text fontSize={{base:"12px", lg: "20px"}}> {data.eventname} </Text>
               </Flex>
               <Flex h={{base: "536px"}} bgColor={calculateRemainingTime(data.timestamp) === "Payment Canceled" ? "grey" : "#331F69"} alignItems="center" boxShadow="2xl" direction={{ base: "column", md: "column", lg: "row" }}>
