@@ -14,6 +14,7 @@ const TransactionStep3 = ({onPrevious}) => {
   const discountReff = useSelector((state) => state.transaction.discountedTotalPricesByReff);
   const discountedTotalPrices = useSelector((state) => state.transaction.discountedTotalPrices);
   const paymentMethod = useSelector((state) => state.transaction.paymentMethod);
+  const vaNumber = useSelector((state) => state.transaction.vaNumber);
   const formData = useSelector((state) => state.transaction.formData);
   const { name, email, telepon } = formData;
   const selectedTickets = Object.keys(ticketQuantities).filter((ticketType) => ticketQuantities[ticketType] > 0);
@@ -31,7 +32,7 @@ const TransactionStep3 = ({onPrevious}) => {
         name: formData.name,
         email: formData.email,
         phonenumber: formData.telepon,
-        paymentmethod: paymentMethod,
+        paymentmethod: paymentMethod + formData.telepon,
         eventname: eventName,
         ticket: ticketQuantities,
         prices: discountedTotalPrices,
@@ -133,7 +134,7 @@ const TransactionStep3 = ({onPrevious}) => {
                 {telepon}
               </Text>
               <Text fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
-                {paymentMethod}
+                {paymentMethod}{telepon}
               </Text>
             </Flex>
           </Flex>

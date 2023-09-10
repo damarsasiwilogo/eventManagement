@@ -323,6 +323,24 @@
       "status": "Waiting for payment",
       "timestamp": 1694325418324,
       "id": 22
+    },
+    {
+      "username": "anggaratriputra",
+      "name": "Anggara Tri Putra",
+      "email": "anggaratriputra@gmail.com",
+      "phonenumber": "081381873043",
+      "paymentmethod": "Virtual Account BCA 8800081381873043",
+      "eventname": "2023 ASIA FAN MEETING IN JAKARTA: KIMBUM ",
+      "ticket": {
+        "Gold": 1,
+        "Platinum": 0,
+        "Diamond": 0
+      },
+      "prices": 75000,
+      "diskon": 0,
+      "status": "Waiting for payment",
+      "timestamp": 1694355205418,
+      "id": 23
     }
   ],
   "couponcode": [

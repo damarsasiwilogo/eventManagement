@@ -26,12 +26,15 @@ function PaymentMethod({ onNext }) {
   const selectedTickets = Object.keys(ticketQuantities).filter((ticketType) => ticketQuantities[ticketType] > 0);
   const creditCardData = useSelector((state) => state.transaction.creditCardData);
   const toast = useToast();
-
   const potonganHarga = discountCoupon + discountReff;
   const formData = useSelector((state) => state.transaction.formData);
   const virtualAccBCA = "8800" + formData.telepon;
   const virtualAccMandiri = "9002" + formData.telepon;
   const virtualAccBNI = "1001" +  formData.telepon;
+  const paymentMethodBCA = "Virtual Account BCA 8800" 
+  const paymentMethodMandiri = "Virtual Account Livin' By Mandiri 9002"
+  const paymentMethodBNI = "Virtual Account BNI 1001" 
+
 
   const handleButtonClick = async (values) => {
     // Call the onFormValidation function to trigger form validation
@@ -326,11 +329,11 @@ function PaymentMethod({ onNext }) {
                 allowToggle
                 onChange={(index) => {
                   if (index === 0) {
-                    dispatch(setPaymentMethod("Virtual Account BCA " + virtualAccBCA));
+                    dispatch(setPaymentMethod(paymentMethodBCA));
                   } else if (index === 1) {
-                    dispatch(setPaymentMethod("Virtual Account Livin' by Mandiri " + virtualAccMandiri));
+                    dispatch(setPaymentMethod(paymentMethodMandiri));
                   } else if (index === 2) {
-                    dispatch(setPaymentMethod("Virtual Account BNI " + virtualAccBNI))
+                    dispatch(setPaymentMethod(paymentMethodBNI))
                   }
                 }}
               >
