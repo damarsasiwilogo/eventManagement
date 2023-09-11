@@ -121,6 +121,14 @@ export default function Landingpage({ openModal }) {
     setFilterType(type);
   }
 
+  const handleClickslider = (id) => {
+    if (isLoggedIn) {
+      navigate(`/Transaction/${id}`);
+    } else {
+      setIsModalOpen(true);
+    }
+  };
+
   return (
     <Box h={"200vh"}>
       <Navibar>
@@ -138,13 +146,14 @@ export default function Landingpage({ openModal }) {
             {events.map((event) => {
               if (filterType === null || event.type.toLowerCase() === filterType) {
                 return (
-                  <>
+                  <Box onClick={() => handleClickslider(event.id)}>
                     <Slide
                       background={{
                         backgroundImageSrc: event.images,
                       }}
+                      
                     />
-                  </>
+                  </Box>
                 );
               }
             })}
@@ -206,7 +215,7 @@ export default function Landingpage({ openModal }) {
             </Heading>
           </Box>
         </Box>
-        <Box display={"flex"} justifyContent={"center"} alignItems={"center"} >
+        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
           <HeroSlider
             height={"34vh"}
             width={"75vw"}
@@ -234,7 +243,7 @@ export default function Landingpage({ openModal }) {
         <Box id="discover">
           <Box w={"100%"}>
             {/* Filter List for small screen */}
-            <Box display={{ base: "flex", md: "none" }} m={'15px'}>
+            <Box display={{ base: "flex", md: "none" }} m={"15px"}>
               <Menu>
                 <MenuButton as={Button} variant="link" cursor="pointer" minW={0}>
                   <Text>
@@ -251,7 +260,7 @@ export default function Landingpage({ openModal }) {
             </Box>
 
             {/* filter list for desktop */}
-            <Box display={{ base: "none", md: "flex" }} justifyContent={'center'}>
+            <Box display={{ base: "none", md: "flex" }} justifyContent={"center"}>
               <ul style={{ listStyleType: "none", padding: 0, display: "flex", justifyContent: "center" }}>
                 {locations.map((location) => (
                   <li key={location} onClick={() => handleFilter(location === "All" ? null : location)}>
@@ -306,7 +315,7 @@ export default function Landingpage({ openModal }) {
                   <Heading margin={"10px 0"}>{selectedEvent.name}</Heading>
                   <Text>Date: {selectedEvent.date}</Text>
                   <Text>Time: {selectedEvent.time}</Text>
-                  <Text fontSize={"sm"} w={{md: "400px", lg:"500px"}}>
+                  <Text fontSize={"sm"} w={{ md: "400px", lg: "500px" }}>
                     {selectedEvent.description}
                   </Text>
                   <Text>{selectedEvent.ticketPrice}</Text>
