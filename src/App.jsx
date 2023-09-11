@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Transaction from "./pages/Transaction";
 import MyTickets from "./pages/MyTickets";
+import Regist from "./pages/Regist";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setInitialData } from "./slices/userSlices";
@@ -33,6 +34,7 @@ function App() {
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/Transaction/:id" element={<Transaction />}></Route>
         <Route path="/MyTickets/" element={<MyTickets />}></Route>
+        <Route path="/Regist/" element={<Regist />}></Route>
       </Routes>
     </>
   );
