@@ -1,7 +1,12 @@
 import axios from "axios";
 
-const instance = axios.create({
-    baseURL: "http://localhost:3001"
-})
+let baseURL = "http://localhost:3001";
+if (process.env.NODE_ENV === "production") {
+  baseURL = "https://my-json-server.typicode.com/damarsasiwilogo/eventManagement";
+}
 
-export default instance
+const instance = axios.create({
+  baseURL,
+});
+
+export default instance;
