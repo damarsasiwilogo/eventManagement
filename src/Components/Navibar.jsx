@@ -293,12 +293,12 @@ export default function Navibar(props) {
   return (
     <>
       {isLoggedIn ? (
-        <Box bg={"#331F69"} px={4}>
+        <Box bg={"#331F69"} px={{base: 2, lg:4}}>
           <Flex h={16} alignItems="center" justifyContent={{ lg: "space-evenly" }}>
             <IconButton size="md" icon={isOpen ? <CloseIcon /> : <HamburgerIcon />} aria-label="Open Menu" display={{ lg: "none" }} onClick={isOpen ? onClose : onOpen} />
-            <HStack spacing={8} w={{ base: "full", lg: "auto" }}>
+            <HStack spacing={{base: 1, lg: 8}} w={{ base: "full", lg: "auto" }}>
               <a href="/">
-                <Image src={myTixLogo} w={"150px"} h={"45px"} />
+                <Image src={myTixLogo} w={{base:"82px" ,lg: "150px"}} h={{base : "24px" , lg: "45px"}}/>
               </a>
               <Spacer display={{ lg: "none" }} />
               <Flex gap={2} alignItems={"center"} zIndex={5} display={{ lg: "none" }}>
@@ -400,11 +400,7 @@ export default function Navibar(props) {
         <Box bg={"#331F69"} px={4}>
           <Flex h={16} alignItems="center" justifyContent={{ base: "normal", lg: "space-evenly" }}>
             <IconButton size="md" icon={isOpen ? <CloseIcon /> : <HamburgerIcon />} aria-label="Open Menu" display={{ lg: "none" }} onClick={isOpen ? onClose : onOpen} />
-            <HStack spacing={8}>
-              <a href="/">
-                <Image src={myTixLogo} w={"150px"} h={"45px"} />
-              </a>
-            </HStack>
+            {/* // tadinya image disini */}
             <HStack as="nav" spacing={4} display={{ base: "none", lg: "flex" }}>
               <div style={{ position: "relative" }}>
                 <Input

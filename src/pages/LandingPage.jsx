@@ -49,6 +49,8 @@ export default function Landingpage() {
   const locations = ["All", "Online", "Jakarta", "Bekasi", "Surabaya", "Lombok", "Bali", "Lampung", "Malaysia"];
   const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
   const toast = useToast();
+  const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  const screenHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
   useEffect(() => {
     api
@@ -129,14 +131,48 @@ export default function Landingpage() {
     }
   };
 
+  const heroSliderStyles = {
+    width: "100%", // Default width for smaller screens
+    height: "34vh", // Default height
+  };
+  
+  // Add additional styles for medium-sized screens using media queries
+  const mediumScreenStyles = {
+    "@media screen and (min-width: 768px)": {
+      width: "75vw", // Adjust width for medium-sized screens
+    },
+  };
+
+  const copyToClipboard = (code) => {
+    navigator.clipboard.writeText(code)
+      .then(() => {
+        toast({
+          title: "Coupon Code Copied",
+          description: `Copied ${code} to clipboard`,
+          status: "success",
+          duration: 3000, // Display the toast for 3 seconds
+          isClosable: true,
+        });
+      })
+      .catch((error) => {
+        toast({
+          title: "Copy Failed",
+          description: "Clipboard copy failed",
+          status: "error",
+          duration: 3000, // Display the toast for 3 seconds
+          isClosable: true,
+        });
+      });
+  };
+  
   return (
     <Box h={"200vh"}>
       <Navibar>
         {/* Image Slider */}
         <Box marginTop={"10px"} display={"flex"} justifyContent={"center"}>
           <HeroSlider
-            height={"45vh"}
-            width={"70vw"}
+           width={screenWidth < 768 ? "46vh" : "80vw"}
+           height={screenWidth < 768 ? "20vh" : "60vh"}
             autoplay
             controller={{
               initialSlide: 1,
@@ -160,7 +196,7 @@ export default function Landingpage() {
           {/* End Of Image Slider */}
         </Box>
 
-        <Box display={"flex"} className="box-type" h={"45vh"} flexDirection={{ base: "column", md: "column", lg: "row" }} justifyContent={"center"} alignItems={"center"} padding="10px">
+        <Box display={"flex"} className="box-type" h={"45vh"} flexDirection={{ base: "column", md: "column", lg: "row" }} justifyContent={"center"} alignItems={"center"} paddingX="10px">
           <Box
             bg={"navy"}
             width={{ base: "300px", sm: "450px", md: "700px" }}
@@ -168,13 +204,13 @@ export default function Landingpage() {
             margin={"10px"}
             borderRadius={"10px"}
             bgImage={music}
-            bgSize={"contain"}
+            bgSize={{base:"cover" ,lg: "contain"}}
             display={"flex"}
             justifyContent={"center"}
             alignItems={"center"}
             className="box-shadow "
             onClick={handleclickBox}>
-            <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"100%"} display={"flex"} justifyContent={"center"} className="heading">
+            <Heading color={"white"} fontWeight={"extrabold"} fontSize={{base: "34px", lg:"50px"}} bg={"blackAlpha.700"} w={"100%"} display={"flex"} justifyContent={"center"} className="heading">
               MUSIC
             </Heading>
           </Box>
@@ -185,13 +221,13 @@ export default function Landingpage() {
             margin={"10px"}
             borderRadius={"10px"}
             bgImage={webinar}
-            bgSize={"contain"}
+            bgSize={{base:"cover" ,lg: "contain"}}
             display={"flex"}
             justifyContent={"center"}
             alignItems={"center"}
             className="box-shadow"
             onClick={handleclickBox}>
-            <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"100%"} display={"flex"} justifyContent={"center"} className="heading">
+            <Heading color={"white"} fontWeight={"extrabold"} fontSize={{base: "34px", lg:"50px"}} bg={"blackAlpha.700"} w={"100%"} display={"flex"} justifyContent={"center"} className="heading">
               WEBINAR
             </Heading>
           </Box>
@@ -203,21 +239,23 @@ export default function Landingpage() {
             margin={"10px"}
             borderRadius={"10px"}
             bgImage={sports}
-            bgSize={"contain"}
+            bgSize={{base:"cover" ,lg: "contain"}}
             display={"flex"}
             justifyContent={"center"}
             alignItems={"center"}
             className="box-shadow"
             onClick={handleclickBox}>
-            <Heading color={"white"} fontWeight={"extrabold"} fontSize={"50px"} bg={"blackAlpha.700"} w={"100%"} display={"flex"} justifyContent={"center"} className="heading">
+            <Heading color={"white"} fontWeight={"extrabold"} fontSize={{base: "34px", lg:"50px"}} bg={"blackAlpha.700"} w={"100%"} display={"flex"} justifyContent={"center"} className="heading">
               SPORTS
             </Heading>
           </Box>
         </Box>
-        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}
+        >
           <HeroSlider
-            height={"34vh"}
-            width={"75vw"}
+            
+            width={screenWidth < 768 ? "45vh" : "90vw"}
+            height={screenWidth < 768 ? "15vh" : "40vh"}
             autoplay
             controller={{
               initialSlide: 1,
@@ -227,13 +265,13 @@ export default function Landingpage() {
             style={{ borderRadius: 10 }}>
             {coupons.map((coupon) => {
               return (
-                <>
+                <Box onClick={() => copyToClipboard(coupon.code)}>
                   <Slide
                     background={{
                       backgroundImageSrc: coupon.images,
                     }}
                   />
-                </>
+                </Box>
               );
             })}
           </HeroSlider>
