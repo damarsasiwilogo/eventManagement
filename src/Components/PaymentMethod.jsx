@@ -779,7 +779,7 @@ function PaymentMethod({ onNext }) {
                           <Box flexShrink="0" mt={1}>
                             <StepDescription>
                               <Text color={"white"}>
-                                Masuk ke aplikasi<b>DANA</b>
+                                Masuk ke aplikasi <b>DANA</b>
                               </Text>
                             </StepDescription>
                           </Box>

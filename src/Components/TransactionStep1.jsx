@@ -163,11 +163,11 @@ function TransactionStep1() {
 
   return (
     <Box>
-      <Box display={"flex"} alignItems={{lg: "center"}} flexDirection="column" ml={{ lg: "40" }} mr={{ lg: "40" }} mt={2} borderTopRadius={10}>
+      <Box display={"flex"} alignItems={{ lg: "center" }} flexDirection="column" ml={{ lg: "40" }} mr={{ lg: "40" }} mt={2} borderTopRadius={10}>
         {events.map((event) => (
           <>
-            <Image src={event.images} h={{base: "180px", lg: "376px"}} w={{base: "340px", lg : "800px"}} mx={{ base: "4", lg: "20" }} mt={4} borderRadius={15} />
-            <Flex mx={{ lg: "100" }} mt={{ base: 4 }}>
+            <Image src={event.images} h={{ base: "180px", lg: "376px" }} w={{ base: "340px", lg: "800px" }} mx={{ base: "4", lg: "20" }} mt={4} borderRadius={15} />
+            <Flex mx={{ lg: "100" }} mt={{ base: 4 }} overflowX={"auto"}>
               <Table variant="simple" colorScheme="blackAlpha" size={{ base: "sm" }}>
                 <Thead>
                   <Tr>
@@ -189,7 +189,7 @@ function TransactionStep1() {
                   {Object.entries(event.ticket_types).map(([ticketType, price]) => (
                     <Tr key={ticketType}>
                       <Td>
-                        <Flex direction={{ base: "column", lg : "row" }} alignItems={"center"} gap={3}>
+                        <Flex direction={{ base: "column", lg: "row" }} alignItems={"center"} gap={3}>
                           <IoTicketSharp size={"20px"} />
                           <Flex direction={"column"}>
                             <Text fontSize="sm" fontWeight="bold" colorScheme="blackAlpha">
@@ -226,7 +226,7 @@ function TransactionStep1() {
                     <Td colSpan={3} textAlign="center">
                       Total
                     </Td>
-                    <Td textAlign="center">
+                    <Td textAlign={{ lg: "center" }}>
                       <Text fontWeight="bold">
                         {calculateGrandTotal(event.ticket_types).toLocaleString("id-ID", {
                           style: "currency",
