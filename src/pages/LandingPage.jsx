@@ -110,9 +110,11 @@ export default function Landingpage() {
       setIsModalOpen(true);
     }
   };
+  
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  
 
   function handleclickBox(event) {
     const type = event.currentTarget.querySelector(".heading").textContent.toLowerCase();
@@ -149,7 +151,6 @@ export default function Landingpage() {
                       background={{
                         backgroundImageSrc: event.images,
                       }}
-                      
                     />
                   </Box>
                 );
@@ -340,7 +341,7 @@ export default function Landingpage() {
                   </CardBody>
                   <Divider />
                   <CardFooter>
-                    <Button variant="solid" colorScheme="blue" onClick={handleClickBuyTicket}>
+                    <Button variant="solid" colorScheme="blue" onClick={() => handleClickslider(event.id)}>
                       BUY TIKET
                     </Button>
                   </CardFooter>
