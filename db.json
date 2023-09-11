@@ -7,11 +7,7 @@
       "phonenumber": "081381873043",
       "paymentmethod": "GOPAY",
       "eventname": "Neckdeep Live in Australia & Asia - JAKARTA",
-      "ticket": {
-        "Gold": 1,
-        "Platinum": 1,
-        "Diamond": 1
-      },
+      "ticket": { "Gold": 1, "Platinum": 1, "Diamond": 1 },
       "prices": 1960000,
       "diskon": 840000,
       "status": "Waiting for payment",
@@ -25,11 +21,7 @@
       "phonenumber": "081381873043",
       "paymentmethod": "Virtual Account BCA 8800081381873043",
       "eventname": "2023 ASIA FAN MEETING IN JAKARTA: KIMBUM ",
-      "ticket": {
-        "Gold": 1,
-        "Platinum": 0,
-        "Diamond": 0
-      },
+      "ticket": { "Gold": 1, "Platinum": 0, "Diamond": 0 },
       "prices": 75000,
       "diskon": 0,
       "status": "Waiting for payment",
@@ -43,11 +35,7 @@
       "phonenumber": "12345678",
       "paymentmethod": "Virtual Account BCA 880012345678",
       "eventname": "Indonesia Marketing Festival 2023 - JATIM",
-      "ticket": {
-        "Gold": 1,
-        "Platinum": 0,
-        "Diamond": 0
-      },
+      "ticket": { "Gold": 1, "Platinum": 0, "Diamond": 0 },
       "prices": 100000,
       "diskon": 0,
       "status": "Waiting for payment",
@@ -61,11 +49,7 @@
       "phonenumber": "12345678",
       "paymentmethod": "GOPAY",
       "eventname": "Ultra Beach Bali 2023",
-      "ticket": {
-        "Gold": 0,
-        "Platinum": 1,
-        "Diamond": 0
-      },
+      "ticket": { "Gold": 0, "Platinum": 1, "Diamond": 0 },
       "prices": 1625000,
       "diskon": 0,
       "status": "Waiting for payment",
@@ -79,11 +63,7 @@
       "phonenumber": "085155480119",
       "paymentmethod": "Virtual Account BNI 100108156601507",
       "eventname": "A Family Symphony Concert",
-      "ticket": {
-        "Gold": 0,
-        "Platinum": 0,
-        "Diamond": 1
-      },
+      "ticket": { "Gold": 0, "Platinum": 0, "Diamond": 1 },
       "prices": 2650000,
       "diskon": 0,
       "status": "Waiting for payment",
@@ -97,298 +77,24 @@
       "phonenumber": "085155480119",
       "paymentmethod": "OVO",
       "eventname": "ATLAS NYE PARTY 2023 Alert: Martin Garrix Takes Center Stage! Get set for THE BIGGEST NYE PARTY you’ll ever have",
-      "ticket": {
-        "Gold": 0,
-        "Platinum": 1,
-        "Diamond": 0
-      },
+      "ticket": { "Gold": 0, "Platinum": 1, "Diamond": 0 },
       "prices": 2000000,
       "diskon": 0,
       "status": "Waiting for payment",
       "timestamp": 1694319970098,
       "id": 10
-    },
-    {
-      "username": "rizkys",
-      "name": "Fauza Rizky",
-      "email": "fauzasmg@gmail.com",
-      "phonenumber": "085155480119",
-      "paymentmethod": "Virtual Account BCA 8800085155480119",
-      "eventname": "PERTAMINA GRAND PRIX OF INDONESIA 2023",
-      "ticket": {
-        "Gold": 0,
-        "Platinum": 1,
-        "Diamond": 0
-      },
-      "prices": 500000,
-      "diskon": 0,
-      "status": "Waiting for payment",
-      "timestamp": 1694320144980,
-      "id": 11
-    },
-    {
-      "username": "rizkys",
-      "name": "Fauza Rizky",
-      "email": "fauzasmg@gmail.com",
-      "phonenumber": "085155480119",
-      "paymentmethod": "GOPAY",
-      "eventname": "SCRUBB LIVE IN JAKARTA",
-      "ticket": {
-        "Gold": 0,
-        "Platinum": 1,
-        "Diamond": 1
-      },
-      "prices": 1880000,
-      "diskon": 0,
-      "status": "Waiting for payment",
-      "timestamp": 1694320468991,
-      "id": 12
-    },
-    {
-      "username": "rizkys",
-      "name": "Fauza Rizky",
-      "email": "fauzasmg@gmail.com",
-      "phonenumber": "085155480119",
-      "paymentmethod": "GOPAY",
-      "eventname": "Indonesia Marketing Festival 2023 - JATIM",
-      "ticket": {
-        "Gold": 1,
-        "Platinum": 0,
-        "Diamond": 0
-      },
-      "prices": 100000,
-      "diskon": 0,
-      "status": "Waiting for payment",
-      "timestamp": 1694320572341,
-      "id": 13
-    },
-    {
-      "username": "rizkys",
-      "name": "Fauza Rizky",
-      "email": "fauzasmg@gmail.com",
-      "phonenumber": "085155480119",
-      "paymentmethod": "Virtual Account BCA 8800085155480119",
-      "eventname": "BRI LIGA 1 2023-2024 PERSEBAYA SURABAYA VS BORNEO FC",
-      "ticket": {
-        "Gold": 0,
-        "Platinum": 0,
-        "Diamond": 1
-      },
-      "prices": 150000,
-      "diskon": 0,
-      "status": "Waiting for payment",
-      "timestamp": 1694321150804,
-      "id": 14
-    },
-    {
-      "username": "rizkys",
-      "name": "Fauza Rizky",
-      "email": "fauzasmg@gmail.com",
-      "phonenumber": "085155480119",
-      "paymentmethod": "GOPAY",
-      "eventname": "Resistance Bali 2023",
-      "ticket": {
-        "Gold": 1,
-        "Platinum": 0,
-        "Diamond": 0
-      },
-      "prices": 625000,
-      "diskon": 0,
-      "status": "Waiting for payment",
-      "timestamp": 1694321212115,
-      "id": 15
-    },
-    {
-      "username": "damarsasiwilogo",
-      "name": "Damarsasi Cahyo Wilogo",
-      "email": "damarsasiwilogo@gmail.com",
-      "phonenumber": "08122093378",
-      "paymentmethod": "Credit Card",
-      "eventname": "Ultra Beach Bali 2023",
-      "ticket": {
-        "Gold": 0,
-        "Platinum": 0,
-        "Diamond": 1
-      },
-      "prices": 17160000,
-      "diskon": 0,
-      "status": "Waiting for payment",
-      "timestamp": 1694324872933,
-      "id": 16
-    },
-    {
-      "username": "damarsasiwilogo",
-      "name": "Damarsasi Cahyo Wilogo",
-      "email": "damarsasiwilogo@gmail.com",
-      "phonenumber": "08122093378",
-      "paymentmethod": "Virtual Account BCA 880008122093378",
-      "eventname": "ATLAS NYE PARTY 2023 Alert: Martin Garrix Takes Center Stage! Get set for THE BIGGEST NYE PARTY you’ll ever have",
-      "ticket": {
-        "Gold": 0,
-        "Platinum": 0,
-        "Diamond": 1
-      },
-      "prices": 5000000,
-      "diskon": 0,
-      "status": "Waiting for payment",
-      "timestamp": 1694324974123,
-      "id": 17
-    },
-    {
-      "username": "damarsasiwilogo",
-      "name": "Damarsasi Cahyo Wilogo",
-      "email": "damarsasiwilogo@gmail.com",
-      "phonenumber": "08122093378",
-      "paymentmethod": "Virtual Account BCA 880008122093378",
-      "eventname": "SCRUBB LIVE IN JAKARTA",
-      "ticket": {
-        "Gold": 0,
-        "Platinum": 0,
-        "Diamond": 1
-      },
-      "prices": 1180000,
-      "diskon": 0,
-      "status": "Waiting for payment",
-      "timestamp": 1694325062525,
-      "id": 18
-    },
-    {
-      "username": "damarsasiwilogo",
-      "name": "Damarsasi Cahyo Wilogo",
-      "email": "damarsasiwilogo@gmail.com",
-      "phonenumber": "08122093378",
-      "paymentmethod": "Virtual Account BNI 100108122093378",
-      "eventname": "BAKU HANTAM CHAMPIONSHIP",
-      "ticket": {
-        "Gold": 0,
-        "Platinum": 0,
-        "Diamond": 2
-      },
-      "prices": 8000000,
-      "diskon": 0,
-      "status": "Waiting for payment",
-      "timestamp": 1694325149028,
-      "id": 19
-    },
-    {
-      "username": "damarsasiwilogo",
-      "name": "Damarsasi Cahyo Wilogo",
-      "email": "damarsasiwilogo@gmail.com",
-      "phonenumber": "08122093378",
-      "paymentmethod": "GOPAY",
-      "eventname": "Indonesia Marketing Festival 2023 - JATIM",
-      "ticket": {
-        "Gold": 2,
-        "Platinum": 0,
-        "Diamond": 0
-      },
-      "prices": 200000,
-      "diskon": 0,
-      "status": "Waiting for payment",
-      "timestamp": 1694325241956,
-      "id": 20
-    },
-    {
-      "username": "damarsasiwilogo",
-      "name": "Damarsasi Cahyo Wilogo",
-      "email": "damarsasiwilogo@gmail.com",
-      "phonenumber": "08122093378",
-      "paymentmethod": "Virtual Account Livin' by Mandiri 900208122093378",
-      "eventname": "PERTAMINA GRAND PRIX OF INDONESIA 2023",
-      "ticket": {
-        "Gold": 0,
-        "Platinum": 0,
-        "Diamond": 2
-      },
-      "prices": 1300000,
-      "diskon": 0,
-      "status": "Waiting for payment",
-      "timestamp": 1694325337309,
-      "id": 21
-    },
-    {
-      "username": "damarsasiwilogo",
-      "name": "Damarsasi Cahyo Wilogo",
-      "email": "damarsasiwilogo@gmail.com",
-      "phonenumber": "08122093378",
-      "paymentmethod": "OVO",
-      "eventname": "Neckdeep Live in Australia & Asia - JAKARTA",
-      "ticket": {
-        "Gold": 0,
-        "Platinum": 2,
-        "Diamond": 0
-      },
-      "prices": 1980000,
-      "diskon": 0,
-      "status": "Waiting for payment",
-      "timestamp": 1694325418324,
-      "id": 22
-    },
-    {
-      "username": "anggaratriputra",
-      "name": "Anggara Tri Putra",
-      "email": "anggaratriputra@gmail.com",
-      "phonenumber": "081381873043",
-      "paymentmethod": "Virtual Account BCA 8800081381873043",
-      "eventname": "2023 ASIA FAN MEETING IN JAKARTA: KIMBUM ",
-      "ticket": {
-        "Gold": 1,
-        "Platinum": 0,
-        "Diamond": 0
-      },
-      "prices": 75000,
-      "diskon": 0,
-      "status": "Waiting for payment",
-      "timestamp": 1694355205418,
-      "id": 23
     }
   ],
   "couponcode": [
-    {
-      "code": "MYTIXDDT",
-      "discount": 0.1,
-      "images": "https://i.imgur.com/pGKX33B.png"
-    },
-    {
-      "code": "MYTIXNOW",
-      "discount": 0.25,
-      "images": "https://i.imgur.com/uVpUZAi.png"
-    },
-    {
-      "code": "MYTIXFRIENDS",
-      "discount": 0.15,
-      "images": "https://i.imgur.com/CiGRfq6.png"
-    }
+    { "code": "MYTIXDDT", "discount": 0.1, "images": "https://i.imgur.com/pGKX33B.png" },
+    { "code": "MYTIXNOW", "discount": 0.25, "images": "https://i.imgur.com/uVpUZAi.png" },
+    { "code": "MYTIXFRIENDS", "discount": 0.15, "images": "https://i.imgur.com/CiGRfq6.png" }
   ],
   "users": [
-    {
-      "username": "anggaratriputra",
-      "email": "anggaratriputra@gmail.com",
-      "password": "Anggara123",
-      "reffcode": "mytixanggaratriputra",
-      "id": 1
-    },
-    {
-      "username": "rizkys",
-      "email": "fauzasmg@gmail.com",
-      "password": "RR11zky",
-      "reffcode": "mytixrizkys",
-      "id": 2
-    },
-    {
-      "username": "damarsasiwilogo",
-      "email": "damarsasiwilogo@gmail.com",
-      "password": "Breadbradpit123",
-      "reffcode": "mytixdamarsasiwilogo",
-      "id": 3
-    },
-    {
-      "username": "anggaratriputratest",
-      "email": "anggaratriputraa@gmail.com",
-      "password": "Anggara123",
-      "reffcode": "mytixanggaratriputratest",
-      "id": 4
-    }
+    { "username": "anggaratriputra", "email": "anggaratriputra@gmail.com", "password": "Anggara123", "reffcode": "mytixanggaratriputra", "id": 1 },
+    { "username": "rizkys", "email": "fauzasmg@gmail.com", "password": "RR11zky", "reffcode": "mytixrizkys", "id": 2 },
+    { "username": "damarsasiwilogo", "email": "damarsasiwilogo@gmail.com", "password": "Breadbradpit123", "reffcode": "mytixdamarsasiwilogo", "id": 3 },
+    { "username": "anggaratriputratest", "email": "anggaratriputraa@gmail.com", "password": "Anggara123", "reffcode": "mytixanggaratriputratest", "id": 4 }
   ],
   "events": [
     {
@@ -400,9 +106,7 @@
       "location": "Jakarta",
       "description": "Viu Scream Dates is an annual Viu festival event in Indonesia, bringing the Viu experience to live to our millions of Viu’ers in Indonesia. The initial Viu Scream Dates was done in Bangkok, Thailand, in 2019 and was attended by thousands of Viu’ers. The Viu Scream Dates 2023 will be the first Viu Scream Dates in Indonesia, where we will create the excitement by bringing the most favorite Korean, Thailand, Mandarin, & Indonesia celebrties to life through music concerts, meet & greets, photo signings, talk-shows, screenings, and fun games.",
       "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230823110754.jpg",
-      "ticket_types": {
-        "Gold": 75000
-      }
+      "ticket_types": { "Gold": 75000 }
     },
     {
       "id": 2,
@@ -413,9 +117,7 @@
       "location": "Online",
       "description": "Dapatkan strategi jitu untuk memenangkan persaingan di Post Normal Era dengan menggabungkan konsep CI-EL : Creativity, Innovation, Entrepreneurship, Leadership & PI-PM : Productivity, Improvement, Professionalism, Management",
       "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230714154048_64b10a10589cd.jpg",
-      "ticket_types": {
-        "Gold": 100000
-      }
+      "ticket_types": { "Gold": 100000 }
     },
     {
       "id": 3,
@@ -426,9 +128,7 @@
       "location": "Online",
       "description": "Uncover proven strategies, innovative ideas, and actionable insights that will empower your social enterprise to thrive. Learn from industry experts and real-world examples, gaining the tools you need to drive positive impact and sustainable growth. ",
       "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230823133437_64e5a87de8c18.jpg",
-      "ticket_types": {
-        "Gold": 120000
-      }
+      "ticket_types": { "Gold": 120000 }
     },
     {
       "id": 4,
@@ -439,9 +139,7 @@
       "location": "Online",
       "description": "Our school combines rich teaching experience and understanding of the processes of working in the Internet environment. People with various professional backgrounds: philologists, managers, representatives of technical professions — were able to find worthy application of their knowledge in our school. We are very sensitive to the issues of education, and position ourselves not as a base of tutors, but as a school.",
       "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230823185603_64e5f3d322374.jpg",
-      "ticket_types": {
-        "Gold": 200000
-      }
+      "ticket_types": { "Gold": 200000 }
     },
     {
       "id": 5,
@@ -452,9 +150,7 @@
       "location": "Online",
       "description": "Banyak sekali bisnis - bisnis yang mulai tumbang dan PHK yang semakin menakutkan. Semoga hal ini tidak terjadi dengan Anda.\nNamun tetap saja Anda harus punya persiapan Apa yang sudah Anda persiapkan untuk menghadapi semua ini?",
       "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230828130528_64ec39281abea.jpg",
-      "ticket_types": {
-        "Gold": 50000
-      }
+      "ticket_types": { "Gold": 50000 }
     },
     {
       "id": 6,
@@ -465,9 +161,7 @@
       "location": "Online",
       "description": "Ikuti workshop Intro to Prompt Engineering and Leveraging ChatGPT for Content Creation pada Sabtu, 9 September 2023, pukul 14.00-17.00 WIB, melalui Zoom.",
       "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230815164553_64db4951e22a7.jpg",
-      "ticket_types": {
-        "Gold": 449000
-      }
+      "ticket_types": { "Gold": 449000 }
     },
     {
       "id": 7,
@@ -478,9 +172,7 @@
       "location": "Jakarta",
       "description": "Ice Skating @BX Rink Bintaro Jaya",
       "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20211029070059.jpg",
-      "ticket_types": {
-        "Gold": 100000
-      }
+      "ticket_types": { "Gold": 100000 }
     },
     {
       "id": 8,
@@ -491,11 +183,7 @@
       "location": "Jakarta",
       "description": "Neckdeep Live in Australia & Asia - JAKARTA",
       "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230714014753.png",
-      "ticket_types": {
-        "Diamond": 950000,
-        "Platinum": 990000,
-        "Gold": 860000
-      }
+      "ticket_types": { "Diamond": 950000, "Platinum": 990000, "Gold": 860000 }
     },
     {
       "id": 9,
@@ -506,9 +194,7 @@
       "location": "Lampung",
       "description": "Lampung Night Market adalah festival kuliner tahunan yang diselenggarakan oleh Sekelik Makkow Tanding. Di tahun ke-4 nya ini, Sekelik mengundang Aldi Taher untuk memeriahkan acara.",
       "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230822194745_64e4ae71cb6ba.jpg",
-      "ticket_types": {
-        "Gold": 50000
-      }
+      "ticket_types": { "Gold": 50000 }
     },
     {
       "id": 10,
@@ -519,9 +205,7 @@
       "location": "Online",
       "description": "Semakin TINGGI jabatan seseorang, Maka akan semakin SERING Anda akan diminta untuk berbicara di depan orang banyak\nKelas sangat terbatas, karena dalam training akan BANYAK PRAKTEK Public Speaking, sehingga peserta banyak diberi kesempatan untuk latihan. ",
       "images": "https://s3-ap-southeast-1.amazonaws.com/loket-production-sg/images/banner/20230831094453_64effea50ff4e.jpg",
-      "ticket_types": {
-        "Gold": 99000
-      }
+      "ticket_types": { "Gold": 99000 }
     },
     {
       "id": 11,
@@ -532,11 +216,7 @@
       "location": "Jakarta",
       "description": "Pertandingan akan berlangsung pada 16 September 2023 di Balai Sarbini, Jakarta",
       "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/08/17/84a64c07-cd2e-4cf9-bed2-c05bc9ff39be-1692282964151-0e9a21c8132c54e0f7ea1656f735f169.jpeg",
-      "ticket_types": {
-        "Diamond": 4000000,
-        "Platinum": 250000,
-        "Gold": 200000
-      }
+      "ticket_types": { "Diamond": 4000000, "Platinum": 250000, "Gold": 200000 }
     },
     {
       "id": 12,
@@ -547,11 +227,7 @@
       "location": "Jakarta",
       "description": "Acara dilaksanakan di The Kasablanka Hall pada 9 September 2023.",
       "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/07/04/d2384104-9ec0-44a1-aea4-8fa0359b2697-1688478805540-a3ffdd9a7ab588510c0fb52001c6d9ad.jpeg",
-      "ticket_types": {
-        "Diamond": 2825000,
-        "Platinum": 1825000,
-        "Gold": 1225000
-      }
+      "ticket_types": { "Diamond": 2825000, "Platinum": 1825000, "Gold": 1225000 }
     },
     {
       "id": 13,
@@ -562,11 +238,7 @@
       "location": "Bali",
       "description": "Location: Locca Sea House, Jimbaran, Badung, Bali. Stay tuned to our Instagram @ultrabali for more important information",
       "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/06/28/b6d538aa-b2bc-417f-b6cc-77d32401327c-1687971210808-f6c0f013cfbfaa7dd275854b28aac7b9.png",
-      "ticket_types": {
-        "Diamond": 17160000,
-        "Platinum": 1625000,
-        "Gold": 1250000
-      }
+      "ticket_types": { "Diamond": 17160000, "Platinum": 1625000, "Gold": 1250000 }
     },
     {
       "id": 14,
@@ -577,11 +249,7 @@
       "location": "Malaysia",
       "description": "The event will be held on September 17th, 2023 at Zepp Kuala Lumpur.",
       "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/08/28/5387fd8d-d083-4a94-a442-d641fea96872-1693192249012-1923036c004540b369d5ec1941aad553.png",
-      "ticket_types": {
-        "Diamond": 600000,
-        "Platinum": 550000,
-        "Gold": 300000
-      }
+      "ticket_types": { "Diamond": 600000, "Platinum": 550000, "Gold": 300000 }
     },
     {
       "id": 15,
@@ -592,234 +260,7 @@
       "location": "Bali",
       "description": "Location : Locca Sea House, Jimbaran, Badung, Bali.Stay tuned to our Instagram @resistance for more important informations. ",
       "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/06/29/1a04256b-e06a-4faf-a8c3-74aec8d54553-1688016175597-70613f3671b7b1df4167165ccc91c7c6.png",
-      "ticket_types": {
-        "Diamond": 13000000,
-        "Platinum": 875000,
-        "Gold": 625000
-      }
-    },
-    {
-      "id": 16,
-      "type": "music",
-      "name": "SCRUBB LIVE IN JAKARTA",
-      "date": "23 Sep 2023",
-      "time": "19:00 - 20:15 WIB",
-      "location": "Jakarta",
-      "description": "The concert will be held on September 23rd, 2023 at Kuningan City Ballroom, Jakarta",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/08/14/da6c3b29-2610-46c1-b8dc-bb36f415aaec-1692015596757-5b3dc91c706f821966465e95d80541f0.jpg",
-      "ticket_types": {
-        "Diamond": 1180000,
-        "Platinum": 700000,
-        "Gold": 550000
-      }
-    },
-    {
-      "id": 17,
-      "type": "sports",
-      "name": "PERTAMINA GRAND PRIX OF INDONESIA 2023",
-      "date": "13 Oct 2023",
-      "time": "13:00 - 17:00 WIB",
-      "location": "Lombok",
-      "description": "Experience the thrill of the engine's roar and prepare for an exhilarating high-speed adventure at MotoGP Mandalika 2023.",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/07/23/54cd4451-f46e-4f38-8700-ae9dd6caadb3-1690115810739-ee41a3834e7c25f444ebe20d3290b0f1.png",
-      "ticket_types": {
-        "Diamond": 650000,
-        "Platinum": 500000,
-        "Gold": 250000
-      }
-    },
-    {
-      "id": 18,
-      "type": "sports",
-      "name": "BRI LIGA 1 2023-2024 PERSEBAYA SURABAYA VS BORNEO FC",
-      "date": "0w Sep 2023",
-      "time": "20:00 - 22:00 WIB",
-      "location": "Surabaya",
-      "description": "The match will take place on Sunday, September 3rd, 2023 at Gelora Bung Tomo Stadium, Surabaya.",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/08/26/4cb02d41-fde4-4112-9feb-0d9eb340d2f3-1693038834918-6447a2e9c9af741a056c44e356c70238.jpg",
-      "ticket_types": {
-        "Diamond": 150000,
-        "Platinum": 100000,
-        "Gold": 75000
-      }
-    },
-    {
-      "id": 19,
-      "type": "sports",
-      "name": "International Friendly Match U-17: Indonesia U-17 Vs Korea Selatan U-17",
-      "date": "30 Aug 2023",
-      "time": "18:00 - 22:00 WIB",
-      "location": "Bekasi",
-      "description": "The match will be held on 30 August 2023 at Patriot Candrabhaga Stadium, Bekasi",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/08/25/274282ec-920b-4940-9d7d-f18b411446a1-1692949365327-0b5981b8a0921b6fc351308e195ba6b4.jpg",
-      "ticket_types": {
-        "Diamond": 250000,
-        "Platinum": 150000,
-        "Gold": 75000
-      }
-    },
-    {
-      "id": 20,
-      "type": "sports",
-      "name": "THAILAND GRAND PRIX 2023",
-      "date": "27 Oct 2023",
-      "time": "20:00 - 22:00 WIB",
-      "location": "Jakarta",
-      "description": "The event will be held on 27-29 October 2023 at Jakarta",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/07/20/841ba5ee-b875-4b9f-83ff-bcdc0bcf5457-1689844790925-f15290bd17d49694a0e3219c34fc83be.jpeg",
-      "ticket_types": {
-        "Gold": 99000
-      }
-    },
-    {
-      "id": 21,
-      "type": "music",
-      "name": "2023 LE SSERAFIM TOUR ‘FLAME RISES’ IN JAKARTA",
-      "date": "27 Oct 2023",
-      "time": "20:00 - 22:00 WIB",
-      "location": "Jakarta",
-      "description": "Saksikan langsung penampilan memukau girlband asal Korea Selatan, LE SSERAFIM lewat tur perdana mereka, “2023 LE SSERAFIM TOUR 'FLAME RISES' IN JAKARTA”",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/08/02/2367ee3d-5bd4-4667-a3a7-b21ba21d0c6f-1690966599553-f25ad11735cb32b08d0f47c8e56508c4.jpg",
-      "ticket_types": {
-        "Diamond": 3480000,
-        "Platinum": 3077500,
-        "Gold": 1927500
-      }
-    },
-    {
-      "name": "NANON 1ST FANCON IN JAKARTA",
-      "type": "music",
-      "date": "2023-09-30",
-      "time": "20:00",
-      "location": "Jakarta",
-      "description": "Saksikan langsung penampilan aktor Thailand, Nanon di fancon perdananya, NANON 1ST FANCON IN JAKARTA! Fancon akan berlangsung pada 30 September 2023 di Gandaria City Hall, Jakarta.",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/09/07/a2c68280-9b9d-4f5c-9457-eb853b60f9df-1694072373763-89620907e9e1efb7aa19ac56a5225437.jpg",
-      "ticket_types": {
-        "Diamond": 2800000,
-        "Platinum": 1800000,
-        "Gold": 1100000
-      },
-      "id": 22
-    },
-    {
-      "name": "The Great Journey Of Noah -Jakarta",
-      "type": "music",
-      "date": "2023-12-03",
-      "time": "11:00",
-      "location": "Jakarta",
-      "description": "Acara akan berlangsung pada 3 Desember 2023 di Beach City International Stadium, Jakarta. Open Gate: 11.00, Start Show: 20.00",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/09/09/5cc26b60-4c82-4692-ae16-2eed4ed1017d-1694268410889-56da57698522ddfa2ada5a4bd423e67e.jpg",
-      "ticket_types": {
-        "Diamond": 1000000,
-        "Platinum": 500000,
-        "Gold": 300000
-      },
-      "id": 23
-    },
-    {
-      "name": "KONSER LEGEND MUSIK ERA'KU 2.0",
-      "type": "music",
-      "date": "2023-10-08",
-      "time": "19:00",
-      "location": "Surabaya",
-      "description": "Saksikan penampilan legendaris dari Atiek CB, Ita Purnamasari, Mayangsari, dan Ronnie Sianturi di Konser Legend Musik Era'Ku 2.0!,Konser akan berlangsung pada 8 Oktober 2023 di Westin Hotel, Surabaya",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/09/05/99cf58c7-79ee-4414-a7a6-81be303246b3-1693924985208-8b24cdec546832df7c5603ba93d6b259.jpg",
-      "ticket_types": {
-        "Diamond": 750000,
-        "Platinum": 600000,
-        "Gold": 500000
-      },
-      "id": 24
-    },
-    {
-      "name": "ATLAS NYE PARTY 2023 Alert: Martin Garrix Takes Center Stage! Get set for THE BIGGEST NYE PARTY you’ll ever have",
-      "type": "music",
-      "date": "2023-12-31",
-      "time": "20:00",
-      "location": "Bali",
-      "description": "Rayakan tahun baru dengan menyaksikan penampilan Martin Garrix dalam event ATLAS NYE PARTY 2023",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/08/14/a1763e69-2ca6-4310-a32c-d73328722c83-1692007207993-599d104a21ac8f1305ca370a9f74137f.png",
-      "ticket_types": {
-        "Diamond": 5000000,
-        "Platinum": 2000000,
-        "Gold": 1500003
-      },
-      "id": 25
-    },
-    {
-      "name": "PETRONAS GRAND PRIX OF MALAYSIA 2023",
-      "type": "sports",
-      "date": "2023-11-10",
-      "time": "10:00",
-      "location": "Malaysia",
-      "description": "Kuala Lumpur, Malaysia 10 Nov 2023",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/02/14/1b2c5c3b-dbb1-47e6-a796-dd19d814bc5a-1676350233194-3738771c80db00e4248fc8f759f0683d.jpg",
-      "ticket_types": {
-        "Diamond": 750000,
-        "Platinum": 525000,
-        "Gold": 400000
-      },
-      "id": 26
-    },
-    {
-      "name": "The Girl Fest Surabaya",
-      "type": "music",
-      "date": "2023-09-22",
-      "time": "09:00",
-      "location": "Surabaya",
-      "description": "Datang ke The Girl Fest untuk merayakan dan menginspirasi diri sendiri lewat talkshow dan pertunjukkan musik!, Acara akan berlangsung pada 22-24 September 2023 di Tunjungan Plaza Convention Centre, Surabaya. ",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/09/06/a048f15d-3e92-467a-a66d-28e7c37cda56-1693980548224-7604654a5db36a095a490b10668ae731.png",
-      "ticket_types": {
-        "Diamond": 50000,
-        "Platinum": 30000,
-        "Gold": 20000
-      },
-      "id": 27
-    },
-    {
-      "name": "A Family Symphony Concert",
-      "type": "music",
-      "date": "2023-10-19",
-      "time": "19:30",
-      "location": "Jakarta",
-      "description": "Tonton langsung A Family Symphony Concert yang dimeriahkan oleh Addie MS, Memes, Kevin Aprilio, dan Tristan Juliano!, Konser akan berlangsung pada 19 Oktober 2023 di Ciputra Artpreneur Theatre, Jakarta.",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/09/04/98ef07c7-a944-4d9d-a6ec-7ed0d4364a87-1693793477125-7998b479191d77f89e4bc31b77740bb9.jpeg",
-      "ticket_types": {
-        "Diamond": 2650000,
-        "Platinum": 2100000,
-        "Gold": 1575000
-      },
-      "id": 28
-    },
-    {
-      "name": "MARKETEERS HANGOUT 2023",
-      "type": "webinar",
-      "date": "2023-09-18",
-      "time": "10:00",
-      "location": "Jakarta",
-      "description": "Datang langsung ke Marketeers Hangout untuk dapat inspirasi soal topik-topik pemasaran dari ahlinya. Acara akan berangsung pada 18 September 2023 di Ciputra Artpreneur, Jakarta.",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/08/25/7780f84a-810c-466f-bd43-2aa72427e488-1692949993059-9bdb1ce9a44fb9e81f5ae64cf1bb93d1.jpg",
-      "ticket_types": {
-        "Diamond": 1500000,
-        "Platinum": 1000000,
-        "Gold": 800004
-      },
-      "id": 29
-    },
-    {
-      "name": "GRATYO - 5 Strategi Bangun Brand yang Kuat & Karyawan Bagus di Bisnis By GRATYO",
-      "type": "webinar",
-      "date": "2023-09-21",
-      "time": "08:00",
-      "location": "Online",
-      "description": "Belajar langsung cara membuat brand dan karyawan yang kuat dengan GRATYO LIVE BUSINESS COACHING!, Acara daring ini akan berlangsung pada 21 September 2023",
-      "images": "https://s-light.tiket.photos/t/01E25EBZS3W0FY9GTG6C42E1SE/rsfit1440960gsm/events/2023/09/06/7e773f23-c0fd-4211-9922-c2461b8ad581-1693972873117-a3734c19bb61b3ada6820e1bedaca2eb.png",
-      "ticket_types": {
-        "Diamond": 195000,
-        "Platinum": "",
-        "Gold": ""
-      },
-      "id": 30
+      "ticket_types": { "Diamond": 13000000, "Platinum": 875000, "Gold": 625000 }
     }
   ]
 }
