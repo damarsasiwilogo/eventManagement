@@ -80,17 +80,17 @@ const TransactionStep3 = ({onPrevious}) => {
         {events.map((event) => (
           <Flex justifyContent={"space-between"} alignItems={{base: "center"}} gap={{ base: 14 }} mx={{ lg: 10 }} mt={4} mb={{base:2 ,lg:4}}>
             {paymentMethod === "Credit Card" ? (
-              <Text textAlign={{base: "center"}} ml={{ base: 4 }} w={{base: "140px"}} fontSize={{ base: "10px" }} fontWeight={"bold"} color={"white"} bg={"green"} p={2} borderRadius={20} boxShadow={"dark-lg"}>
+              <Text textAlign={{base: "center"}} ml={{ base: 4 }} w={{base: "140px", lg: "320px"}} fontSize={{ base: "10px", lg: "16px" }} fontWeight={"bold"} color={"white"} bg={"green"} p={2} borderRadius={20} boxShadow={"dark-lg"}>
                 {" "}
                 Waiting for credit card confirmation
               </Text>
             ) : (
-              <Text textAlign={{base: "center"}} ml={{ base: 4 }} w={{base: "140px"}} fontSize={{ base: "10px" }} fontWeight={"bold"} color={"white"} bg={"green"} p={2} borderRadius={20} boxShadow={"dark-lg"}>
+              <Text textAlign={{base: "center"}} ml={{ base: 4 }} w={{base: "140px", lg: "200px"}} fontSize={{ base: "10px", lg: "16px" }} fontWeight={"bold"} color={"white"} bg={"green"} p={2} borderRadius={20} boxShadow={"dark-lg"}>
                 {" "}
                 Waiting for payment
               </Text>
             )}
-            <Text fontWeight={"bold"}  fontSize={{ base: "10px" }}>{event.name}</Text>
+            <Text fontWeight={"bold"}  fontSize={{ base: "10px", lg: "16px" }}>{event.name}</Text>
           </Flex>
         ))}
         <Flex bgColor={"#331F69"} alignItems={"center"} direction={{ base: "column", md: "column", lg: "row" }} boxShadow={"2xl"} borderRadius={15}>
@@ -134,7 +134,9 @@ const TransactionStep3 = ({onPrevious}) => {
                 {telepon}
               </Text>
               <Text fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
-                {paymentMethod}{telepon}
+                {(paymentMethod === "GOPAY") 
+                || (paymentMethod === "OVO") 
+                || (paymentMethod === "DANA") || (paymentMethod === "Credit Card") ? (paymentMethod) : (paymentMethod + telepon)}
               </Text>
             </Flex>
           </Flex>

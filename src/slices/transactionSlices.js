@@ -29,7 +29,6 @@ const transactionSlices = createSlice({
       cardYear: "",
       cvvNumber: "",
     },
-    
   },
   reducers: {
     setTicketQuantities: (state, action) => {
@@ -82,5 +81,5 @@ const transactionSlices = createSlice({
 });
 
 export const { setTicketQuantities, setTotalPrices, setDiscountedTotalPrices, setDiscountedTotalPricesByReff, setDiscountedTotalPricesByCoupon, setFormData, resetTransaction, setPaymentMethod, setCreditCardData, setEventName } =
-  transactionSlices.actions;
+transactionSlices.actions;
 export default transactionSlices.reducer;
