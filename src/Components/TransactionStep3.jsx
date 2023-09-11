@@ -94,46 +94,46 @@ const TransactionStep3 = ({onPrevious}) => {
           </Flex>
         ))}
         <Flex bgColor={"#331F69"} alignItems={"center"} direction={{ base: "column", md: "column", lg: "row" }} boxShadow={"2xl"} borderRadius={15}>
-          <Flex direction={"row"} gap={2} p={{ base: "2px", md: "4px", lg: "12px" }} m={4}>
+          <Flex direction={"row"} gap={2} p={{ base: "2px", md: "4px", lg: "12px" }} m={{base:2, lg: 4}}>
             <Flex direction={"column"} justifyContent={"center"}>
-              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 Nama
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 Email
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 Telepon
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
-                Payment Method
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
+                Payment
               </Text>
             </Flex>
             <Flex direction={"column"} justifyContent={"center"}>
-              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
             </Flex>
             <Flex direction={"column"} justifyContent={"center"}>
-              <Text fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
+              <Text fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 {name}
               </Text>
-              <Text fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
+              <Text fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 {email}
               </Text>
-              <Text fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
+              <Text fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 {telepon}
               </Text>
-              <Text fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
+              <Text fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 {paymentMethod}{telepon}
               </Text>
             </Flex>
