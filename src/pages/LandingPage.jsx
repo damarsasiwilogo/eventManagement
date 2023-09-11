@@ -39,7 +39,7 @@ import { useSelector } from "react-redux";
 import Navibar from "../Components/Navibar";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
-export default function Landingpage({ openModal }) {
+export default function Landingpage() {
   const [events, setEvents] = useState([]);
   const [coupons, setCoupons] = useState([]);
   const [selectedEvent, setselectedEvent] = useState(null);
@@ -101,7 +101,6 @@ export default function Landingpage({ openModal }) {
   // Fungsi ini akan memperbarui state filter dengan lokasi yang dipilih.
   function handleFilter(location) {
     setFilterLocation(location);
-    setselectedEvent(null); // Clear selected event when applying filter
   }
 
   const navigate = useNavigate();
