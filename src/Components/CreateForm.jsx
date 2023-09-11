@@ -83,8 +83,10 @@ export default function CreateForm() {
                   <Field name="name">
                     {({ field, form }) => (
                       <FormControl isInvalid={form.errors.name && form.touched.name}>
+                        {/*errors untuk mengakses pesan kesalahan validasi, touched untuk menentukan apakah input telah "disentuh" atau tidak */}
                         <FormLabel>Event Name</FormLabel>
                         <Input placeholder="Event Name" {...field} />
+                        {/* ...field untuk akses property pada input e.g(input) */}
                         <FormErrorMessage>{form.errors.name}</FormErrorMessage>
                       </FormControl>
                     )}
@@ -190,6 +192,7 @@ export default function CreateForm() {
                   <Field name="ticket_types.Diamond">
                     {({ field, form }) => (
                       <FormControl isInvalid={form.errors.ticket_types?.Diamond && form.touched.ticket_types?.Diamond} mt={4}>
+                        {/* Optional Chaining, digunakan untuk menghindari kesalahan ketika mencoba mengakses properti atau metode dari objek yang mungkin tidak ada atau bernilai null atau undefined. */}
                         <FormLabel>Diamond Ticket Price</FormLabel>
                         <Input placeholder="Diamond Ticket" type="number" {...field} />
                         <FormErrorMessage>{form.errors.ticket_types?.Diamond}</FormErrorMessage>
