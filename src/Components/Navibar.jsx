@@ -36,6 +36,7 @@ import {
   chakra,
   ModalHeader,
   ModalFooter,
+  Spacer,
 } from "@chakra-ui/react";
 import api from "../api.js";
 import "../index.css";
@@ -295,11 +296,39 @@ export default function Navibar(props) {
         <Box bg={"#331F69"} px={4}>
           <Flex h={16} alignItems="center" justifyContent={{ lg: "space-evenly" }}>
             <IconButton size="md" icon={isOpen ? <CloseIcon /> : <HamburgerIcon />} aria-label="Open Menu" display={{ lg: "none" }} onClick={isOpen ? onClose : onOpen} />
-            <HStack spacing={8}>
+            <HStack spacing={8} w={{ base: "full", lg: "auto" }}>
               <a href="/">
                 <Image src={myTixLogo} w={"150px"} h={"45px"} />
               </a>
+              <Spacer display={{ lg: "none" }} />
+              <Flex gap={2} alignItems={"center"} zIndex={5} display={{ lg: "none" }}>
+                <Menu>
+                  <MenuButton as={Button} rightIcon={<FaChevronDown />} rounded="full" variant="outline" color={"white"} colorScheme="white" _hover={{ bgColor: "black", color: "white" }} zIndex={5}>
+                    {profile.username}
+                  </MenuButton>
+                  <MenuList>
+                    <Flex justifyContent={"center"} p={2} mx={4} flexDir={"column"} alignItems={"center"} borderRadius={10} bg={"#331F69"} color={"white"} boxShadow={"md"}>
+                      <Text fontWeight={"bold"}> Refferal Code</Text>
+                      <Text> {profile.reffcode}</Text>
+                    </Flex>
+                    <CreateForm />
+                    <MenuItem
+                      onClick={() => {
+                        navigate("/MyTickets");
+                      }}>
+                      MyTickets
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        dispatch(logout());
+                      }}>
+                      Logout
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              </Flex>
             </HStack>
+
             <HStack as="nav" spacing={4} display={{ base: "none", lg: "flex" }}>
               <div style={{ position: "relative" }}>
                 <Input
@@ -362,32 +391,6 @@ export default function Navibar(props) {
                   <Button size={"sm"} bg="#331F69" color={"white"} _hover={{ bg: "#24105c" }} className="btn-nav-discover">
                     <a href="#discover">DISCOVER</a>
                   </Button>
-                  <Flex mr={10} gap={2} alignItems={"center"} zIndex={5}>
-                    <Menu>
-                      <MenuButton as={Button} rightIcon={<FaChevronDown />} rounded="full" variant="outline" color={"white"} colorScheme="white" _hover={{ bgColor: "black", color: "white" }} zIndex={5}>
-                        {profile.username}
-                      </MenuButton>
-                      <MenuList>
-                        <Flex justifyContent={"center"} p={2} mx={4} flexDir={"column"} alignItems={"center"} borderRadius={10} bg={"#331F69"} color={"white"} boxShadow={"md"}>
-                          <Text fontWeight={"bold"}> Refferal Code</Text>
-                          <Text> {profile.reffcode}</Text>
-                        </Flex>
-                        <CreateForm />
-                        <MenuItem
-                          onClick={() => {
-                            navigate("/MyTickets");
-                          }}>
-                          MyTickets
-                        </MenuItem>
-                        <MenuItem
-                          onClick={() => {
-                            dispatch(logout());
-                          }}>
-                          Logout
-                        </MenuItem>
-                      </MenuList>
-                    </Menu>
-                  </Flex>
                 </Stack>
               </Stack>
             </Box>
