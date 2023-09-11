@@ -21,6 +21,7 @@ function TransactionStep2({ onNext, onPrevious }) {
   const toast = useToast();
   const [referralMessage, setReferralMessage] = useState("");
   const [couponMessage, setCouponMessage] = useState("");
+  
 
   useEffect(() => {
     api

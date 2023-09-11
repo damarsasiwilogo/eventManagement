@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import creditCardLogo from "../images/creditcard.png";
 import { setCreditCardData, setPaymentMethod, setEventName } from "../slices/transactionSlices";
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from "@chakra-ui/react";
-import { BsFillCreditCardFill } from "react-icons/bs";
+import { BsBank2, BsFillCreditCardFill, BsFillWalletFill } from "react-icons/bs";
 import api from "../api";
 import * as Yup from "yup";
 import { Step, StepDescription, StepIcon, StepIndicator, StepNumber, StepSeparator, StepStatus, StepTitle, Stepper, useSteps } from "@chakra-ui/react";
@@ -30,20 +30,17 @@ function PaymentMethod({ onNext }) {
   const formData = useSelector((state) => state.transaction.formData);
   const virtualAccBCA = "8800" + formData.telepon;
   const virtualAccMandiri = "9002" + formData.telepon;
-  const virtualAccBNI = "1001" +  formData.telepon;
-  const paymentMethodBCA = "Virtual Account BCA 8800" 
-  const paymentMethodMandiri = "Virtual Account Livin' By Mandiri 9002"
-  const paymentMethodBNI = "Virtual Account BNI 1001" 
-
+  const virtualAccBNI = "1001" + formData.telepon;
+  const paymentMethodBCA = "Virtual Account BCA 8800";
+  const paymentMethodMandiri = "Virtual Account Livin' By Mandiri 9002";
+  const paymentMethodBNI = "Virtual Account BNI 1001";
 
   const handleButtonClick = async (values) => {
     // Call the onFormValidation function to trigger form validation
     const formStatus = await formikBuyerInfo.submitForm();
     // Call onNext only if validation is successful (isTransactionFormValid is true)
     if (formStatus) {
-      
       onNext();
-
     } else {
       toast({
         title: "Form Validation Error",
@@ -109,7 +106,7 @@ function PaymentMethod({ onNext }) {
   };
   return (
     <>
-      <Box display={"flex"} borderRadius={10} alignItems="center" bg="#331F69" padding={{lg:"10"}} py={{base: "4"}} mt={{lg: "6"}} flexDirection="column" w={{md :"100vw" ,lg: "35vw"}} >
+      <Box display={"flex"} borderRadius={10} alignItems="center" bg="#331F69" padding={{ lg: "10" }} py={{ base: "4" }} mt={{ lg: "6" }} flexDirection="column" w={{ md: "100vw", lg: "35vw" }}>
         <Flex justifyContent="flex-start" gap="15" direction={"row"} mb={5}>
           <Flex alignItems={"center"}>
             <IoTicketSharp color="white" size={"35px"} />
@@ -150,7 +147,7 @@ function PaymentMethod({ onNext }) {
           </Flex>
         </Flex>
         <Accordion
-          w={{base: "98vw", lg: "34vw"}}
+          w={{ base: "98vw", lg: "34vw" }}
           bg="#331F69"
           allowToggle
           onChange={(index) => {
@@ -166,7 +163,12 @@ function PaymentMethod({ onNext }) {
           <AccordionItem>
             <h2>
               <AccordionButton bgColor="white" _hover={{ bgColor: "tomato", color: "white" }} _expanded={{ bg: "tomato", color: "white" }}>
-                <Box as="span" flex="1" textAlign="left">
+                {/* Credit Card Icon */}
+                <Box as="span" textAlign="left">
+                  <BsFillCreditCardFill size={24} /> {/* Adjust the size as needed */}
+                </Box>
+                {/* Credit Card Text */}
+                <Box as="span" ml={4} flex="1" textAlign="left">
                   <Text fontWeight={"bold"}>Credit Card</Text>
                 </Box>
                 <AccordionIcon />
@@ -196,7 +198,7 @@ function PaymentMethod({ onNext }) {
                             {...field}
                             id="cardNumber"
                             placeholder="Enter card number (ex 1111 4242 3333 5555)"
-                            w={{base: "305px" , lg: "350px"}}
+                            w={{ base: "305px", lg: "350px" }}
                             value={creditCardData.cardNumber}
                             inputMode="numeric" // Allow only numeric input
                             onChange={(e) => {
@@ -224,7 +226,7 @@ function PaymentMethod({ onNext }) {
                             {...field}
                             id="cardHolder"
                             placeholder="Enter card holder name"
-                            w={{base: "305px" , lg: "350px"}}
+                            w={{ base: "305px", lg: "350px" }}
                             value={creditCardData.cardHolder}
                             onChange={(e) => handleCreditCardDataChange("cardHolder", e.target.value)} // Update form data in Redux store
                           />
@@ -233,7 +235,7 @@ function PaymentMethod({ onNext }) {
                       )}
                     </Field>
 
-                    <Flex w={{base: "305px" , lg: "350px"}}>
+                    <Flex w={{ base: "305px", lg: "350px" }}>
                       <FormControl mt={2}>
                         <FormLabel>
                           Expiration Date{" "}
@@ -317,7 +319,10 @@ function PaymentMethod({ onNext }) {
           <AccordionItem>
             <h2>
               <AccordionButton bgColor="white" _hover={{ bgColor: "tomato", color: "white" }} _expanded={{ bg: "tomato", color: "white" }}>
-                <Box as="span" flex="1" textAlign="left">
+              <Box as="span" textAlign="left">
+                  <BsBank2 size={24} /> 
+                </Box>
+                <Box as="span" ml={4} flex="1" textAlign="left">
                   <Text fontWeight={"bold"}>Bank Virtual Account</Text>
                 </Box>
                 <AccordionIcon />
@@ -325,7 +330,7 @@ function PaymentMethod({ onNext }) {
             </h2>
             <AccordionPanel pb={4} color={"white"}>
               <Accordion
-                w={{base: "94vw", lg: "33vw"}}
+                w={{ base: "94vw", lg: "33vw" }}
                 allowToggle
                 onChange={(index) => {
                   if (index === 0) {
@@ -333,16 +338,21 @@ function PaymentMethod({ onNext }) {
                   } else if (index === 1) {
                     dispatch(setPaymentMethod(paymentMethodMandiri));
                   } else if (index === 2) {
-                    dispatch(setPaymentMethod(paymentMethodBNI))
+                    dispatch(setPaymentMethod(paymentMethodBNI));
                   }
                 }}
               >
                 <AccordionItem>
                   <h2>
                     <AccordionButton bgColor="white" color={"black"} _hover={{ bgColor: "tomato", color: "white" }} _expanded={{ bg: "#F7F7F7", color: "#2e4583" }}>
-                      <Box as="span" flex="1" textAlign="left">
-                        <Text fontWeight={"bold"}>BCA</Text>
-                      </Box>
+                     
+                <Box as="span" textAlign="left">
+                  <Image src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" w={"40px"} /> {/* Adjust the size as needed */}
+                </Box>
+               
+                <Box as="span" ml={4} flex="1" textAlign="left">
+                  <Text fontWeight={"bold"}>BCA</Text>
+                </Box>
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
@@ -417,9 +427,13 @@ function PaymentMethod({ onNext }) {
                 <AccordionItem>
                   <h2>
                     <AccordionButton bgColor="white" color={"black"} _hover={{ bgColor: "tomato", color: "white" }} _expanded={{ bg: "#F7F7F7", color: "#2e4583" }}>
-                      <Box as="span" flex="1" textAlign="left">
-                        <Text fontWeight={"bold"}>Livin' by Mandiri</Text>
-                      </Box>
+                    <Box as="span" textAlign="left">
+                  <Image src="https://i.imgur.com/0fnJBe0.png" w={"40px"} /> {/* Adjust the size as needed */}
+                </Box>
+               
+                <Box as="span" ml={4} flex="1" textAlign="left">
+                  <Text fontWeight={"bold"}>Livin' by Mandiri</Text>
+                </Box>
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
@@ -494,9 +508,13 @@ function PaymentMethod({ onNext }) {
                 <AccordionItem>
                   <h2>
                     <AccordionButton bgColor="white" color={"black"} _hover={{ bgColor: "tomato", color: "white" }} _expanded={{ bg: "#F7F7F7", color: "#2e4583" }}>
-                      <Box as="span" flex="1" textAlign="left">
-                        <Text fontWeight={"bold"}>BNI</Text>
-                      </Box>
+                    <Box as="span" textAlign="left">
+                  <Image src="https://upload.wikimedia.org/wikipedia/id/5/55/BNI_logo.svg" w={"40px"} /> {/* Adjust the size as needed */}
+                </Box>
+               
+                <Box as="span" ml={4} flex="1" textAlign="left">
+                  <Text fontWeight={"bold"}>BNI</Text>
+                </Box>
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
@@ -574,30 +592,40 @@ function PaymentMethod({ onNext }) {
           <AccordionItem>
             <h2>
               <AccordionButton bgColor="white" _hover={{ bgColor: "tomato", color: "white" }} _expanded={{ bg: "tomato", color: "white" }}>
-                <Box as="span" flex="1" textAlign="left">
+              <Box as="span" textAlign="left">
+                  <BsFillWalletFill size={24} /> {/* Adjust the size as needed */}
+                </Box>
+                {/* Credit Card Text */}
+                <Box as="span" ml={4} flex="1" textAlign="left">
                   <Text fontWeight={"bold"}>E-Wallet</Text>
                 </Box>
                 <AccordionIcon />
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4} color={"white"}>
-              <Accordion w={{base: "94vw", lg: "33vw"}} 
-              allowToggle  
-              onChange={(index) => {
+              <Accordion
+                w={{ base: "94vw", lg: "33vw" }}
+                allowToggle
+                onChange={(index) => {
                   if (index === 0) {
                     dispatch(setPaymentMethod("GOPAY"));
                   } else if (index === 1) {
-                    dispatch(setPaymentMethod("OVO"))
+                    dispatch(setPaymentMethod("OVO"));
                   } else if (index === 2) {
-                    dispatch(setPaymentMethod("DANA"))
+                    dispatch(setPaymentMethod("DANA"));
                   }
-                }}>
+                }}
+              >
                 <AccordionItem>
                   <h2>
                     <AccordionButton bgColor="white" color={"black"} _hover={{ bgColor: "tomato", color: "white" }} _expanded={{ bg: "#F7F7F7", color: "#2e4583" }}>
-                      <Box as="span" flex="1" textAlign="left">
-                        <Text fontWeight={"bold"}>GOPAY</Text>
-                      </Box>
+                    <Box as="span" textAlign="left">
+                  <Image src="https://upload.wikimedia.org/wikipedia/commons/8/86/Gopay_logo.svg" w={"40px"} /> {/* Adjust the size as needed */}
+                </Box>
+               
+                <Box as="span" ml={4} flex="1" textAlign="left">
+                  <Text fontWeight={"bold"}>GOPAY</Text>
+                </Box>
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
@@ -660,9 +688,13 @@ function PaymentMethod({ onNext }) {
                 <AccordionItem>
                   <h2>
                     <AccordionButton bgColor="white" color={"black"} _hover={{ bgColor: "tomato", color: "white" }} _expanded={{ bg: "#F7F7F7", color: "#2e4583" }}>
-                      <Box as="span" flex="1" textAlign="left">
-                        <Text fontWeight={"bold"}>OVO</Text>
-                      </Box>
+                    <Box as="span" textAlign="left">
+                  <Image src="https://i.pinimg.com/originals/1a/62/aa/1a62aa1c175a7bb8ce2aaeb1aef6b2c4.png" w={"40px"} /> {/* Adjust the size as needed */}
+                </Box>
+               
+                <Box as="span" ml={4} flex="1" textAlign="left">
+                  <Text fontWeight={"bold"}>OVO</Text>
+                </Box>
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
@@ -726,9 +758,13 @@ function PaymentMethod({ onNext }) {
                 <AccordionItem>
                   <h2>
                     <AccordionButton bgColor="white" color={"black"} _hover={{ bgColor: "tomato", color: "white" }} _expanded={{ bg: "#F7F7F7", color: "#2e4583" }}>
-                      <Box as="span" flex="1" textAlign="left">
-                        <Text fontWeight={"bold"}>DANA</Text>
-                      </Box>
+                    <Box as="span" textAlign="left">
+                  <Image src="https://cdn.5minvideo.id/images/logo/Logo-Dana-Png.png" w={"40px"} /> {/* Adjust the size as needed */}
+                </Box>
+               
+                <Box as="span" ml={4} flex="1" textAlign="left">
+                  <Text fontWeight={"bold"}>DANA</Text>
+                </Box>
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
@@ -743,7 +779,7 @@ function PaymentMethod({ onNext }) {
                           <Box flexShrink="0" mt={1}>
                             <StepDescription>
                               <Text color={"white"}>
-                                Login ke <b>DANA</b>
+                                Masuk ke aplikasi<b>DANA</b>
                               </Text>
                             </StepDescription>
                           </Box>
@@ -758,7 +794,7 @@ function PaymentMethod({ onNext }) {
                           <Box flexShrink="0" mt={1}>
                             <StepDescription>
                               <Text color={"white"}>
-                                Pilih <b>PEMBELIAN {">"} VIRTUAL ACCOUNT.</b>
+                                Pilih <b>SCAN QR {">"} SCAN QR CODE.</b>
                               </Text>
                             </StepDescription>
                           </Box>
