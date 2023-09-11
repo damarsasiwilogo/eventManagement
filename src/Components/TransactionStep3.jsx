@@ -78,62 +78,62 @@ const TransactionStep3 = ({onPrevious}) => {
     <Box height={{ base: "72vh" }}>
       <Box display={"flex"} flexDirection="column" ml={{ lg: 10 }} mr={{ lg: 10 }} mt={2} h={"50vh"} borderTopRadius={10}>
         {events.map((event) => (
-          <Flex justifyContent={"space-between"} gap={{ base: 14 }} mx={{ lg: 10 }} mt={4} mb={4}>
+          <Flex justifyContent={"space-between"} alignItems={{base: "center"}} gap={{ base: 14 }} mx={{ lg: 10 }} mt={4} mb={{base:2 ,lg:4}}>
             {paymentMethod === "Credit Card" ? (
-              <Text ml={{ base: 4 }} fontSize={{ base: "xs" }} fontWeight={"bold"} color={"white"} bg={"green"} p={2} borderRadius={20} boxShadow={"dark-lg"}>
+              <Text textAlign={{base: "center"}} ml={{ base: 4 }} w={{base: "140px"}} fontSize={{ base: "10px" }} fontWeight={"bold"} color={"white"} bg={"green"} p={2} borderRadius={20} boxShadow={"dark-lg"}>
                 {" "}
                 Waiting for credit card confirmation
               </Text>
             ) : (
-              <Text ml={{ base: 4 }} fontSize={{ base: "xs" }} fontWeight={"bold"} color={"white"} bg={"green"} p={2} borderRadius={20} boxShadow={"dark-lg"}>
+              <Text textAlign={{base: "center"}} ml={{ base: 4 }} w={{base: "140px"}} fontSize={{ base: "10px" }} fontWeight={"bold"} color={"white"} bg={"green"} p={2} borderRadius={20} boxShadow={"dark-lg"}>
                 {" "}
                 Waiting for payment
               </Text>
             )}
-            <Text fontWeight={"bold"}>{event.name}</Text>
+            <Text fontWeight={"bold"}  fontSize={{ base: "10px" }}>{event.name}</Text>
           </Flex>
         ))}
         <Flex bgColor={"#331F69"} alignItems={"center"} direction={{ base: "column", md: "column", lg: "row" }} boxShadow={"2xl"} borderRadius={15}>
-          <Flex direction={"row"} gap={2} p={{ base: "2px", md: "4px", lg: "10px" }} m={4}>
+          <Flex direction={"row"} gap={2} p={{ base: "2px", md: "4px", lg: "12px" }} m={4}>
             <Flex direction={"column"} justifyContent={"center"}>
-              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
                 Nama
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
                 Email
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
                 Telepon
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
                 Payment Method
               </Text>
             </Flex>
             <Flex direction={"column"} justifyContent={"center"}>
-              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
             </Flex>
             <Flex direction={"column"} justifyContent={"center"}>
-              <Text fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
+              <Text fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
                 {name}
               </Text>
-              <Text fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
+              <Text fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
                 {email}
               </Text>
-              <Text fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
+              <Text fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
                 {telepon}
               </Text>
-              <Text fontSize={{ base: "14px", md: "16px", lg: "18px" }} color="white">
+              <Text fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
                 {paymentMethod}{telepon}
               </Text>
             </Flex>

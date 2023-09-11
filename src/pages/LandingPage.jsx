@@ -206,7 +206,7 @@ export default function Landingpage({ openModal }) {
             </Heading>
           </Box>
         </Box>
-        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+        <Box display={"flex"} justifyContent={"center"} alignItems={"center"} >
           <HeroSlider
             height={"34vh"}
             width={"75vw"}
