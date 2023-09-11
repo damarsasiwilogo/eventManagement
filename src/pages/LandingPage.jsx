@@ -288,7 +288,7 @@ export default function Landingpage() {
                     Location
                   </Text>
                 </MenuButton>
-                <MenuList>
+                <MenuList zIndex={5}>
                   {locations.map((location) => (
                     <MenuItem onClick={() => handleFilter(location === "All" ? null : location)}>{location}</MenuItem>
                   ))}
