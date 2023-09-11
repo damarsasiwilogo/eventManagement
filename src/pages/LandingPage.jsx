@@ -11,7 +11,6 @@ import {
   Img,
   Menu,
   MenuButton,
-  MenuDivider,
   MenuItem,
   MenuList,
   Modal,
@@ -317,7 +316,6 @@ export default function Landingpage() {
                   <Text fontSize={"sm"} w={{ md: "400px", lg: "500px" }}>
                     {selectedEvent.description}
                   </Text>
-                  <Text>{selectedEvent.ticketPrice}</Text>
                   <Button bgColor={"#3E60C1"} mt={6} color={"white"} className="btn-nav" onClick={handleClickBuyTicket}>
                     BUY TIKET
                   </Button>
@@ -338,7 +336,6 @@ export default function Landingpage() {
                       <Text>{event.date}</Text>
                       <Text>{event.time}</Text>
                       <Text>{event.description}</Text>
-                      <Text>{event.ticketPrice}</Text>
                     </Stack>
                   </CardBody>
                   <Divider />
