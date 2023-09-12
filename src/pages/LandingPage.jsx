@@ -321,7 +321,7 @@ export default function Landingpage() {
 
           {/* List event yang ada */}
           <Box display={{ base: "none", sm: "none", md: "flex" }} justifyContent={"center"} mt={"5px"}>
-            <Box id="left-box" h={"83vh"} overflowY={"scroll"} w={"30vw"} overflowX={"hidden"}>
+            <Box id="left-box" h={"90vh"} overflowY={"scroll"} w={"30vw"} overflowX={"hidden"}>
               <Center display={"flex"} flexDirection={"column"}>
                 {filteredEvents.map((event) => (
                   <Box key={event.id} onClick={() => handleclick(event)}>
