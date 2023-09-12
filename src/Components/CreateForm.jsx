@@ -82,11 +82,13 @@ export default function CreateForm() {
                 <Form>
                   <Field name="name">
                     {({ field, form }) => (
+                      // untuk menghubungkan input dalam formulir dengan state Formik dan untuk menangani validasi dan penanganan kesalahan yang terkait dengan input 
                       <FormControl isInvalid={form.errors.name && form.touched.name}>
                         {/*errors untuk mengakses pesan kesalahan validasi, touched untuk menentukan apakah input telah "disentuh" atau tidak */}
                         <FormLabel>Event Name</FormLabel>
                         <Input placeholder="Event Name" {...field} />
-                        {/* ...field untuk akses property pada input e.g(input) */}
+                        {/* ...field untuk akses property pada input e.g(name, value, onchange, onblur) */}
+                        {/* untuk mengaitkan input dengan state Formik dan menghubungkan input tersebut ke elemen2 yg diperlukan untuk memantau perubahan & validasi formulir. */}
                         <FormErrorMessage>{form.errors.name}</FormErrorMessage>
                       </FormControl>
                     )}
