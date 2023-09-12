@@ -126,7 +126,7 @@ function TransactionStep1() {
     dispatch(resetTransaction());
   };
 
-  
+  //function untuk mengambil quantity dari masing masing tiket
   const getQuantity = (ticketType) => {
     switch (ticketType) {
       case "Gold":
@@ -140,6 +140,7 @@ function TransactionStep1() {
     }
   };
 
+  // function untuk melakukan kalkulasi harga pertiket
   const calculateTotalPrice = (ticketType, price) => {
     switch (ticketType) {
       case "Gold":
@@ -153,12 +154,14 @@ function TransactionStep1() {
     }
   };
 
+  //function untuk melakukan kalkulasi total harga seluruh tiket
   const calculateGrandTotal = (ticketTypes) => {
     let grandTotal = 0;
     for (const [ticketType, price] of Object.entries(ticketTypes)) {
       grandTotal += calculateTotalPrice(ticketType, price);
     }
 
+    //store redux totalPrice 
     dispatch(setTotalPrices(grandTotal));
     dispatch(setDiscountedTotalPrices(grandTotal));
     return grandTotal;
