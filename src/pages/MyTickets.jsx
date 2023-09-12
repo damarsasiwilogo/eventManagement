@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import mytixQr from "../images/mytixqr.png";
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, Button } from "@chakra-ui/react";
-import Navibar from "../Components/Navibar";
+import Navigation from "../Components/Navigation";
 import Footer from "../Components/Footer";
 function MyTickets() {
   const [purchasedTicket, setPurchasedTicket] = useState([]);
@@ -15,7 +15,6 @@ function MyTickets() {
   const toast = useToast();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [remainingTimes, setRemainingTimes] = useState([]);
-
   const itemsPerPage = 3; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -109,7 +108,7 @@ function MyTickets() {
   const sortedPurchasedTicket = purchasedTicket.slice().sort((a, b) => b.timestamp - a.timestamp);
 
   return (
-    <Navibar>
+    <Navigation>
       <Box minH={"90vh"}>
         <Flex flexDirection="column" justifyContent="center" alignItems="center" ml={10} mr={10}>
           <Text p={{ base: "2px", md: "4px", lg: "10px" }} fontSize={{ base: "25px", md: "30px", lg: "36px" }} fontWeight={"bold"}>
@@ -274,7 +273,7 @@ function MyTickets() {
         </Modal>
       </Box>
       <Footer />
-    </Navibar>
+    </Navigation>
   );
 }
 export default MyTickets;
