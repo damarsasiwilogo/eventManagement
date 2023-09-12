@@ -48,7 +48,7 @@ const TransactionStep3 = ({onPrevious}) => {
         duration: 6000,
         isClosable: true,
         onCloseComplete: () => {
-          navigate("/");
+          navigate("/MyTickets/");
         },
       });
     } catch (error) {
