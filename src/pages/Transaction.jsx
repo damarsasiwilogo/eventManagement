@@ -125,26 +125,6 @@ function Transaction() {
   };
 
   const stepTexts = ["Pilih Kategori", "Informasi Personal", "Pembayaran"];
-
-  const buttonProgress = () => {
-    switch (currentStep) {
-      case 1:
-        return "Checkout";
-      case 2:
-        return "Konfirmasi";
-      case 3:
-        return "Konfirmasi";
-      case 4:
-        return "Bayar";
-      default:
-        return 0;
-    }
-  };
-
-  const handleClose = () => {
-    navigate("/");
-  };
-
   const openTimeUpModal = () => {
     setIsTimeUpModalOpen(true);
   };
@@ -203,14 +183,8 @@ function Transaction() {
             renderStep()
           )}
           <Flex justifyContent={{ base: "center", md: "center", lg: "flex-end" }} mr={{ lg: "80" }}>
-            {currentStep !== 2 && (
+            {currentStep == 1 && isButtonVisible &&(
               <Box display={"flex"} justifyContent={{ base: "center", lg: "flex-end" }} w={{ base: "20vw" }} h={"10vh"} mb={5} borderBottomRadius={10}>
-                {currentStep > 1 && currentStep !== 3 && (
-                  <Button bg={"#F7F7F7"} color={"#2e4583"} size="sm" mr={4} mt={5} w={"90px"} onClick={handlePrevious}>
-                    Kembali
-                  </Button>
-                )}
-                {currentStep !== 3 && isButtonVisible && (
                   <Button
                     colorScheme="facebook"
                     color="white"
@@ -223,9 +197,8 @@ function Transaction() {
                       handleConfirmation();
                     }}
                   >
-                    {buttonProgress()}
+                    Checkout
                   </Button>
-                )}
               </Box>
             )}
           </Flex>

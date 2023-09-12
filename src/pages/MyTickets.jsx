@@ -142,7 +142,7 @@ function MyTickets() {
               </Flex>
               <Flex h={{base: "536px"}} bgColor={calculateRemainingTime(data.timestamp) === "Payment Canceled" ? "grey" : "#331F69"} alignItems="center" boxShadow="2xl" direction={{ base: "column", md: "column", lg: "row" }}>
                 <Flex direction={"row"} gap={2} p={{ base: "2px", md: "4px", lg: "10px" }} m={{base:"1" ,lg: "4"}}>
-                  <Flex direction={"column"} justifyContent={"center"}>
+                  <Flex direction={"column"} justifyContent={{lg: "center"}}>
                     <Text fontWeight={"bold"} fontSize={{ base: "10px", md: "16px", lg: "18px" }} color="white">
                       Purchase Date
                     </Text>

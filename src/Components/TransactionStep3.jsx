@@ -14,7 +14,6 @@ const TransactionStep3 = ({onPrevious}) => {
   const discountReff = useSelector((state) => state.transaction.discountedTotalPricesByReff);
   const discountedTotalPrices = useSelector((state) => state.transaction.discountedTotalPrices);
   const paymentMethod = useSelector((state) => state.transaction.paymentMethod);
-  const vaNumber = useSelector((state) => state.transaction.vaNumber);
   const formData = useSelector((state) => state.transaction.formData);
   const { name, email, telepon } = formData;
   const selectedTickets = Object.keys(ticketQuantities).filter((ticketType) => ticketQuantities[ticketType] > 0);
@@ -49,7 +48,7 @@ const TransactionStep3 = ({onPrevious}) => {
         duration: 6000,
         isClosable: true,
         onCloseComplete: () => {
-          navigate("/");
+          navigate("/MyTickets/");
         },
       });
     } catch (error) {
