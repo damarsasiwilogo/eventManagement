@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Box, Flex, Text, Select, Center, ButtonGroup, useToast } from "@chakra-ui/react";
-import { Formik, Form, Field, useFormikContext } from "formik";
+import { Box, Flex, Text, Select, useToast } from "@chakra-ui/react";
+import { Formik, Form, Field} from "formik";
 import { ErrorMessage } from "formik";
 import { Input, Button, FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
 import * as Yup from "yup";
@@ -21,7 +21,6 @@ function TransactionStep2({ onNext, onPrevious }) {
   const toast = useToast();
   const [referralMessage, setReferralMessage] = useState("");
   const [couponMessage, setCouponMessage] = useState("");
-  
 
   useEffect(() => {
     api
@@ -62,7 +61,7 @@ function TransactionStep2({ onNext, onPrevious }) {
   };
 
   return (
-    <>
+    <Box>
       <Formik
         initialValues={formData} // Initialize form values with data from Redux store
         validationSchema={validationSchema}
@@ -71,9 +70,9 @@ function TransactionStep2({ onNext, onPrevious }) {
           return true;
         }}
       >
-        <>
-          <Flex direction={{base: "column", lg : "row"}} >
-            <Box display={"flex"} flexDirection={{ base: "column" }} ml={{ base:"2.5", lg: "40" }} mr={{ lg: "40" }} mt={2} borderRadius={10}>
+        <Box>
+          <Flex direction={{ base: "column", lg: "row" }}>
+            <Box display={"flex"} flexDirection={{ base: "column" }} ml={{ base: "2.5", lg: "40" }} mr={{ lg: "40" }} mt={2} borderRadius={10}>
               {/* Event details display here */}
 
               {events.map((event) => {
@@ -84,7 +83,7 @@ function TransactionStep2({ onNext, onPrevious }) {
                   </Flex>
                 );
               })}
-              <Flex mt={4} ml={{md: 10,  lg: "10" }} px={{ base: 2 }} flexDirection={"column"} mb={30}>
+              <Flex mt={4} ml={{ md: 10, lg: "10" }} px={{ base: 2 }} flexDirection={"column"} mb={30}>
                 <Form>
                   <Field name="name">
                     {({ field, form }) => (
@@ -101,7 +100,7 @@ function TransactionStep2({ onNext, onPrevious }) {
                           {...field}
                           id="name"
                           placeholder="Enter your name"
-                          w={{base: 300 , lg: 400}}
+                          w={{ base: 300, lg: 400 }}
                           value={formData.name}
                           onChange={(e) => {
                             handleFormDataChange("name", e.target.value); // Update form data in Redux store
@@ -128,7 +127,7 @@ function TransactionStep2({ onNext, onPrevious }) {
                           id="email"
                           placeholder="Enter your email"
                           value={formData.email}
-                          w={{base: 300 , lg: 400}}
+                          w={{ base: 300, lg: 400 }}
                           onChange={(e) => {
                             handleFormDataChange("email", e.target.value); // Update form data in Redux store
                             // validateTransactionForm({ ...formData, email: e.target.value }); // Validate the entire form
@@ -154,7 +153,7 @@ function TransactionStep2({ onNext, onPrevious }) {
                           {...field}
                           id="telepon"
                           placeholder="Enter your number"
-                          w={{lg: 400}}
+                          w={{ lg: 400 }}
                           type="tel"
                           value={formData.telepon}
                           onChange={(e) => {
@@ -167,7 +166,7 @@ function TransactionStep2({ onNext, onPrevious }) {
                       </FormControl>
                     )}
                   </Field>
-                  <Flex w={{md: 400 , lg: 400}}>
+                  <Flex w={{ md: 400, lg: 400 }}>
                     <FormControl mt={2}>
                       <FormLabel>
                         Tanggal Lahir{" "}
@@ -385,19 +384,19 @@ function TransactionStep2({ onNext, onPrevious }) {
                       </Form>
                     )}
                   </Formik>
-                  <Box display={"flex"} justifyContent="flex-start" h={{ lg: "10vh" }} mt={5} mb={{ lg: "5" }}>
-                    <Button bg={"#F7F7F7"} color={"#2e4583"} size="sm" mr={4} mt={{ lg: "5" }} w={"90px"} onClick={onPrevious}>
-                      Kembali
-                    </Button>
-                  </Box>
                 </Form>
               </Flex>
             </Box>
             <PaymentMethod onNext={onNext} />
           </Flex>
-        </>
+        </Box>
       </Formik>
-    </>
+      <Box display={"flex"} flexDir={{base: "column", lg: "row"}} ml={{lg: "210px"}}alignItems={{base : "center" }} h={{ lg: "10vh" }} mt={5} mb={{ lg: "5" }}>
+        <Button bg={"#F7F7F7"} color={"#2e4583"} size="sm" mt={{ lg: "5" }} w={"90px"} onClick={onPrevious}>
+          Kembali
+        </Button>
+      </Box>
+    </Box>
   );
 }
 

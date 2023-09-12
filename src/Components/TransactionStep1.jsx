@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Flex, Image, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, Tbody, Td, Text, Th, Thead, Tr, Center } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Table, Tbody, Td, Text, Th, Thead, Tr} from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import api from "../api";
@@ -10,9 +10,7 @@ import { useToast } from "@chakra-ui/react";
 
 function TransactionStep1() {
   const [events, setEvents] = useState([]);
-
   const { id } = useParams();
-
   const MAX_QUANTITY = 5; // Maximum allowed quantity
   const [quantityGold, setQuantityGold] = useState(0);
   const [quantityPlatinum, setQuantityPlatinum] = useState(0);
@@ -23,6 +21,7 @@ function TransactionStep1() {
   const ticketQuantities = useSelector((state) => state.transaction.ticketQuantities);
   const toast = useToast();
 
+  // melakukan fetch json pada awal component transactionstep1 di render
   useEffect(() => {
     api
       .get(`/events/${id}`)
@@ -39,6 +38,7 @@ function TransactionStep1() {
       });
   }, []);
 
+  //function to handle decrement count of ticket
   const handleDecrement = (ticketType) => {
     switch (ticketType) {
       case "Gold":
@@ -73,6 +73,7 @@ function TransactionStep1() {
     }
   };
 
+  //function to handle increment count of ticket
   const handleIncrement = (ticketType) => {
     switch (ticketType) {
       case "Gold":
@@ -116,6 +117,7 @@ function TransactionStep1() {
     }
   };
 
+  //function closeModal
   const closeModal = () => {
     setIsModalOpen(false);
     setQuantityGold(0);
@@ -124,6 +126,7 @@ function TransactionStep1() {
     dispatch(resetTransaction());
   };
 
+  
   const getQuantity = (ticketType) => {
     switch (ticketType) {
       case "Gold":
