@@ -73,7 +73,7 @@ function TransactionStep2({ onNext, onPrevious }) {
       >
         <>
           <Flex direction={{base: "column", lg : "row"}} >
-            <Box display={"flex"} flexDirection={{ base: "column" }} ml={{ lg: "40" }} mr={{ lg: "40" }} mt={2} borderRadius={10}>
+            <Box display={"flex"} flexDirection={{ base: "column" }} ml={{ base:"2.5", lg: "40" }} mr={{ lg: "40" }} mt={2} borderRadius={10}>
               {/* Event details display here */}
 
               {events.map((event) => {

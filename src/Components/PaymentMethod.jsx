@@ -107,7 +107,7 @@ function PaymentMethod({ onNext }) {
   return (
     <>
       <Box display={"flex"} borderRadius={10} alignItems="center" bg="#331F69" padding={{ lg: "10" }} py={{ base: "4" }} mt={{ lg: "6" }} flexDirection="column" w={{ md: "100vw", lg: "35vw" }}>
-        <Flex justifyContent="flex-start" gap="15" direction={"row"} mb={5}>
+        <Flex justifyContent={{base: "center"}} gap="15" direction={"row"} mb={5}>
           <Flex alignItems={"center"}>
             <IoTicketSharp color="white" size={"35px"} />
           </Flex>
