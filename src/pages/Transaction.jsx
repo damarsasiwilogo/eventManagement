@@ -11,7 +11,8 @@ import { resetTransaction } from "../slices/transactionSlices";
 import { useDispatch, useSelector } from "react-redux"; // Import useDispatch
 import { Spinner, Center } from "@chakra-ui/react";
 import Footer from "../Components/Footer";
-import Navibar from "../Components/Navibar";
+import Navigation from "../Components/Navigation";
+
 
 function Transaction() {
   const { id } = useParams();
@@ -167,7 +168,7 @@ function Transaction() {
 
   return (
     <>
-      <Navibar needLogin>
+      <Navigation needLogin>
         <Box>
           <Box display={"flex"} flexDirection="column" justifyContent="center" bgColor="white" alignItems={"center"} h={"10vh"} ml={{ lg: "40" }} mr={{ lg: "40" }} mt={2} borderRadius={10}>
             <Flex direction={"column"} ml={{ lg: "18px" }} justifyContent={"center"} alignItems={"center"} mt={5}>
@@ -261,7 +262,7 @@ function Transaction() {
           </Modal>
         </Box>
         <Footer />
-      </Navibar>
+      </Navigation>
     </>
   );
 }

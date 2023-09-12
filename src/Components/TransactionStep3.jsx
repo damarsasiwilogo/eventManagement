@@ -93,47 +93,47 @@ const TransactionStep3 = ({onPrevious}) => {
             <Text fontWeight={"bold"}  fontSize={{ base: "10px", lg: "16px" }}>{event.name}</Text>
           </Flex>
         ))}
-        <Flex bgColor={"#331F69"} alignItems={"center"} direction={{ base: "column", md: "column", lg: "row" }} boxShadow={"2xl"} borderRadius={15}>
-          <Flex direction={"row"} gap={2} p={{ base: "2px", md: "4px", lg: "12px" }} m={{base:1, lg: 4}}>
+        <Flex bgColor={"#331F69"} alignItems={{lg: "center"}} direction={{ base: "column", md: "column", lg: "row" }} boxShadow={"2xl"} borderRadius={15}>
+          <Flex direction={"row"} gap={2} p={{ base: "2px", md: "4px", lg: "12px" }} m={{base:4, lg: 4}}>
             <Flex direction={"column"} justifyContent={"center"}>
-              <Text fontWeight={"bold"} fontSize={{ base: "11px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 Nama
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "11px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 Email
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "11px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 Telepon
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "11px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 Payment
               </Text>
             </Flex>
             <Flex direction={"column"} justifyContent={"center"}>
-              <Text fontWeight={"bold"} fontSize={{ base: "11px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "11px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "11px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
-              <Text fontWeight={"bold"} fontSize={{ base: "11px", md: "16px", lg: "18px" }} color="white">
+              <Text fontWeight={"bold"} fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 :
               </Text>
             </Flex>
             <Flex direction={"column"} justifyContent={"center"}>
-              <Text fontSize={{ base: "11px", md: "16px", lg: "18px" }} color="white">
+              <Text fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 {name}
               </Text>
-              <Text fontSize={{ base: "11px", md: "16px", lg: "18px" }} color="white">
+              <Text fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 {email}
               </Text>
-              <Text fontSize={{ base: "11px", md: "16px", lg: "18px" }} color="white">
+              <Text fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 {telepon}
               </Text>
-              <Text fontSize={{ base: "11px", md: "16px", lg: "18px" }} color="white">
+              <Text fontSize={{ base: "12px", md: "16px", lg: "18px" }} color="white">
                 {(paymentMethod === "GOPAY") 
                 || (paymentMethod === "OVO") 
                 || (paymentMethod === "DANA") || (paymentMethod === "Credit Card") ? (paymentMethod) : (paymentMethod + telepon)}
