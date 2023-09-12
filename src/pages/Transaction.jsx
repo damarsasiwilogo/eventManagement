@@ -17,7 +17,7 @@ import Navigation from "../Components/Navigation";
 function Transaction() {
   const { id } = useParams();
   const [events, setEvents] = useState([]);
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(1); // deklarasikan state transaction berada di step 1
   const [remainingTime, setRemainingTime] = useState(15 * 60); // Waktu dalam detik (15 menit)
   const [isTimeUpModalOpen, setIsTimeUpModalOpen] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
@@ -28,6 +28,7 @@ function Transaction() {
   const toast = useToast();
   const [isButtonVisible, setButtonVisibility] = useState(true);
 
+  //membuat setiap interval setiap 1000ms/1 detik akan mengurangi state remaining time  - 1detik
   useEffect(() => {
     const interval = setInterval(() => {
       if (remainingTime > 0) {
@@ -43,6 +44,8 @@ function Transaction() {
     };
   }, [remainingTime]);
 
+
+  //fetching data from json
   useEffect(() => {
     api
       .get(`/events/${id}`)
@@ -59,13 +62,15 @@ function Transaction() {
       });
   }, []);
 
+  //ketika pertama kali merender TransactionStep1 akan mereset redux transaction. 
   useEffect(() => {
     // Reset the Redux store when rendering TransactionStep1
     dispatch(resetTransaction());
   }, [dispatch]);
 
+  //function untuk menghandle tombol konfirmasi yang akan merender transaction step selanjutnya
   const handleNext = async () => {
-    if (!isConfirmationModalOpen && currentStep < 4) {
+    if (!isConfirmationModalOpen) {
       setIsLoading(true);
       // Set loading to true before transitioning
       // Simulate a delay for loading effect (you can replace this with actual data fetching)
@@ -75,6 +80,8 @@ function Transaction() {
       setButtonVisibility(true);
     }
   };
+
+  //function untuk meghandle tombol kembali
 
   const handlePrevious = async () => {
     if (currentStep == 2) {
@@ -94,6 +101,7 @@ function Transaction() {
     }
   };
 
+  // 3 transaction step akan di bungkus dengan function renderstep
   const renderStep = () => {
     switch (currentStep) {
       case 1:
@@ -110,6 +118,8 @@ function Transaction() {
         return null;
     }
   };
+
+  //untuk set value progressbar berdasarkan step
 
   const calculateProgress = () => {
     switch (currentStep) {
@@ -132,6 +142,8 @@ function Transaction() {
   const closeTimeUpModal = () => {
     setIsTimeUpModalOpen(false);
   };
+
+  //function untuk untuk memberikan peringatan ketika tidak ada tiket yang dipilih namun melakukan checkout
 
   const handleConfirmation = () => {
     if (ticketQuantities.Gold === 0 && ticketQuantities.Platinum === 0 && ticketQuantities.Diamond === 0) {

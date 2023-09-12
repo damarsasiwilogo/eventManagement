@@ -22,6 +22,7 @@ function TransactionStep2({ onNext, onPrevious }) {
   const [referralMessage, setReferralMessage] = useState("");
   const [couponMessage, setCouponMessage] = useState("");
 
+  // fetch data json "events"
   useEffect(() => {
     api
       .get(`/events/${id}`)
@@ -38,10 +39,11 @@ function TransactionStep2({ onNext, onPrevious }) {
       });
   }, []);
 
+  //deklarasi variabel untuk months dan years
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
   const years = Array.from({ length: 64 }, (_, i) => (2013 - i).toString());
-
+ 
+ //validasi yup untuk form data diri
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
     email: Yup.string().email("Invalid email format").required("Email is required"),
@@ -54,6 +56,7 @@ function TransactionStep2({ onNext, onPrevious }) {
     year: Yup.string().required("Year is required"),
   });
 
+  // function untuk mengupdate redux, akan dipanggil di onchange setiap field input di Formik
   const handleFormDataChange = (fieldName, value) => {
     const updatedFormData = { ...formData, [fieldName]: value };
     dispatch(setFormData(updatedFormData));
