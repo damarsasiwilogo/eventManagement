@@ -1,4 +1,4 @@
-import { FormErrorMessage, MenuItem, Radio, RadioGroup, Stack, useDisclosure } from "@chakra-ui/react";
+import { FormErrorMessage, MenuItem, Radio, RadioGroup, Stack, Textarea, useDisclosure } from "@chakra-ui/react";
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, FormControl, Input, FormLabel, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -50,6 +50,15 @@ export default function CreateForm() {
       setEventsData([...eventsData, res.data]);
     });
 
+    toast({
+        title: "Event has been created",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+        onCloseComplete: () => {
+          onClose();
+        },
+      });
   };
 
   const validationScehma = yup.object().shape({
@@ -58,7 +67,6 @@ export default function CreateForm() {
     description: yup.string().required().min(5, "minimum character is 5"),
     images: yup.string().required(),
   });
-
 
   return (
     <>
@@ -74,15 +82,16 @@ export default function CreateForm() {
               onSubmit={(values) => {
                 // Lakukan pemrosesan formulir seperti menyimpan data ke server
                 handleSubmit(values);
-      
+
                 // Setelah pemrosesan berhasil, tutup modal
                 onClose();
-              }} validationSchema={validationScehma}>
+              }}
+              validationSchema={validationScehma}>
               {(forms) => (
                 <Form>
                   <Field name="name">
                     {({ field, form }) => (
-                      // untuk menghubungkan input dalam formulir dengan state Formik dan untuk menangani validasi dan penanganan kesalahan yang terkait dengan input 
+                      // untuk menghubungkan input dalam formulir dengan state Formik dan untuk menangani validasi dan penanganan kesalahan yang terkait dengan input
                       <FormControl isInvalid={form.errors.name && form.touched.name}>
                         {/*errors untuk mengakses pesan kesalahan validasi, touched untuk menentukan apakah input telah "disentuh" atau tidak */}
                         <FormLabel>Event Name</FormLabel>
@@ -185,7 +194,7 @@ export default function CreateForm() {
                     {({ field, form }) => (
                       <FormControl isInvalid={form.errors.description && form.touched.description} mt={4}>
                         <FormLabel>Description</FormLabel>
-                        <Input placeholder="Description" {...field} />
+                        <Textarea placeholder='Description' {...field} />
                         <FormErrorMessage>{form.errors.description}</FormErrorMessage>
                       </FormControl>
                     )}
