@@ -37,6 +37,7 @@ import {
   ModalHeader,
   ModalFooter,
   Spacer,
+  Checkbox,
 } from "@chakra-ui/react";
 import api from "../api.js";
 import "../index.css";
@@ -69,9 +70,13 @@ export default function Navibar(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  // hide and show the password field
   const { isOpen: showPassword, onToggle: onTogglePassword } = useDisclosure();
+  // check if visitor is loogged in or not
   const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
   const profile = useSelector((state) => state.users.profile);
+  // declare popup to prevent both modal is open
+  const [activeModal, setActiveModal] = useState(null);
 
   const toast = useToast();
   const dispatch = useDispatch();
@@ -82,9 +87,6 @@ export default function Navibar(props) {
       navigate("/");
     }
   }, [props.needLogin, navigate, isLoggedIn]);
-
-  // declare Regist
-  const [activeModal, setActiveModal] = useState(null); //declare pop out success or error register
 
   // Handle Input Section
   useEffect(() => {
@@ -99,7 +101,6 @@ export default function Navibar(props) {
 
     // Filter suggestions berdasarkan input
     const filtered = events.filter((event) => event.name.toLowerCase().includes(input.toLowerCase()));
-
     setSuggestions(filtered);
   };
 
@@ -154,7 +155,6 @@ export default function Navibar(props) {
   const openModal = (modal) => {
     setActiveModal(modal);
   };
-
   const closeModal = () => {
     setActiveModal(null);
   };
@@ -293,12 +293,12 @@ export default function Navibar(props) {
   return (
     <>
       {isLoggedIn ? (
-        <Box bg={"#331F69"} px={{base: 2, lg:4}}>
+        <Box bg={"#331F69"} px={{ base: 2, lg: 4 }}>
           <Flex h={16} alignItems="center" justifyContent={{ lg: "space-evenly" }}>
             <IconButton size="md" icon={isOpen ? <CloseIcon /> : <HamburgerIcon />} aria-label="Open Menu" display={{ lg: "none" }} onClick={isOpen ? onClose : onOpen} />
-            <HStack spacing={{base: 1, lg: 8}} w={{ base: "full", lg: "auto" }}>
+            <HStack spacing={{ base: 1, lg: 8 }} w={{ base: "full", lg: "auto" }}>
               <a href="/">
-                <Image src={myTixLogo} w={{base:"82px" ,lg: "150px"}} h={{base : "24px" , lg: "45px"}}/>
+                <Image src={myTixLogo} w={{ base: "82px", lg: "150px" }} h={{ base: "24px", lg: "45px" }} />
               </a>
               <Spacer display={{ lg: "none" }} />
               <Flex gap={2} alignItems={"center"} zIndex={5} display={{ lg: "none" }}>
@@ -401,8 +401,8 @@ export default function Navibar(props) {
           <Flex h={16} alignItems="center" justifyContent={{ base: "normal", lg: "space-evenly" }}>
             <IconButton size="md" icon={isOpen ? <CloseIcon /> : <HamburgerIcon />} aria-label="Open Menu" display={{ lg: "none" }} onClick={isOpen ? onClose : onOpen} />
             <a href="/">
-                <Image src={myTixLogo} w={{base:"82px" ,lg: "150px"}} h={{base : "24px" , lg: "45px"}}/>
-              </a>
+              <Image src={myTixLogo} w={{ base: "82px", lg: "150px" }} h={{ base: "24px", lg: "45px" }} />
+            </a>
             <HStack as="nav" spacing={4} display={{ base: "none", lg: "flex" }}>
               <div style={{ position: "relative" }}>
                 <Input
@@ -458,7 +458,7 @@ export default function Navibar(props) {
         </Box>
       )}
 
-      <Modal isOpen={activeModal === "login"} onClose={closeModal} isCentered>
+      <Modal isOpen={activeModal === "login"} onClose={closeModal} closeOnOverlayClick={false} isCentered>
         <ModalOverlay />
         <ModalContent bg="ghostwhite" size="xl">
           <ModalCloseButton />
@@ -489,7 +489,7 @@ export default function Navibar(props) {
                               <FormLabel>Password</FormLabel>
                               <InputGroup>
                                 <InputLeftElement pointerEvents="none" color="gray.300" children={<CFaLock color="gray.300" />} />
-                                <Input type={showPassword ? "text" : "password"} {...field} placeholder="Password" />
+                                <Input type={showPassword ? "text" : "password"} {...field} placeholder="Password" mb={2} />
                                 <InputRightElement h="full">
                                   <Button variant="ghost" onClick={onTogglePassword}>
                                     {showPassword ? <ViewIcon /> : <ViewOffIcon />}
@@ -498,6 +498,13 @@ export default function Navibar(props) {
                               </InputGroup>
                               <FormErrorMessage>{form.errors.password}</FormErrorMessage>
                             </FormControl>
+                          )}
+                        </Field>
+                        <Field name="rememberMe">
+                          {({ field }) => (
+                            <Box>
+                              <Checkbox {...field}>Remember Me</Checkbox>
+                            </Box>
                           )}
                         </Field>
                         <Stack pt={3}>
@@ -522,7 +529,7 @@ export default function Navibar(props) {
           </ModalBody>
         </ModalContent>
       </Modal>
-      <Modal isOpen={activeModal === "register"} onClose={closeModal} isCentered>
+      <Modal isOpen={activeModal === "register"} onClose={closeModal} closeOnOverlayClick={false} isCentered>
         <ModalOverlay />
         <ModalContent bg="ghostwhite" size="xl">
           <ModalCloseButton />
