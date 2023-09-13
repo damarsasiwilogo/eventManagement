@@ -487,9 +487,9 @@ export default function Navibar(props) {
                           {({ field, form }) => (
                             <FormControl isInvalid={form.errors.password && form.touched.password} isDisabled={isSubmitting}>
                               <FormLabel>Password</FormLabel>
-                              <InputGroup>
+                              <InputGroup mb={2}>
                                 <InputLeftElement pointerEvents="none" color="gray.300" children={<CFaLock color="gray.300" />} />
-                                <Input type={showPassword ? "text" : "password"} {...field} placeholder="Password" mb={2} />
+                                <Input type={showPassword ? "text" : "password"} {...field} placeholder="Password" />
                                 <InputRightElement h="full">
                                   <Button variant="ghost" onClick={onTogglePassword}>
                                     {showPassword ? <ViewIcon /> : <ViewOffIcon />}
