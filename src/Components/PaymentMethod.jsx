@@ -147,7 +147,7 @@ function PaymentMethod({ onNext }) {
           </Flex>
         </Flex>
         <Accordion
-          w={{ base: "98vw", lg: "34vw" }}
+          w={{ base: "94vw", lg: "34vw" }}
           bg="#331F69"
           allowToggle
           onChange={(index) => {
@@ -198,7 +198,7 @@ function PaymentMethod({ onNext }) {
                             {...field}
                             id="cardNumber"
                             placeholder="Enter card number (ex 1111 4242 3333 5555)"
-                            w={{ base: "305px", lg: "350px" }}
+                            w={{ base: "280px", lg: "350px" }}
                             value={creditCardData.cardNumber}
                             inputMode="numeric" // Allow only numeric input
                             onChange={(e) => {
@@ -226,7 +226,7 @@ function PaymentMethod({ onNext }) {
                             {...field}
                             id="cardHolder"
                             placeholder="Enter card holder name"
-                            w={{ base: "305px", lg: "350px" }}
+                            w={{ base: "280px", lg: "350px" }}
                             value={creditCardData.cardHolder}
                             onChange={(e) => handleCreditCardDataChange("cardHolder", e.target.value)} // Update form data in Redux store
                           />
@@ -235,7 +235,7 @@ function PaymentMethod({ onNext }) {
                       )}
                     </Field>
 
-                    <Flex w={{ base: "305px", lg: "350px" }}>
+                    <Flex w={{ base: "280px", lg: "350px" }}>
                       <FormControl mt={2}>
                         <FormLabel>
                           Expiration Date{" "}
@@ -275,7 +275,7 @@ function PaymentMethod({ onNext }) {
                             )}
                           </Field>
                         </Flex>
-                        <Flex alignItems={"center"} justifyContent={"space-between"}>
+                        <Flex alignItems={"center"} gap={{base: 1}} justifyContent={"space-between"}>
                           <Field name="cvvNumber">
                             {({ field, form }) => (
                               <FormControl mt={2} isInvalid={form.errors.cvvNumber && form.touched.cvvNumber}>
@@ -291,7 +291,7 @@ function PaymentMethod({ onNext }) {
                                   {...field}
                                   id="cvvNumber"
                                   placeholder="CVV"
-                                  w={20}
+                                  w={"80px"}
                                   value={creditCardData.cvvNumber}
                                   inputMode="numeric"
                                   onChange={(e) => {
@@ -304,7 +304,7 @@ function PaymentMethod({ onNext }) {
                               </FormControl>
                             )}
                           </Field>
-                          <Image h="50px" w="200px" src={creditCardLogo} />
+                          <Image h="48px" w="200px" src={creditCardLogo} />
                         </Flex>
                       </FormControl>
                     </Flex>
